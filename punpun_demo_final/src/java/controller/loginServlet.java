@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+import model.Members;
 import utilities.MemberUtil;
 
 /**
@@ -54,23 +55,14 @@ public class loginServlet extends HttpServlet {
 
             MemberUtil memberUtil = new MemberUtil(ds);
             memberUtil.connect();
-            out.print(memberUtil.authenicate(user, pass));
-//            String cmdSelect = "select * from members where email = ? and password = ?";
-//            selectData = conn.prepareStatement(cmdSelect);
-//            selectData.setString(1, user);
-//            selectData.setString(2, pass);
-//            ResultSet rs = selectData.executeQuery();
-//
-//            if (rs.next()) {
-//                out.print(rs.getString(1));
-//                HttpSession session = request.getSession();
-//                session.setAttribute("member_id", rs.getString(1));
-//                response.sendRedirect("index.jsp");
-//            } else {
-//                response.sendRedirect("test.jsp");
-//            }
-            session.setAttribute("member", memberUtil.authenicate(user, pass));
-            response.sendRedirect("index.jsp");
+            Members member = memberUtil.authenicate(user, pass);
+            System.out.println(member);
+            if (member == null) {
+                response.sendRedirect("test.html");
+            } else {
+                session.setAttribute("member", member);
+                response.sendRedirect("index.jsp");
+            }
         }
     }
 

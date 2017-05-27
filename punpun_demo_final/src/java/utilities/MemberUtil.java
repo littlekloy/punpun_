@@ -97,16 +97,13 @@ public class MemberUtil {
             selectData.setString(2, password);
             System.out.println(selectData);
             ResultSet rs = selectData.executeQuery();
-
             if (rs.next()) {
-
                 Members member = new Members();
                 member.setEmail(rs.getString("email"));
                 member.setPassword(rs.getString("password"));
                 member.setFirstName(rs.getString("first_name"));
                 member.setLastName(rs.getString("last_name"));
                 member.setMemberId(rs.getInt("member_id"));
-
                 return member;
             }
         } catch (SQLException ex) {
