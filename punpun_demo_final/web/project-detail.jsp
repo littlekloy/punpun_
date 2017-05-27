@@ -214,7 +214,7 @@
                                                 <div class="col-xs-12 stat-col">
                                                     <div class="stat-icon"> <i class="fa fa-calendar"></i> </div>
                                                     <div class="stat">
-                                                        <div class="value"> ${project.end_date} </div>
+                                                        <div class="value"> ${project.endDate} </div>
                                                         <div class="name"> สิ้นสุดโครงการ </div>
                                                     </div>
                                                 </div>
@@ -223,7 +223,7 @@
                                                 <div class="col-xs-12 stat-col">
                                                     <div class="stat-icon"> <i class="fa fa-clock-o"></i> </div>
                                                     <div class="stat">
-                                                        <div class="value"> ${project.funding_duration} </div>
+                                                        <div class="value"> ${project.fundingDuration} </div>
                                                         <div class="name"> วัน </div>
                                                     </div>
                                                 </div>
@@ -308,7 +308,7 @@
                                                     <!-- Table Content -->
                                                     <ul class="item-list striped">
                                                         <sql:query var="result2" dataSource="punpun">
-                                                            SELECT * FROM member_team_pivot where team_id = ${project.team_id}
+                                                            SELECT * FROM member_team_pivot where team_id = ${project.teamId}
                                                         </sql:query>
                                                         <c:forEach var="member" items="${result2.rows}">
                                                             <sql:query var="data" dataSource="punpun">
@@ -665,96 +665,96 @@
 
                 </article>
             </div>
-        </c:forEach>
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container content">
-                <div class="col-md-4">
-                    <p> <h3>เกี่ยวกับเรา</h3> </p>
-                    <h6><a href="about-us.jsp">เรื่องราวของปันปัน</a></h6>
-                    <h6><a href="team.jsp">ทีมปันปัน</a></h6>
-                    <h6><a href="how-it-works.jsp">ขั้นตอนการบริจาค</a></h6>
-                    <h6><a href="fee.jsp">ค่าใช้จ่ายในการระดมทุน</a></h6>
-                </div>
-                <div class="col-md-4">
-                    <p> <h3>โครงการทั้งหมด</h3> </p>
-                    <sql:query var="category" dataSource="punpun">
-                        SELECT * FROM project_categories
-                    </sql:query>
-                    <h6><a href="browse.jsp?category=0&sort=0">ทั้งหมด</a></h6>
-                    <c:forEach var="data3" items="${category.rows}">
-                        <h6><a href="browse.jsp?category=${data3.project_category_id}&sort=0">${data3.name}</a></h6>
 
-                    </c:forEach>
-
-                </div>
-                <div class="col-md-4">
-                    <p> <h3>การติดต่อ</h3> </p>
-                    <h6><a href="mailto:punpunproject@gmail.com?Subject=หัวข้อ%20เรื่องที่ติดต่อ" target="_top"> <i class="fa fa-envelope" style="color: #28ab60;"> </i> <span> อีเมล </span> </a> </h6>
-                    <h6><a href="https://www.facebook.com/punpunproject/"> <i class="fa fa-facebook-square" style="color: #4267b2;"> </i> <span> Facebook </span> </a></h6>
-                    <h6><a href="https://twitter.com"> <i class="fa fa-twitter" style="color: #1da1f2;"> </i> <span> Twitter </span> </a></h6>
-                </div>
-
-                <div class="col-md-12 want-top" style="border-top: 1px solid #64798d;margin-top: 20px;">
-                    <div class="footer-block author" style="margin-top: 20px;">
-                        <ul>
-                            <li> Theme by <a href="https://github.com/modularcode"> ModularCode </a> </li>
-                            <li> Created by <a href="#"> Disanuwat & Kanokwan </a> </li>
-                            <li> <a href="http://www.it.kmitl.ac.th"> IT KMITL </a> </li>
-                        </ul>
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="container content">
+                    <div class="col-md-4">
+                        <p> <h3>เกี่ยวกับเรา</h3> </p>
+                        <h6><a href="about-us.jsp">เรื่องราวของปันปัน</a></h6>
+                        <h6><a href="team.jsp">ทีมปันปัน</a></h6>
+                        <h6><a href="how-it-works.jsp">ขั้นตอนการบริจาค</a></h6>
+                        <h6><a href="fee.jsp">ค่าใช้จ่ายในการระดมทุน</a></h6>
                     </div>
+                    <div class="col-md-4">
+                        <p> <h3>โครงการทั้งหมด</h3> </p>
+                        <sql:query var="category" dataSource="punpun">
+                            SELECT * FROM project_categories
+                        </sql:query>
+                        <h6><a href="browse.jsp?category=0&sort=0">ทั้งหมด</a></h6>
+                        <c:forEach var="data3" items="${category.rows}">
+                            <h6><a href="browse.jsp?category=${data3.project_category_id}&sort=0">${data3.name}</a></h6>
+
+                        </c:forEach>
+
+                    </div>
+                    <div class="col-md-4">
+                        <p> <h3>การติดต่อ</h3> </p>
+                        <h6><a href="mailto:punpunproject@gmail.com?Subject=หัวข้อ%20เรื่องที่ติดต่อ" target="_top"> <i class="fa fa-envelope" style="color: #28ab60;"> </i> <span> อีเมล </span> </a> </h6>
+                        <h6><a href="https://www.facebook.com/punpunproject/"> <i class="fa fa-facebook-square" style="color: #4267b2;"> </i> <span> Facebook </span> </a></h6>
+                        <h6><a href="https://twitter.com"> <i class="fa fa-twitter" style="color: #1da1f2;"> </i> <span> Twitter </span> </a></h6>
+                    </div>
+
+                    <div class="col-md-12 want-top" style="border-top: 1px solid #64798d;margin-top: 20px;">
+                        <div class="footer-block author" style="margin-top: 20px;">
+                            <ul>
+                                <li> Theme by <a href="https://github.com/modularcode"> ModularCode </a> </li>
+                                <li> Created by <a href="#"> Disanuwat & Kanokwan </a> </li>
+                                <li> <a href="http://www.it.kmitl.ac.th"> IT KMITL </a> </li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
+            </footer>
 
-            </div>
-        </footer>
-
-    </div>
-
-    <!-- Reference block for JS -->
-    <div class="ref" id="ref">
-        <div class="color-primary"></div>
-        <div class="chart">
-            <div class="color-primary"></div>
-            <div class="color-secondary"></div>
         </div>
-    </div>
 
-    <!-- Script -->
-    <script src="assets/js/vendor.js"></script>
-    <script src="assets/js/app.js"></script>
+        <!-- Reference block for JS -->
+        <div class="ref" id="ref">
+            <div class="color-primary"></div>
+            <div class="chart">
+                <div class="color-primary"></div>
+                <div class="color-secondary"></div>
+            </div>
+        </div>
 
-    <!-- jQuery and jQuery UI are required dependencies. -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <!-- Script -->
+        <script src="assets/js/vendor.js"></script>
+        <script src="assets/js/app.js"></script>
 
-    <!-- The real Tag -->
-    <script src="assets/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+        <!-- jQuery and jQuery UI are required dependencies. -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-    <!-- Tag -->
-    <script>
-        $(function () {
-            var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
+        <!-- The real Tag -->
+        <script src="assets/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Tag -->
+        <script>
+            $(function () {
+                var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
 
 
-            //-------------------------------
-            // Preloading data in markup
-            //-------------------------------
-            $('#myULTags').tagit({
-                availableTags: sampleTags, // this param is of course optional. it's for autocomplete.
-                // configure the name of the input field (will be submitted with form), default: item[tags]
-                itemName: 'item',
-                fieldName: 'tags'
+                //-------------------------------
+                // Preloading data in markup
+                //-------------------------------
+                $('#myULTags').tagit({
+                    availableTags: sampleTags, // this param is of course optional. it's for autocomplete.
+                    // configure the name of the input field (will be submitted with form), default: item[tags]
+                    itemName: 'item',
+                    fieldName: 'tags'
+                });
+                //-------------------------------
+                // Read-only
+                //-------------------------------
+                $('#readOnlyTags').tagit({
+                    readOnly: true
+                });
+
             });
-            //-------------------------------
-            // Read-only
-            //-------------------------------
-            $('#readOnlyTags').tagit({
-                readOnly: true
-            });
+        </script>
 
-        });
-    </script>
-
-</body>
+    </body>
 </html>
