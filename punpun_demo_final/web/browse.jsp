@@ -70,7 +70,7 @@
 
                             <!-- notification -->
                             <li class="notifications new">
-                                <a href="" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <sup>
+                                <a href="checkNotificationServlet" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <sup>
                                         <span class="counter">${countNoti}</span>
                                     </sup>
                                 </a>

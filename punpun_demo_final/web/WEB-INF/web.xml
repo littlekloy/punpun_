@@ -32,6 +32,10 @@
         <servlet-name>viewAllNotificationServlet</servlet-name>
         <servlet-class>controller.viewAllNotificationServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>checkNotificationServlet</servlet-name>
+        <servlet-class>controller.checkNotificationServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
@@ -59,6 +63,10 @@
     <servlet-mapping>
         <servlet-name>viewAllNotificationServlet</servlet-name>
         <url-pattern>/viewAllNotificationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>checkNotificationServlet</servlet-name>
+        <url-pattern>/checkNotificationServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -7,23 +7,16 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
-import model.Members;
-import model.Notifications;
-import utilities.NotificationUtil;
 
 /**
  *
  * @author kanok
  */
-public class viewAllNotificationServlet extends HttpServlet {
+public class checkNotificationServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,22 +32,15 @@ public class viewAllNotificationServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            HttpSession session = request.getSession();
-
-            ServletContext context = getServletContext();
-            DataSource ds = (DataSource) context.getAttribute("dataSource");
-            NotificationUtil notiUtil = new NotificationUtil(ds);
-            notiUtil.connect();
-            ArrayList<Notifications> notifications = new ArrayList<Notifications>();
-            Members member = (Members) session.getAttribute("member");
-            notifications = notiUtil.findAllNotification((Integer) member.getMemberId());
-            System.out.println(member);
-            System.out.println("from Notiservlet" + notifications);
-            session.setAttribute("allNoti", notifications);
-            System.out.print(notiUtil.checkoutNotifacation((Integer) member.getMemberId()));
-            session.setAttribute("uncheckNoti", null);
-            session.setAttribute("countNoti", 0);
-            response.sendRedirect("notification.jsp");
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet checkNotificationServlet</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet checkNotificationServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

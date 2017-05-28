@@ -23,7 +23,7 @@ public class NotificationUtil {
 
     private DataSource ds;
     private Connection conn;
-    private PreparedStatement insertData;
+    private PreparedStatement insertData, updateData;
     private PreparedStatement selectData;
 
     public NotificationUtil() {
@@ -104,6 +104,18 @@ public class NotificationUtil {
             Logger.getLogger(NotificationUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        return null;
+    }
+
+    public Integer checkoutNotifacation(Integer id) {
+        String cmd = "update notifications set checked = 1 where member_id = ?";
+        try {
+            updateData = conn.prepareStatement(cmd);
+            updateData.setInt(1, id);
+            return updateData.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(NotificationUtil.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
 }
