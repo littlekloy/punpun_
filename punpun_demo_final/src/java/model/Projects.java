@@ -83,7 +83,7 @@ public class Projects implements Serializable {
     @Column(name = "percent")
     private Float percent;
     @Column(name = "supporter")
-    private Integer supporter;
+    private ArrayList<Supporter> supporter;
     @Column(name = "funded")
     private Integer funded;
     @JoinTable(name = "project_tags", joinColumns = {
@@ -108,6 +108,7 @@ public class Projects implements Serializable {
     @JoinColumn(name = "team_id", referencedColumnName = "team_id")
     @ManyToOne
     private Integer teamId;
+    private Integer supporterSize;
     @JoinColumn(name = "project_category_id", referencedColumnName = "project_category_id")
     @ManyToOne
     private Integer projectCategoryId;
@@ -213,11 +214,11 @@ public class Projects implements Serializable {
         this.percent = percent;
     }
 
-    public Integer getSupporter() {
+    public ArrayList<Supporter> getSupporter() {
         return supporter;
     }
 
-    public void setSupporter(Integer supporter) {
+    public void setSupporter(ArrayList<Supporter> supporter) {
         this.supporter = supporter;
     }
 
@@ -314,6 +315,14 @@ public class Projects implements Serializable {
 
     public void setTeamId(Integer teamId) {
         this.teamId = teamId;
+    }
+
+    public Integer getSupporterSize() {
+        return supporterSize;
+    }
+
+    public void setSupporterSize(Integer supporterSize) {
+        this.supporterSize = supporterSize;
     }
 
     public Integer getProjectCategoryId() {

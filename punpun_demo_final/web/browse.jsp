@@ -240,7 +240,7 @@
                                                 <!--Followers-->
                                                 <div class="col-md-3 stat-col">
                                                     <div class="stat">
-                                                        <div class="value center-text"> ${project.supporter} </div>
+                                                        <div class="value center-text"> ${project.supporterSize} </div>
                                                         <div class="name"> ผู้สนับสนุน </div>
                                                     </div>
                                                 </div>

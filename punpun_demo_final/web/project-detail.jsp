@@ -181,7 +181,7 @@
                                                 <div class="col-xs-12 stat-col">
                                                     <div class="stat-icon"> <i class="fa fa-user"></i> </div>
                                                     <div class="stat">
-                                                        <div class="value"> ${project.supporter} </div>
+                                                        <div class="value"> ${project.supporterSize} </div>
                                                         <div class="name"> ผู้ร่วมระดมทุน </div>
                                                     </div>
                                                 </div>
@@ -405,36 +405,31 @@
                                                 <div data-exclude="xs,sm,lg">
                                                     <!-- Table Content -->
                                                     <ul class="item-list striped">
-                                                        <sql:query var="result" dataSource="punpun">
-                                                            SELECT * FROM donations where project_id = ${param.id}
-                                                        </sql:query>
-                                                        <c:forEach var="supporter" items="${result.rows}">
+
+                                                        <c:forEach var="supporter" items="${project.supporter}">
                                                             <!-- Item : Loop here -->
                                                             <li class="item">
                                                                 <div class="item-row">
                                                                     <div class="item-col fixed item-col-img md">
                                                                         <a href="item-editor.html">
-                                                                            <div class="item-img rounded" style="background-image: url('assets/img/profile/0000${supporter.member_id}.jpg')"></div>
+                                                                            <div class="item-img rounded" style="background-image: url('assets/img/profile/0000${supporter.memberId}.jpg')"></div>
                                                                         </a>
                                                                     </div>
                                                                     <!--Name of Supporter-->
                                                                     <div class="item-col item-col-center no-overflow no-underline">
                                                                         <div>
-                                                                            <sql:query var="data4" dataSource="punpun">
-                                                                                SELECT * FROM members where member_id = ${supporter.member_id}
-                                                                            </sql:query>
-                                                                            <c:forEach var="data5" items="${data4.rows}">
-                                                                                <a href="error-404.html" class="center-text">
-                                                                                    ${data5.first_name}  ${data5.last_name}
-                                                                                </a>
-                                                                            </c:forEach>
+
+                                                                            <a href="error-404.html" class="center-text">
+                                                                                ${supporter.firstName}  ${supporter.lastName}
+                                                                            </a>
+
 
                                                                         </div>
                                                                     </div>
                                                                     <!--Amount of Funded-->
                                                                     <div class="item-col item-col-center">
                                                                         <div class="item-heading"> จำนวน(บาท) </div>
-                                                                        <div class=""> ${supporter.amount} </div>
+                                                                        <div class=""> ${supporter.funded} </div>
                                                                     </div>
                                                                 </div>
                                                             </li>

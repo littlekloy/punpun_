@@ -18,6 +18,7 @@ import model.Items;
 import model.Members;
 import model.ProjectItems;
 import model.Projects;
+import model.Supporter;
 
 /**
  *
@@ -75,7 +76,25 @@ public class ProjectUtil implements Serializable {
                 project.setStatus(rs.getString("status"));
                 project.setProjectCategoryId(rs.getInt("project_category_id"));
                 project.setPercent(rs.getFloat("percent"));
-                project.setSupporter(rs.getInt("supporter"));
+                //GET SUPPORTER
+                String cmd_supporter_1 = "SELECT members.member_id, first_name, last_name, sum(amount) FROM donations ";
+                String cmd_supporter_2 = "left join members on members.member_id = donations.member_id  ";
+                String cmd_supporter_3 = "where type In ('project','item') and project_id = ? group by member_id";
+                selectSupporter = conn.prepareStatement(cmd_supporter_1 + cmd_supporter_2 + cmd_supporter_3);
+                selectSupporter.setInt(1, rs.getInt("project_id"));
+                ArrayList<Supporter> supporter = new ArrayList<Supporter>();
+                ResultSet rsSupporter = selectSupporter.executeQuery();
+                while (rsSupporter.next()) {
+                    Supporter sup = new Supporter();
+                    sup.setMemberId(rsSupporter.getInt("member_id"));
+                    sup.setFirstName(rsSupporter.getString("first_name"));
+                    sup.setLastName(rsSupporter.getString("first_name"));
+                    sup.setFunded(rsSupporter.getInt("sum(amount)"));
+                    supporter.add(sup);
+                }
+                System.out.println(supporter);
+                project.setSupporter(supporter);
+                project.setSupporterSize(supporter.size());
                 project.setFunded(rs.getInt("funded"));
                 projects.add(project);
             }
@@ -113,9 +132,10 @@ public class ProjectUtil implements Serializable {
                 project.setStatus(rs.getString("status"));
                 project.setProjectCategoryId(rs.getInt("project_category_id"));
                 project.setPercent(rs.getFloat("percent"));
-                project.setSupporter(rs.getInt("supporter"));
+
                 project.setFunded(rs.getInt("funded"));
                 project.setTeamId(rs.getInt("team_id"));
+                //GET TEAM MEMBER
                 selectData2.setInt(1, rs.getInt("team_id"));
                 System.out.println(selectData2);
                 ResultSet rs2 = selectData2.executeQuery();
@@ -133,6 +153,7 @@ public class ProjectUtil implements Serializable {
                     System.out.println(member);
                 }
                 project.setTeamCollection(team);
+                //GET PROJECT ITEM
                 selectItem.setInt(1, rs.getInt("project_id"));
                 ResultSet rsItem = selectItem.executeQuery();
                 System.out.println(selectItem);
@@ -148,15 +169,33 @@ public class ProjectUtil implements Serializable {
                     selectDonationItem = conn.prepareStatement(cmd_itemDonation);
                     selectDonationItem.setInt(1, rs.getInt("project_id"));
                     selectDonationItem.setInt(2, rsItem.getInt("item_id"));
-                    System.out.println(selectDonationItem);
                     ResultSet rsDonation = selectDonationItem.executeQuery();
                     while (rsDonation.next()) {
                         projectItem.setFunded(rsDonation.getInt("funded"));
-                        System.out.println(rsDonation.getInt("funded"));
                     }
                     project_item.add(projectItem);
                     System.out.println(projectItem);
                 }
+
+                //GET SUPPORTER
+                String cmd_supporter_1 = "SELECT members.member_id, first_name, last_name, sum(amount) FROM donations ";
+                String cmd_supporter_2 = "left join members on members.member_id = donations.member_id  ";
+                String cmd_supporter_3 = "where type In ('project','item') and project_id = ? group by member_id";
+                selectSupporter = conn.prepareStatement(cmd_supporter_1 + cmd_supporter_2 + cmd_supporter_3);
+                selectSupporter.setInt(1, rs.getInt("project_id"));
+                ArrayList<Supporter> supporter = new ArrayList<Supporter>();
+                ResultSet rsSupporter = selectSupporter.executeQuery();
+                while (rsSupporter.next()) {
+                    Supporter sup = new Supporter();
+                    sup.setMemberId(rsSupporter.getInt("member_id"));
+                    sup.setFirstName(rsSupporter.getString("first_name"));
+                    sup.setLastName(rsSupporter.getString("first_name"));
+                    sup.setFunded(rsSupporter.getInt("sum(amount)"));
+                    supporter.add(sup);
+                }
+                System.out.println(supporter);
+                project.setSupporter(supporter);
+                project.setSupporterSize(supporter.size());
                 project.setProjectItemsCollection(project_item);
             }
             return project;
@@ -193,7 +232,25 @@ public class ProjectUtil implements Serializable {
                 project.setStatus(rs.getString("status"));
                 project.setProjectCategoryId(rs.getInt("project_category_id"));
                 project.setPercent(rs.getFloat("percent"));
-                project.setSupporter(rs.getInt("supporter"));
+                //GET SUPPORTER
+                String cmd_supporter_1 = "SELECT members.member_id, first_name, last_name, sum(amount) FROM donations ";
+                String cmd_supporter_2 = "left join members on members.member_id = donations.member_id  ";
+                String cmd_supporter_3 = "where type In ('project','item') and project_id = ? group by member_id";
+                selectSupporter = conn.prepareStatement(cmd_supporter_1 + cmd_supporter_2 + cmd_supporter_3);
+                selectSupporter.setInt(1, rs.getInt("project_id"));
+                ArrayList<Supporter> supporter = new ArrayList<Supporter>();
+                ResultSet rsSupporter = selectSupporter.executeQuery();
+                while (rsSupporter.next()) {
+                    Supporter sup = new Supporter();
+                    sup.setMemberId(rsSupporter.getInt("member_id"));
+                    sup.setFirstName(rsSupporter.getString("first_name"));
+                    sup.setLastName(rsSupporter.getString("first_name"));
+                    sup.setFunded(rsSupporter.getInt("sum(amount)"));
+                    supporter.add(sup);
+                }
+                System.out.println(supporter);
+                project.setSupporter(supporter);
+                project.setSupporterSize(supporter.size());
                 project.setFunded(rs.getInt("funded"));
                 projects.add(project);
             }
