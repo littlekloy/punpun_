@@ -129,11 +129,11 @@
                         <!-- Title -->
                         <div class="title-block">
                             <div class="col-md-12">
-                                <h1 class="center-text"> คุณกำลังบริจาคให้</h1>
+                                <h1 class="center-text"> ขอบคุณที่ร่วมระดมทุนให้</h1>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <h3 class="center-text"> โครงการช่วยเหลือเด็กอ้วนม้วนเสื่อขาย </h3>
+                            <h3 class="center-text"> ${project.name} </h3>
                         </div>
                     </article>
                 </div>
@@ -148,14 +148,14 @@
                                     <!-- Project Name -->
                                     <div class="title-block">
                                         <div class="col-md-9 col-sm-6">
-                                            <h1 class="title" style="font-size: 150%"> โครงการบลาบีบูบลาลาก้า </h1>
-                                            <p class="title-description">โดย Lorem Ipsum</p>
-                                            <div class="">
-                                                <p><i class="fa fa-tag" > </i> <span>
-                                                        <a href="#"> Tag1 </a>
-                                                        <a href="#"> Tag2 </a>
-                                                    </span></p>
-                                            </div>
+                                            <h1 class="title" style="font-size: 150%"> ${project.name} </h1>
+                                            <p class="title-description">โดย Kanokwan Muttamara</p>
+                                            <!--  <div class="">
+                                                  <p><i class="fa fa-tag" > </i> <span>
+                                                          <a href="#"> Tag1 </a>
+                                                          <a href="#"> Tag2 </a>
+                                                      </span></p>
+                                              </div> -->
                                         </div>
                                     </div>
                                     <!-- Project Short Description -->
@@ -164,22 +164,22 @@
                                         <!--Image-->
                                         <div class="col-md-6 col-xs-12  stat-col">
                                             <div class="project-img-container">
-                                                <div class="image-project-no-opacity" style="background-image: url('assets/backgrounds/profile-card-1.jpg')"></div>
+                                                <div class="image-project-no-opacity" style="background-image: url('assets/img/Project_Pic/${project.projectId}/${project.projectId}.jpg')"></div>
                                             </div>
                                         </div>
 
                                         <!--Icon Stat-->
                                         <div class="col-md-6 col-xs-12">
-                                            <p class=""> Fitzroy Crossing is very remote. It is very expensive to get anything there, and even more expensive to buy things there. Bawoorrooga is 500KM from Broome, and over 2000km from Perth. We need as much as we can to help get these guys back on their feet again </p>
+                                            <p class=""> ${project.shortDescription} </p>
                                         </div>
 
                                         <!--Progress Bar-->
                                         <div class="col-xs-12 col-md-6 stat-col">
                                             <div class="stat-icon"> <i class="fa fa-flag"></i> </div>
                                             <div class="stat">
-                                                <div class="value"> 99999 / 99999 </div>
+                                                <div class="value"> ${project.funded} / ${project.budget} </div>
                                             </div>
-                                            <progress class="progress stat-progress" value="75" max="100">
+                                            <progress class="progress stat-progress" value="${project.percent}" max="100">
                                                 <div class="progress">
                                                     <span class="progress-bar" style="width: 75%;"></span>
                                                 </div>

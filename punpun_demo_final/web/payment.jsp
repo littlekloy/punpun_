@@ -146,8 +146,8 @@
                                     <div class="card-block">
                                         <!-- Nav tabs -->
                                         <ul class="nav nav-pills">
-                                            <li class="nav-item"> <a href="donate.html" class="nav-link active"> 1. เลือกรายการที่ต้องการช่วยเหลือ </a> </li>
-                                            <li class="nav-item"> <a href="#" class="nav-link"> 2. กรอกข้อมูลการชำระเงิน </a> </li>
+                                            <li class="nav-item"> <a href="donate.jsp" class="nav-link "> 1. เลือกรายการที่ต้องการช่วยเหลือ </a> </li>
+                                            <li class="nav-item"> <a href="#" class="nav-link active"> 2. กรอกข้อมูลการชำระเงิน </a> </li>
                                             <li class="nav-item"> <a href="#" class="nav-link"> 3. เรียบร้อย </a> </li>
                                         </ul>
 
@@ -167,7 +167,7 @@
                                                         <!--Bank Transfer Tab-->
                                                         <div class="tab-pane fade in active" id="bank-transfer-pills">
                                                             <div class="card card-block">
-                                                                <form role="form" method="GET" name="bank-transfer" action="payment-processing.html">
+                                                                <form role="form" method="GET" name="bank-transfer" action="payment-processing.jsp">
                                                                     <div class="form-group row">
                                                                         <label class="col-sm-2 form-control-label text-xs-right"> อีเมล : </label>
                                                                         <div class="col-sm-8"> <input type="email" class="form-control" name="email" placeholder="อีเมล" value=""> </div>
@@ -233,7 +233,7 @@
                                                         <!--Credit Tab-->
                                                         <div class="tab-pane fade in" id="credit-pills">
                                                             <div class="card card-block">
-                                                                <form role="form" method="GET" name="credit-card" action="success-payment.html">
+                                                                <form role="form" method="GET" name="credit-card" action="success-payment.jsp">
                                                                     <div class="form-group row">
                                                                         <label class="col-sm-2 form-control-label text-xs-right"> อีเมล : </label>
                                                                         <div class="col-sm-8"> <input type="email" class="form-control" name="email" placeholder="อีเมล" value=""> </div>

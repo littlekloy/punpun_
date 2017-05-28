@@ -147,7 +147,7 @@
                     </div>
 
                     <sql:query var="result" dataSource="punpun">
-                        SELECT * FROM projects where project_id = 5 or project_id = 1
+                        SELECT * FROM projects where project_id = 2 or project_id = 1
                     </sql:query>
 
                     <c:forEach var="project" items="${result.rows}">

@@ -102,7 +102,7 @@ public class donationServlet extends HttpServlet {
                 for (String i : item_id) {
                     out.print("<br>" + i);
                     if (request.getParameter(i).equals("on")) {
-                        String amount_item = request.getParameter("amount_item");
+                        String amount_item = request.getParameter("amount_item_" + i);
                         out.print("item Amount :" + amount_item);
                         allAmount += Integer.parseInt(amount_item);
                     } else {
@@ -131,7 +131,7 @@ public class donationServlet extends HttpServlet {
                     for (String i : item_id) {
                         int item_amount = 0;
                         if (request.getParameter(i).equals("on")) {
-                            String amount_item = request.getParameter("amount_item");
+                            String amount_item = request.getParameter("amount_item_" + i);
                             out.print("item Amount :" + amount_item);
                             item_amount = Integer.parseInt(amount_item);
                         } else {
@@ -151,8 +151,8 @@ public class donationServlet extends HttpServlet {
                     }
 
                 }
-
             }
+            response.sendRedirect("payment.jsp");
         } catch (SQLException ex) {
             Logger.getLogger(donationServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

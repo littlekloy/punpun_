@@ -246,7 +246,7 @@
                                                                             </label>
                                                                             <label>
                                                                                 <input class="radio" name="${item.items.itemId}" id="${item.items.itemId}" type="radio">
-                                                                                <span><input type="text" name="amount_item" class="boxed" placeholder=" ใส่จำนวนเงินที่ต้องการ"> </span>
+                                                                                <span><input type="text" name="amount_item_${item.items.itemId}" class="boxed" placeholder=" ใส่จำนวนเงินที่ต้องการ"> </span>
                                                                             </label>
                                                                         </div>
                                                                     </div>
