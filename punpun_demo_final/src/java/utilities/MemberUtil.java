@@ -50,14 +50,15 @@ public class MemberUtil {
         }
     }
 
-    public Integer insertMember(String firstName, String lastName, String email, String password) {
-        String cmd = "insert into members (password, first_name, last_name, email) values (?,?,?,?)";
+    public Integer insertMember(String firstName, String lastName, String email, String password, String username) {
+        String cmd = "insert into members (password, first_name, last_name, email,username) values (?,?,?,?,?)";
         try {
             insertData = conn.prepareStatement(cmd);
             insertData.setString(1, password);
             insertData.setString(2, firstName);
             insertData.setString(3, lastName);
             insertData.setString(4, email);
+            insertData.setString(5, username);
             System.out.println(insertData);
             return insertData.executeUpdate();
         } catch (SQLException ex) {

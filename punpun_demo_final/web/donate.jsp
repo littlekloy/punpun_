@@ -169,7 +169,7 @@
                                                             </progress>
                                                             <div class="col-xs-12 col-md-2 offset-md-5">
                                                                 <div class="stat">
-                                                                    <div class="value"> 1500 / 53000 </div>
+                                                                    <div class="value"> ${project.funded} / ${project.budget} </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -251,90 +251,10 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-2 donate-list">
-                                                                        <p>1000 / 10000 ฿</p>
+                                                                        <p>${item.funded} / ${item.amount} ฿</p>
                                                                     </div>
                                                                 </c:forEach>
-                                                                <!--Item 1-->
-                                                                <div class="col-md-10 donate-list">
-                                                                    <input class="accordion" type="checkbox" id="item1" name="item1">
-                                                                    <label for="item1">เก้าอี้</label>
-                                                                    <div class="panel">
-                                                                        <label>
-                                                                            <input class="radio" name="inline-radios1" type="radio">
-                                                                            <span>100</span>
-                                                                        </label>
-                                                                        <label>
-                                                                            <input class="radio" name="inline-radios1" type="radio">
-                                                                            <span>500</span>
-                                                                        </label>
-                                                                        <label>
-                                                                            <input class="radio" name="inline-radios1" type="radio">
-                                                                            <span>1000</span>
-                                                                        </label>
-                                                                        <label>
-                                                                            <input class="radio" name="inline-radios1" type="radio">
-                                                                            <span><input type="text" class="boxed" placeholder=" ใส่จำนวนเงินที่ต้องการ"> </span>
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-2 donate-list">
-                                                                    <p>1000 / 10000 ฿</p>
-                                                                </div>
-                                                                <!-- End : Item 1 -->
-                                                                <!--Item 2-->
-                                                                <div class="col-md-10 donate-list">
-                                                                    <input class="accordion" type="checkbox" id="item2" name="item2">
-                                                                    <label for="item2">โต๊ะเรียน</label>
-                                                                    <div class="panel">
-                                                                        <label>
-                                                                            <input class="radio" name="inline-radios2" type="radio">
-                                                                            <span>100</span>
-                                                                        </label>
-                                                                        <label>
-                                                                            <input class="radio" name="inline-radios2" type="radio">
-                                                                            <span>500</span>
-                                                                        </label>
-                                                                        <label>
-                                                                            <input class="radio" name="inline-radios2" type="radio">
-                                                                            <span>1000</span>
-                                                                        </label>
-                                                                        <label>
-                                                                            <input class="radio" name="inline-radios2" type="radio">
-                                                                            <span><input type="text" class="boxed" placeholder=" ใส่จำนวนเงินที่ต้องการ"> </span>
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-2 donate-list">
-                                                                    <p>500 / 18000 ฿</p>
-                                                                </div>
-                                                                <!-- End : Item 1 -->
-                                                                <!--Item 2-->
-                                                                <div class="col-md-10 donate-list">
-                                                                    <input class="accordion" type="checkbox" id="item2" name="item2">
-                                                                    <label for="item2">กระดานไวท์บอร์ด</label>
-                                                                    <div class="panel">
-                                                                        <label>
-                                                                            <input class="radio" name="inline-radios2" type="radio">
-                                                                            <span>100</span>
-                                                                        </label>
-                                                                        <label>
-                                                                            <input class="radio" name="inline-radios2" type="radio">
-                                                                            <span>500</span>
-                                                                        </label>
-                                                                        <label>
-                                                                            <input class="radio" name="inline-radios2" type="radio">
-                                                                            <span>1000</span>
-                                                                        </label>
-                                                                        <label>
-                                                                            <input class="radio" name="inline-radios2" type="radio">
-                                                                            <span><input type="text" class="boxed" placeholder=" ใส่จำนวนเงินที่ต้องการ"> </span>
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-2 donate-list">
-                                                                    <p>0 / 18000 ฿</p>
-                                                                </div>
-                                                                <!-- End : Item 1 -->
+
                                                             </div>
                                                         </div>
 

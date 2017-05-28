@@ -40,6 +40,7 @@
                                     <div class="col-sm-6"> <input type="text" class="form-control underlined" name="lastname" id="lastname" placeholder="นามสกุล" required=""> </div>
                                 </div>
                             </div>
+                            <div class="form-group"> <label for="username">ชื่อผู้ใช้</label> <input type="text" class="form-control underlined" name="username" id="email" placeholder="กรอกชื่อผู้ใช้ของคุณ" required=""> </div>
                             <div class="form-group"> <label for="email">อีเมล</label> <input type="email" class="form-control underlined" name="email" id="email" placeholder="กรอกอีเมลของคุณ" required=""> </div>
                             <div class="form-group"> <label for="password">รหัสผ่าน</label>
                                 <div class="row">

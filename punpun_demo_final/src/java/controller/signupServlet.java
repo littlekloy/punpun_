@@ -47,7 +47,8 @@ public class signupServlet extends HttpServlet {
             String lastName = request.getParameter("lastname");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-            out.print(memberUtil.insertMember(firstName, lastName, email, password));
+            String username = request.getParameter("username");
+            out.print(memberUtil.insertMember(firstName, lastName, email, password, username));
 
             out.print(memberUtil.findMemberByEmail(email));
             session.setAttribute("member", memberUtil.findMemberByEmail(email));
