@@ -378,7 +378,7 @@
                                                                         <!--Position-->
                                                                         <div class="item-col item-col-center">
                                                                             <div class="item-heading"> ยอดที่ได้รับ </div>
-                                                                            <div> 0 </div>
+                                                                            <div>${item.funded} </div>
                                                                         </div>
                                                                         <!--Join Date-->
                                                                         <div class="item-col item-col-center">

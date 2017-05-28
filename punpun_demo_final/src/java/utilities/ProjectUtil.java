@@ -27,7 +27,7 @@ public class ProjectUtil implements Serializable {
 
     private DataSource ds;
     private Connection conn;
-    private PreparedStatement selectData, selectData2, selectItem, selectSupporter, selectComment;
+    private PreparedStatement selectData, selectData2, selectItem, selectSupporter, selectComment, selectDonationItem;
 
     public ProjectUtil() {
     }
@@ -144,6 +144,16 @@ public class ProjectUtil implements Serializable {
                     item.setName(rsItem.getString("name"));
                     projectItem.setItems(item);
                     projectItem.setAmount(rsItem.getFloat("amount"));
+                    String cmd_itemDonation = "select sum(amount) as funded from item_donations where project_id = ? and item_id = ?";
+                    selectDonationItem = conn.prepareStatement(cmd_itemDonation);
+                    selectDonationItem.setInt(1, rs.getInt("project_id"));
+                    selectDonationItem.setInt(2, rsItem.getInt("item_id"));
+                    System.out.println(selectDonationItem);
+                    ResultSet rsDonation = selectDonationItem.executeQuery();
+                    while (rsDonation.next()) {
+                        projectItem.setFunded(rsDonation.getInt("funded"));
+                        System.out.println(rsDonation.getInt("funded"));
+                    }
                     project_item.add(projectItem);
                     System.out.println(projectItem);
                 }

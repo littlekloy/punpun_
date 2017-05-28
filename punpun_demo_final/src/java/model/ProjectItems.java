@@ -49,6 +49,8 @@ public class ProjectItems implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "projectItems")
     private Collection<ItemDonations> itemDonationsCollection;
 
+    private Integer funded;
+
     public ProjectItems() {
     }
 
@@ -66,6 +68,14 @@ public class ProjectItems implements Serializable {
 
     public void setProjectItemsPK(ProjectItemsPK projectItemsPK) {
         this.projectItemsPK = projectItemsPK;
+    }
+
+    public Integer getFunded() {
+        return funded;
+    }
+
+    public void setFunded(Integer funded) {
+        this.funded = funded;
     }
 
     public Float getAmount() {
