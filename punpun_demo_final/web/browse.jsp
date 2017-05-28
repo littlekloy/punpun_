@@ -140,7 +140,7 @@
 
                     <div class="col-md-4">
                         <div class="want-padding">
-                            <form>
+                            <form action="searchServlet">
                                 <input type="text" class="form-control round" name="keyword" placeholder="ค้นหาจาก ชื่อโครงการ" >
                             </form>
                         </div>
@@ -154,10 +154,10 @@
                                         SELECT * FROM project_categories
                                     </sql:query>
                                     <select class="c-select form-control boxed" onchange="location = this.value">
-                                        <option disabled selected value="http://localhost:8084/punpun_demo_final/browse.jsp?category=0&sort=${param.sort}">เลือกประเภทโครงการ</option>
-                                        <option value="http://localhost:8084/punpun_demo_final/browse.jsp?category=0&sort=${param.sort}">ทั้งหมด</option>
+                                        <option disabled selected>เลือกประเภทโครงการ</option>
+                                        <option value="browse.jsp?category=0&sort=${param.sort}">ทั้งหมด</option>
                                         <c:forEach var="data3" items="${category.rows}">
-                                            <option value="http://localhost:8084/punpun_demo_final/browse.jsp?category=${data3.project_category_id}&sort=${param.sort}">${data3.name}</option>
+                                            <option value="browse.jsp?category=${data3.project_category_id}&sort=${param.sort}">${data3.name}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -171,11 +171,11 @@
                                 <div class="col-md-12">
                                     <select class="c-select form-control boxed" onchange="location = this.value">
                                         <option disabled selected value="0">เรียงจาก</option>
-                                        <option value="http://localhost:8084/punpun_demo_final/browse.jsp?sort=1&category=${param.category}">ล่าสุด</option>
-                                        <option value="http://localhost:8084/punpun_demo_final/browse.jsp?sort=2&category=${param.category}">วันปิดระดมทุน</option>
-                                        <option value="http://localhost:8084/punpun_demo_final/browse.jsp?sort=3&category=${param.category}">ยอดระดมทุนสูงสุด</option>
-                                        <option value="http://localhost:8084/punpun_demo_final/browse.jsp?sort=4&category=${param.category}">อัตราความสำเร็จ</option>
-                                        <option value="http://localhost:8084/punpun_demo_final/browse.jsp?sort=5&category=${param.category}">ความนิยม</option>
+                                        <option value="browse.jsp?sort=1&category=${param.category}">ล่าสุด</option>
+                                        <option value="browse.jsp?sort=2&category=${param.category}">วันปิดระดมทุน</option>
+                                        <option value="browse.jsp?sort=3&category=${param.category}">ยอดระดมทุนสูงสุด</option>
+                                        <option value="browse.jsp?sort=4&category=${param.category}">อัตราความสำเร็จ</option>
+                                        <option value="browse.jsp?sort=5&category=${param.category}">ความนิยม</option>
                                     </select>
                                 </div>
                             </div>
