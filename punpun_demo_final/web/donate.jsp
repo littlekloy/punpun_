@@ -155,7 +155,7 @@
                                             <!--Basic Tab-->
                                             <div class="tab-pane fade in active" id="basic-pills">
                                                 <div class="card card-block stats">
-                                                    <form role="form" method="post" action="">
+                                                    <form role="form" method="GET" action="donationServlet">
 
                                                         <!--Request Item List-->
                                                         <!--Change id , name , for to item1 2 3 ... ++ if have more than one item.-->
@@ -176,24 +176,24 @@
 
                                                         <!--Punpun-->
                                                         <div class="col-md-12 donate-list">
-                                                            <input class="accordion" type="checkbox" id="punpun" name="punpun">
+                                                            <input class="accordion" type="checkbox" id="punpun" name="To_punpun">
                                                             <label for="punpun">บริจาคให้ ปันปัน.com</label>
                                                             <div class="panel">
                                                                 <label>
-                                                                    <input class="radio" name="inline-radios-punpun" type="radio">
+                                                                    <input class="radio" name="punpun" type="radio" value="100">
                                                                     <span>100</span>
                                                                 </label>
                                                                 <label>
-                                                                    <input class="radio" name="inline-radios-punpun" type="radio">
+                                                                    <input class="radio" name="punpun" type="radio" value="500">
                                                                     <span>500</span>
                                                                 </label>
                                                                 <label>
-                                                                    <input class="radio" name="inline-radios-punpun" type="radio">
+                                                                    <input class="radio" name="punpun" type="radio" value="1000">
                                                                     <span>1000</span>
                                                                 </label>
                                                                 <label>
-                                                                    <input class="radio" name="inline-radios-punpun" type="radio">
-                                                                    <span><input type="text" class="boxed" placeholder=" ใส่จำนวนเงินที่ต้องการ"> </span>
+                                                                    <input class="radio" name="punpun" type="radio">
+                                                                    <span><input type="text" class="boxed" name="amount_punpun" placeholder=" ใส่จำนวนเงินที่ต้องการ"> </span>
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -204,29 +204,56 @@
                                                             <label for="whole-project">บริจาคให้ทั้งโครงการ</label>
                                                             <div class="panel">
                                                                 <label>
-                                                                    <input class="radio" name="inline-radios-whole" type="radio">
+                                                                    <input class="radio" name="project" type="radio" value="100">
                                                                     <span>100</span>
                                                                 </label>
                                                                 <label>
-                                                                    <input class="radio" name="inline-radios-whole" type="radio">
+                                                                    <input class="radio" name="project" type="radio" value="500">
                                                                     <span>500</span>
                                                                 </label>
                                                                 <label>
-                                                                    <input class="radio" name="inline-radios-whole" type="radio">
+                                                                    <input class="radio" name="project" type="radio" value="1000">
                                                                     <span>1000</span>
                                                                 </label>
                                                                 <label>
-                                                                    <input class="radio" name="inline-radios-whole" type="radio">
-                                                                    <span><input type="text" class="boxed" placeholder=" ใส่จำนวนเงินที่ต้องการ"> </span>
+                                                                    <input class="radio" name="project" type="radio">
+                                                                    <span><input type="text" class="boxed" name="amount_project" placeholder=" ใส่จำนวนเงินที่ต้องการ"> </span>
                                                                 </label>
                                                             </div>
                                                         </div>
 
                                                         <!-- Item-list -->
                                                         <div class="col-md-12 donate-list">
-                                                            <input class="accordion" type="checkbox" id="per-item" name="per-item">
+                                                            <input class="accordion" type="checkbox" id="per-item" name="per_item">
                                                             <label for="per-item">บริจาคแบบแจกแจงรายการ</label>
                                                             <div class="panel">
+                                                                <c:forEach var="item" items="${project.projectItemsCollection}">
+                                                                    <div class="col-md-10 donate-list">
+                                                                        <input class="accordion" type="checkbox" id="item1" name="per-item" value="${item.items.itemId}">
+                                                                        <label for="${item.items.itemId}">${item.items.name}</label>
+                                                                        <div class="panel">
+                                                                            <label>
+                                                                                <input class="radio" name="${item.items.itemId}" id="${item.items.itemId}_100" value="100" type="radio">
+                                                                                <span>100</span>
+                                                                            </label>
+                                                                            <label>
+                                                                                <input class="radio" name="${item.items.itemId}" id="${item.items.itemId}_500" value="500" type="radio">
+                                                                                <span>500</span>
+                                                                            </label>
+                                                                            <label>
+                                                                                <input class="radio" name="${item.items.itemId}"id="${item.items.itemId}_1000" value="1000" type="radio">
+                                                                                <span>1000</span>
+                                                                            </label>
+                                                                            <label>
+                                                                                <input class="radio" name="${item.items.itemId}" id="${item.items.itemId}" type="radio">
+                                                                                <span><input type="text" name="amount_item" class="boxed" placeholder=" ใส่จำนวนเงินที่ต้องการ"> </span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-2 donate-list">
+                                                                        <p>1000 / 10000 ฿</p>
+                                                                    </div>
+                                                                </c:forEach>
                                                                 <!--Item 1-->
                                                                 <div class="col-md-10 donate-list">
                                                                     <input class="accordion" type="checkbox" id="item1" name="item1">

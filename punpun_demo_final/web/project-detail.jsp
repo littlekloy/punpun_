@@ -244,9 +244,9 @@
                                             </div>
 
                                             <div class="col-xs-12 col-md-4 stat-col-level want-bottom">
-                                                <form action="donate.jsp">
-                                                    <button class="want-top btn btn-block btn-lg btn-primary">สนับสนุนโครงการ</button>
-                                                </form>
+
+                                                <a href="donate.jsp?id=${project.projectId}"><button class="want-top btn btn-block btn-lg btn-primary">สนับสนุนโครงการ</button></a>
+
                                             </div>
 
                                         </div>

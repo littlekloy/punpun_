@@ -85,7 +85,7 @@ public class Projects implements Serializable {
     @Column(name = "supporter")
     private ArrayList<Supporter> supporter;
     @Column(name = "funded")
-    private Integer funded;
+    private Double funded;
     @JoinTable(name = "project_tags", joinColumns = {
         @JoinColumn(name = "project_id", referencedColumnName = "project_id")}, inverseJoinColumns = {
         @JoinColumn(name = "tag_id", referencedColumnName = "tag_id")})
@@ -222,11 +222,11 @@ public class Projects implements Serializable {
         this.supporter = supporter;
     }
 
-    public Integer getFunded() {
+    public Double getFunded() {
         return funded;
     }
 
-    public void setFunded(Integer funded) {
+    public void setFunded(Double funded) {
         this.funded = funded;
     }
 
