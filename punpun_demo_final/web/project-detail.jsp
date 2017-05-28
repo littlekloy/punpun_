@@ -361,40 +361,36 @@
                                                                     </div>
                                                                 </div>
                                                             </li>
-                                                            <sql:query var="data1" dataSource="punpun">
-                                                                SELECT * FROM project_items where project_id = ${param.id}
-                                                            </sql:query>
-                                                            <c:forEach var="item" items="${data1.rows}">
-                                                                <sql:query var="data2" dataSource="punpun">
-                                                                    SELECT * FROM items where item_id = ${item.item_id}
-                                                                </sql:query>
-                                                                <c:forEach var="item2" items="${data2.rows}">
-                                                                    <!-- Wishlist item -->
-                                                                    <li class="item">
-                                                                        <div class="item-row">
-                                                                            <!--Name of Team-->
-                                                                            <div class="item-col item-col-title no-overflow no-underline">
-                                                                                <div>
-                                                                                    <div class="center-text">
-                                                                                        ${item2.name}
-                                                                                    </div>
+
+
+                                                            <!-- Wishlist item -->
+                                                            <li class="item">
+                                                                <c:forEach var="item" items="${project.projectItemsCollection}">
+                                                                    <div class="item-row">
+                                                                        <!--Name of Team-->
+                                                                        <div class="item-col item-col-title no-overflow no-underline">
+                                                                            <div>
+                                                                                <div class="center-text">
+                                                                                    ${item.items.name}
                                                                                 </div>
                                                                             </div>
-                                                                            <!--Position-->
-                                                                            <div class="item-col item-col-center">
-                                                                                <div class="item-heading"> ยอดที่ได้รับ </div>
-                                                                                <div> 0 </div>
-                                                                            </div>
-                                                                            <!--Join Date-->
-                                                                            <div class="item-col item-col-center">
-                                                                                <div class="item-heading"> ยอดเงินเป้าหมาย </div>
-                                                                                <div> ${item.amount} </div>
-                                                                            </div>
                                                                         </div>
-                                                                    </li>
+                                                                        <!--Position-->
+                                                                        <div class="item-col item-col-center">
+                                                                            <div class="item-heading"> ยอดที่ได้รับ </div>
+                                                                            <div> 0 </div>
+                                                                        </div>
+                                                                        <!--Join Date-->
+                                                                        <div class="item-col item-col-center">
+                                                                            <div class="item-heading"> ยอดเงินเป้าหมาย </div>
+                                                                            <div> ${item.amount} </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </c:forEach>
 
-                                                            </c:forEach>
+                                                            </li>
+
+
 
 
                                                         </ul>

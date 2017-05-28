@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sql.DataSource;
+import model.Items;
 import model.Members;
+import model.ProjectItems;
 import model.Projects;
 
 /**
@@ -90,10 +92,12 @@ public class ProjectUtil implements Serializable {
         Projects project = new Projects();
         String cmd_team = "SELECT * FROM  members right join member_team_pivot ";
         String cmd_team_on = "on members.member_id = member_team_pivot.member_id where team_id = ?";
-
+        String cmd_item = "SELECT * FROM  items right join project_items ";
+        String cmd_item_on = "on items.item_id = project_items.item_id where project_id = ?";
         try {
             selectData = conn.prepareStatement(cmd);
             selectData2 = conn.prepareStatement(cmd_team + cmd_team_on);
+            selectItem = conn.prepareStatement(cmd_item + cmd_item_on);
             selectData.setInt(1, id);
             ResultSet rs = selectData.executeQuery();
             if (rs.next()) {
@@ -129,9 +133,21 @@ public class ProjectUtil implements Serializable {
                     System.out.println(member);
                 }
                 project.setTeamCollection(team);
-
-                System.out.println(project);
-                System.out.println(project.getTeamCollection());
+                selectItem.setInt(1, rs.getInt("project_id"));
+                ResultSet rsItem = selectItem.executeQuery();
+                System.out.println(selectItem);
+                ArrayList<ProjectItems> project_item = new ArrayList<ProjectItems>();
+                while (rsItem.next()) {
+                    ProjectItems projectItem = new ProjectItems(rs.getInt("project_id"), rsItem.getInt("item_id"));
+                    Items item = new Items();
+                    item.setItemId(rsItem.getInt("item_id"));
+                    item.setName(rsItem.getString("name"));
+                    projectItem.setItems(item);
+                    projectItem.setAmount(rsItem.getFloat("amount"));
+                    project_item.add(projectItem);
+                    System.out.println(projectItem);
+                }
+                project.setProjectItemsCollection(project_item);
             }
             return project;
         } catch (SQLException ex) {

@@ -92,7 +92,7 @@ public class Projects implements Serializable {
     @ManyToMany
     private ArrayList<Tags> tagsCollection;
     private ArrayList<Members> teamCollection;
-
+    private ArrayList<ProjectItems> ItemCollection;
     @ManyToMany(mappedBy = "projectsCollection")
     private ArrayList<Members> membersCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "projects")
@@ -235,6 +235,14 @@ public class Projects implements Serializable {
 
     public void setTeamCollection(ArrayList<Members> teamCollection) {
         this.teamCollection = teamCollection;
+    }
+
+    public ArrayList<ProjectItems> getItemCollection() {
+        return ItemCollection;
+    }
+
+    public void setItemCollection(ArrayList<ProjectItems> ItemCollection) {
+        this.ItemCollection = ItemCollection;
     }
 
     @XmlTransient
