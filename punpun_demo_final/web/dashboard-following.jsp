@@ -164,9 +164,8 @@
                                         <div class="tab-content">
                                             <!--Project Following Tab-->
                                             <div class="tab-pane fade in active" id="project-following-pills">
-                                                <h4>Profile Tab</h4>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                                                    ex ea commodo consequat.</p>
+
+                                                <p> คุณสามารถกดติดตามโครงการที่สนใจได้ที่หน้ารายละเอียดโครงการ</p>
                                                 <!--List of Following-->
                                                 <div data-exclude="xs,sm,lg">
                                                     <!-- Table Content -->
@@ -190,8 +189,8 @@
                                                                 <!--Name of Following-->
                                                                 <div class="item-col item-col-center no-overflow no-underline">
                                                                     <div>
-                                                                        <a href="error-404.jsp" class="center-text">
-                                                                            Firstname Lastname
+                                                                        <a href="#" class="center-text">
+                                                                            Rice for Good ส่งข้าวให้เด็กที่ห่างไกล
                                                                         </a>
                                                                     </div>
                                                                 </div>
@@ -207,9 +206,8 @@
                                             </div>
                                             <!--Following Tab-->
                                             <div class="tab-pane fade" id="following-pills">
-                                                <h4>Profile Tab</h4>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                                                    ex ea commodo consequat.</p>
+
+                                                <p></p>
                                                 <!--List of Following-->
                                                 <div data-exclude="xs,sm,lg">
                                                     <!-- Table Content -->
@@ -233,8 +231,8 @@
                                                                 <!--Name of Following-->
                                                                 <div class="item-col item-col-center no-overflow no-underline">
                                                                     <div>
-                                                                        <a href="error-404.jsp" class="center-text">
-                                                                            Firstname Lastname
+                                                                        <a href="#" class="center-text">
+                                                                            กนกวรรณ มุตตามระ
                                                                         </a>
                                                                     </div>
                                                                 </div>
@@ -250,9 +248,7 @@
                                             </div>
                                             <!--Followers Tab-->
                                             <div class="tab-pane fade" id="followers-pills">
-                                                <h4>Profile Tab</h4>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                                                    ex ea commodo consequat.</p>
+
                                                 <!--List of Following-->
                                                 <div data-exclude="xs,sm,lg">
                                                     <!-- Table Content -->
@@ -276,14 +272,14 @@
                                                                 <!--Name of Following-->
                                                                 <div class="item-col item-col-center no-overflow no-underline">
                                                                     <div>
-                                                                        <a href="error-404.jsp" class="center-text">
-                                                                            Firstname Lastname
+                                                                        <a href="#" class="center-text">
+                                                                            กนกวรรณ มุตตามระ
                                                                         </a>
                                                                     </div>
                                                                 </div>
                                                                 <!--Following Button-->
                                                                 <div class="item-col item-col-center">
-                                                                    <div class=""> <a href="item-editor.jsp" class="btn btn-success-outline rounded"> เลิกติดตาม </a> </div>
+                                                                    <div class=""> <a href="#" class="btn btn-success-outline rounded"> เลิกติดตาม </a> </div>
                                                                 </div>
                                                             </div>
                                                         </li>

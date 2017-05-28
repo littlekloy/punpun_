@@ -117,7 +117,7 @@
                         <nav class="menu">
                             <ul class="nav metismenu" id="sidebar-menu">
                                 <li>                <a href="dashboard.jsp">       <i class="fa fa-home"></i> แดชบอร์ด </a></li>
-                                <li>                <a href="dashboard-profile.jsp">         <i class="fa fa-user"></i> โปรไฟล์ </a></li>
+                                <li class="active">                <a href="dashboard-profile.jsp">         <i class="fa fa-user"></i> โปรไฟล์ </a></li>
                                 <li>                <a href="dashboard-following.jsp">       <i class="fa fa-bell"></i> การติดตาม </a></li>
                                 <li>                <a href="dashboard-funded-project.jsp">  <i class="fa fa-thumbs-up"></i> โครงการที่เคยร่วมระดมทุน </a></li>
                                 <li>                <a href="dashboard-project-list.jsp">    <i class="fa fa-th-list"></i> จัดการโครงการของคุณ </a></li>
@@ -125,7 +125,7 @@
                                 <li> <hr> </li>
                                 <li>                <a href="admin-dashboard.jsp">       <i class="fa fa-dashboard"></i> แดชบอร์ดของแอดมิน </a></li>
                                 <li>                <a href="admin-payment-control.jsp">         <i class="fa fa-money"></i> หลักฐานการโอนเงิน </a></li>
-                                <li class="active">                <a href="admin-active-project.jsp">         <i class="fa fa-gift"></i> โครงการที่กำลังระดมทุน </a></li>
+                                <li >                <a href="admin-active-project.jsp">         <i class="fa fa-gift"></i> โครงการที่กำลังระดมทุน </a></li>
                                 <li>                <a href="admin-pending-project.jsp">  <i class="fa fa-legal"></i> โครงการที่รอการอนุมัติ </a></li>
                                 <li>                <a href="admin-reported-project.jsp">    <i class="fa fa-exclamation-triangle"></i> โครงการที่ถูกรายงาน </a></li>
                                 <li> <a href="admin-banned-project.jsp">         <i class="fa fa-ban"></i> โครงการที่ถูกระงับ </a></li>
@@ -145,14 +145,14 @@
                         <div class="row sameheight-container">
                             <!--Profile Card : xs up-->
                             <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clearfix">
-                                <div class="card card-block-bg sameheight-item " style="background-image: url('assets/backgrounds/profile-card-1.jpg') ">
+                                <div class="card card-block-bg sameheight-item " style="background-image: url('assets/backgrounds/banner2.png') ">
                                     <!--Image-->
                                     <div class="images-container images-container-center">
                                         <!--Put Image link Here-->
-                                        <img src="assets/backgrounds/profile-card-2.jpg" alt=""/>
+                                        <img src="assets/img/profile/0000${member.memberId}.jpg" alt=""/>
                                     </div>
                                     <!--Username-->
-                                    <h2 class="center-text white-text">Lorem Ipsum</h2>
+                                    <h2 class="center-text white-text">${member.firstName} ${member.lastName}</h2>
                                     <!--Level of Member-->
                                     <div class="card stats" data-exclude="xs">
                                         <div class="card-block">
@@ -160,9 +160,9 @@
                                                 <div class="col-xs-8 stat-col">
                                                     <div class="stat-icon"> <i class="fa fa-flag"></i> </div>
                                                     <div class="stat">
-                                                        <div class="value"> 99999 / 99999 </div>
+                                                        <div class="value"> ${member.point} / 100  </div>
                                                     </div>
-                                                    <progress class="progress stat-progress" value="75" max="100">
+                                                    <progress class="progress stat-progress" value="${member.point}" max="100">
                                                         <div class="progress">
                                                             <span class="progress-bar" style="width: 75%;"></span>
                                                         </div>
@@ -170,7 +170,7 @@
                                                 </div>
 
                                                 <div class="col-xs-4 stat-col-level">
-                                                    <h4><i class="stat-icon hidden-xs-down fa fa-flag-checkered"></i> LV. 99</h4>
+                                                    <h4><i class="stat-icon hidden-xs-down fa fa-flag-checkered"></i> LV. ${member.level}</h4>
                                                 </div>
 
                                             </div>
@@ -200,7 +200,7 @@
                                                 <div class="stat-icon"> <i class="fa fa-envelope"></i> </div>
                                                 <div class="stat">
                                                     <div class="name"> อีเมล </div>
-                                                    <div class="value"> punpun@punpun.com </div>
+                                                    <div class="value"> ${member.email}</div>
                                                 </div>
                                             </div>
 
@@ -209,7 +209,7 @@
                                                 <div class="stat-icon"> <i class="fa fa-globe"></i> </div>
                                                 <div class="stat">
                                                     <div class="name"> เว็บไซต์ </div>
-                                                    <div class="value"> <a href="www.twitter.com/">www.twitter.com</a> </div>
+                                                    <div class="value"> <a href=profile.jsp?id=${member.memberId}">punpun.com/profile/${member.memberId}</a> </div>
                                                 </div>
                                             </div>
 
@@ -220,8 +220,8 @@
                                                     <div class="name"> ความสนใจ </div>
                                                     <div class="value">
                                                         <div>
-                                                            <a href="#" class="btn btn-link"> Tag1 </a>
-                                                            <a href="#" class="btn btn-link"> Tag2 </a>
+                                                            <a href="#" class="btn btn-link"> เทคโนโลยี </a>
+                                                            <a href="#" class="btn btn-link"> คอมพิวเตอร์ </a>
                                                         </div>
                                                     </div>
                                                 </div>

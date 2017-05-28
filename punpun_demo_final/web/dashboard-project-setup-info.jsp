@@ -153,7 +153,7 @@
                                             <li class="nav-item"> <a href="dashboard-project-setup-image.jsp" class="nav-link"> รูปภาพของโครงการ </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-wishlist.jsp" class="nav-link"> รายการสิ่งที่ต้องการ </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-submit.jsp" class="nav-link"> เสนอโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="project-setup-detail.jsp" class="nav-link"> ดูตัวอย่าง </a> </li>
+                                            <li class="nav-item"> <a href="project-preview.jsp" class="nav-link"> ดูตัวอย่าง </a> </li>
                                         </ul>
                                         <!-- Tab panes -->
                                         <div class="tab-content">

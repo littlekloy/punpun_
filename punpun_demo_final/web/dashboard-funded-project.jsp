@@ -115,13 +115,13 @@
                                 <li>                <a href="dashboard.jsp">       <i class="fa fa-home"></i> แดชบอร์ด </a></li>
                                 <li>                <a href="dashboard-profile.jsp">         <i class="fa fa-user"></i> โปรไฟล์ </a></li>
                                 <li>                <a href="dashboard-following.jsp">       <i class="fa fa-bell"></i> การติดตาม </a></li>
-                                <li>                <a href="dashboard-funded-project.jsp">  <i class="fa fa-thumbs-up"></i> โครงการที่เคยร่วมระดมทุน </a></li>
+                                <li class="active">                <a href="dashboard-funded-project.jsp">  <i class="fa fa-thumbs-up"></i> โครงการที่เคยร่วมระดมทุน </a></li>
                                 <li>                <a href="dashboard-project-list.jsp">    <i class="fa fa-th-list"></i> จัดการโครงการของคุณ </a></li>
                                 <li> <a href="dashboard-account-setting.jsp">         <i class="fa fa-gear"></i> ตั้งค่าบัญชีผู้ใช้ </a></li>
                                 <li> <hr> </li>
                                 <li>                <a href="admin-dashboard.jsp">       <i class="fa fa-dashboard"></i> แดชบอร์ดของแอดมิน </a></li>
                                 <li>                <a href="admin-payment-control.jsp">         <i class="fa fa-money"></i> หลักฐานการโอนเงิน </a></li>
-                                <li class="active">                <a href="admin-active-project.jsp">         <i class="fa fa-gift"></i> โครงการที่กำลังระดมทุน </a></li>
+                                <li>                <a href="admin-active-project.jsp">         <i class="fa fa-gift"></i> โครงการที่กำลังระดมทุน </a></li>
                                 <li>                <a href="admin-pending-project.jsp">  <i class="fa fa-legal"></i> โครงการที่รอการอนุมัติ </a></li>
                                 <li>                <a href="admin-reported-project.jsp">    <i class="fa fa-exclamation-triangle"></i> โครงการที่ถูกรายงาน </a></li>
                                 <li> <a href="admin-banned-project.jsp">         <i class="fa fa-ban"></i> โครงการที่ถูกระงับ </a></li>
@@ -142,7 +142,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <h3 class="title"> โครงการที่เคยร่วมระดมทุน </h3>
-                                    <p class="title-description"> List of Funded Projects</p>
+                                    <p class="title-description"> </p>
                                 </div>
                             </div>
                         </div>
@@ -183,28 +183,28 @@
 
                                     <div class="item-col fixed item-col-img md">
                                         <a href="item-editor.jsp">
-                                            <div class="item-img rounded" style="background-image: url(https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg)"></div>
+                                            <div class="item-img rounded" style="background-image: url('assets/img/Project_Pic/1/1.jpg')"></div>
                                         </a>
                                     </div>
                                     <div class="item-col fixed pull-left item-col-title">
                                         <div class="item-heading">ชื่อโครงการ</div>
                                         <div>
                                             <a href="dashboard-project-details.jsp" class="center-text">
-                                                <h4 class="item-title"> ปล่อยช้างกับป่าแม่สาย </h4>
+                                                <h4 class="item-title"> อุปกรณ์การเรียนแก่เด็กอมก๋อย </h4>
                                             </a>
                                         </div>
                                     </div>
                                     <div class="item-col item-col-sales">
                                         <div class="item-heading">จำนวนเงิน</div>
-                                        <div> 500 </div>
+                                        <div> 300 </div>
                                     </div>
                                     <div class="item-col item-col-category no-overflow">
                                         <div class="item-heading">ประเภท</div>
-                                        <div class="no-overflow"> <a href="">สัตว์</a> </div>
+                                        <div class="no-overflow"> <a href="">การศึกษา</a> </div>
                                     </div>
                                     <div class="item-col item-col-author">
                                         <div class="item-heading">เจ้าของโครงการ</div>
-                                        <div class="no-overflow"> <a href="">บุญมี สีทนนาน</a> </div>
+                                        <div class="no-overflow"> <a href="">กนกวรรณ มุตตามระ</a> </div>
                                     </div>
                                     <div class="item-col item-col-date">
                                         <div class="item-heading">วันที่ระดมทุน</div>
@@ -216,7 +216,7 @@
                         </ul>
                     </div>
 
-                    <!--Pagination-->
+                    <!--Pagination
                     <nav class="text-xs-right">
                         <ul class="pagination">
                             <li class="page-item"> <a class="page-link" href="">
@@ -242,7 +242,7 @@
                                 </a> </li>
                         </ul>
                     </nav>
-
+                    -->
                 </article>
 
                 <!-- Footer -->

@@ -148,7 +148,7 @@
                             <div class="col-md-7 hidden-md-down clearfix sameheight-item">
                                 <div class="row sameheight-container">
                                     <!-- Active -->
-                                    <a style="display:block" href="admin-active-project.jsp">
+                                    <a style="display:block" href="#">
                                         <div class="col-md-6 col-xl-4">
                                             <div class="card card-activeproject sameheight-item">
                                                 <div class="card-header">
@@ -157,13 +157,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="card-block hover-effect">
-                                                    <h3 class="center-text"> 2 </h3>
+                                                    <h3 class="center-text"> 0 </h3>
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
                                     <!-- Closed -->
-                                    <a style="display:block" href="admin-reported-project.jsp">
+                                    <a style="display:block" href="#">
                                         <div class="col-md-6 col-xl-4">
                                             <div class="card card-close sameheight-item">
                                                 <div class="card-header">
@@ -172,13 +172,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="card-block hover-effect">
-                                                    <h3 class="center-text"> 4 </h3>
+                                                    <h3 class="center-text"> 0 </h3>
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
                                     <!-- Banned -->
-                                    <a style="display:block" href="admin-banned-project.jsp">
+                                    <a style="display:block" href="#">
                                         <div class="col-md-6 col-xl-4">
                                             <div class="card card-danger sameheight-item">
                                                 <div class="card-header">
@@ -187,13 +187,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="card-block hover-effect">
-                                                    <h3 class="center-text"> 6 </h3>
+                                                    <h3 class="center-text"> 0 </h3>
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
                                     <!-- Draft -->
-                                    <a style="display:block" href="draft-project.jsp">
+                                    <a style="display:block" href="#">
                                         <div class="col-md-6 col-xl-4">
                                             <div class="card card-info sameheight-item">
                                                 <div class="card-header">
@@ -202,13 +202,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="card-block hover-effect">
-                                                    <h3 class="center-text"> 8 </h3>
+                                                    <h3 class="center-text"> 0 </h3>
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
                                     <!-- Wait For Approve -->
-                                    <a style="display:block" href="dashboard.jsp">
+                                    <a style="display:block" href="#">
                                         <div class="col-md-6 col-xl-4">
                                             <div class="card card-success sameheight-item">
                                                 <div class="card-header">
@@ -217,13 +217,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="card-block hover-effect">
-                                                    <h3 class="center-text"> 10 </h3>
+                                                    <h3 class="center-text"> 0 </h3>
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
                                     <!-- Template -->
-                                    <a style="display:block" href="template-project.jsp">
+                                    <a style="display:block" href="#">
                                         <div class="col-md-6 col-xl-4">
                                             <div class="card card-draft sameheight-item">
                                                 <div class="card-header">
@@ -232,7 +232,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="card-block hover-effect">
-                                                    <h3 class="center-text"> 12 </h3>
+                                                    <h3 class="center-text"> 0 </h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -245,7 +245,7 @@
                                     <!-- Table Title-->
                                     <div class="card-header bordered">
                                         <div class="header-block">
-                                            <h3 class="title"> โครงการของคุณ </h3> <a href="item-editor.jsp" class="btn btn-primary btn-sm rounded">ดูเพิ่มเติม</a>
+                                            <h3 class="title"> โครงการของคุณ </h3> <a href="dashboard-project-list.jsp" class="btn btn-primary btn-sm rounded">ดูเพิ่มเติม</a>
                                         </div>
                                     </div>
                                     <!-- Table Content -->
@@ -258,29 +258,31 @@
                                                     <div> <span>ชื่อโครงการ</span> </div>
                                                 </div>
                                                 <div class="item-col item-col-header item-col-sales">
-                                                    <div> <span>จำนวน</span> </div>
+                                                    <div> <span>จำนวนเงิน</span> </div>
                                                 </div>
                                             </div>
                                         </li>
 
-                                        <!-- Item : Loop here -->
+                                        <!-- Item : Loop here
                                         <li class="item">
                                             <div class="item-row">
-                                                <!--Name of Project-->
+
                                                 <div class="item-col item-col-title no-overflow">
                                                     <div>
                                                         <a href="" class="">
-                                                            <h4 class="item-title no-wrap"> 12 Myths Uncovered About IT &amp; Software </h4>
+
+                                                            <h4 class="item-title no-wrap"> Name's My Project  </h4>
                                                         </a>
                                                     </div>
                                                 </div>
-                                                <!--Amount of Funded-->
+
                                                 <div class="item-col item-col-sales">
                                                     <div class="item-heading"> จำนวนเงินที่ระดมทุน </div>
-                                                    <div> 4958 ฿</div>
+                                                    <div>   amount's My Project </div>
                                                 </div>
                                             </div>
                                         </li>
+                                        -->
 
                                     </ul>
                                 </div>
@@ -308,8 +310,8 @@
                                             <div class="col-xs-12 col-sm-6 stat-col">
                                                 <div class="stat-icon"> <i class="fa fa-trophy"></i> </div>
                                                 <div class="stat">
-                                                    <div class="value"> 5407 </div>
-                                                    <div class="name"> คะแนน (อาจจะเรียกอย่างอื่น) </div>
+                                                    <div class="value"> 17000 </div>
+                                                    <div class="name"> แต้มบุญ </div>
                                                 </div>
                                             </div>
 
@@ -317,7 +319,7 @@
                                             <div class="col-xs-12 col-sm-6 stat-col">
                                                 <div class="stat-icon"> <i class="fa fa-money"></i> </div>
                                                 <div class="stat">
-                                                    <div class="value"> 54070 </div>
+                                                    <div class="value"> 1700 </div>
                                                     <div class="name"> ยอดรวมการรระดมทุน </div>
                                                 </div>
                                             </div>
@@ -326,7 +328,7 @@
                                             <div class="col-xs-12 col-sm-6 stat-col">
                                                 <div class="stat-icon"> <i class="fa fa-star"></i> </div>
                                                 <div class="stat">
-                                                    <div class="value"> 97 </div>
+                                                    <div class="value"> 0 </div>
                                                     <div class="name"> โครงการที่ติดตาม </div>
                                                 </div>
                                             </div>
@@ -335,7 +337,7 @@
                                             <div class="col-xs-12 col-sm-6 stat-col">
                                                 <div class="stat-icon"> <i class="fa fa-heart"></i> </div>
                                                 <div class="stat">
-                                                    <div class="value"> 64 </div>
+                                                    <div class="value"> 0 </div>
                                                     <div class="name"> โครงการที่ร่วมระดมทุน </div>
                                                 </div>
                                             </div>
@@ -344,7 +346,7 @@
                                             <div class="col-xs-12 col-sm-6 stat-col">
                                                 <div class="stat-icon"> <i class="fa fa-user"></i> </div>
                                                 <div class="stat">
-                                                    <div class="value"> 124 </div>
+                                                    <div class="value"> 1 </div>
                                                     <div class="name"> กำลังติดตาม </div>
                                                 </div>
                                             </div>
@@ -353,7 +355,7 @@
                                             <div class="col-xs-12 col-sm-6 stat-col">
                                                 <div class="stat-icon"> <i class="fa fa-user"></i> </div>
                                                 <div class="stat">
-                                                    <div class="value"> 157 </div>
+                                                    <div class="value"> 1 </div>
                                                     <div class="name"> ผู้ติดตาม </div>
                                                 </div>
                                             </div>
@@ -404,34 +406,34 @@
                                         <!-- Item : Loop here -->
                                         <li class="item">
                                             <div class="item-row">
-                                                <!--Image of Project-->
+                                                <!--Image of Project
                                                 <div class="item-col fixed item-col-img xs">
                                                     <a href="">
                                                         <div class="item-img xs rounded" style="background-image: url(https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg)"></div>
                                                     </a>
-                                                </div>
+                                                </div>-->
                                                 <!--Name of Project-->
                                                 <div class="item-col item-col-title no-overflow">
                                                     <div>
                                                         <a href="" class="">
-                                                            <h4 class="item-title no-wrap"> 12 Myths Uncovered About IT &amp; Software </h4>
+                                                            <h4 class="item-title no-wrap"> ไม่มีโครงการที่เคยระดมทุน </h4>
                                                         </a>
                                                     </div>
                                                 </div>
                                                 <!--Amount of Funded-->
                                                 <div class="item-col item-col-sales">
                                                     <div class="item-heading"> จำนวนเงินที่ระดมทุน </div>
-                                                    <div> 4958 </div>
+                                                    <div>  </div>
                                                 </div>
                                                 <!--Category-->
                                                 <div class="item-col item-col-category no-overflow">
                                                     <div class="item-heading"> ประเภท </div>
-                                                    <div class="no-overflow"> <a href="">สัตว์</a> </div>
+                                                    <div class="no-overflow"> <a href=""></a> </div>
                                                 </div>
                                                 <!--Date-->
                                                 <div class="item-col item-col-date">
                                                     <div class="item-heading"> วันที่ระดมทุน </div>
-                                                    <div> 21 SEP 10:47 </div>
+                                                    <div>  </div>
                                                 </div>
                                             </div>
                                         </li>

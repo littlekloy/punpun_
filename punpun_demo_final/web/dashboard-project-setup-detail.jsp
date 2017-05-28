@@ -3,7 +3,8 @@
     Created on : May 28, 2017, 9:34:04 PM
     Author     : kanok
 --%>
-
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!DOCTYPE html>
@@ -136,12 +137,12 @@
                                 <li>                <a href="dashboard-profile.jsp">         <i class="fa fa-user"></i> โปรไฟล์ </a></li>
                                 <li>                <a href="dashboard-following.jsp">       <i class="fa fa-bell"></i> การติดตาม </a></li>
                                 <li>                <a href="dashboard-funded-project.jsp">  <i class="fa fa-thumbs-up"></i> โครงการที่เคยร่วมระดมทุน </a></li>
-                                <li>                <a href="dashboard-project-list.jsp">    <i class="fa fa-th-list"></i> จัดการโครงการของคุณ </a></li>
+                                <li class="active">                <a href="dashboard-project-list.jsp">    <i class="fa fa-th-list"></i> จัดการโครงการของคุณ </a></li>
                                 <li> <a href="dashboard-account-setting.jsp">         <i class="fa fa-gear"></i> ตั้งค่าบัญชีผู้ใช้ </a></li>
                                 <li> <hr> </li>
                                 <li>                <a href="admin-dashboard.jsp">       <i class="fa fa-dashboard"></i> แดชบอร์ดของแอดมิน </a></li>
                                 <li>                <a href="admin-payment-control.jsp">         <i class="fa fa-money"></i> หลักฐานการโอนเงิน </a></li>
-                                <li class="active">                <a href="admin-active-project.jsp">         <i class="fa fa-gift"></i> โครงการที่กำลังระดมทุน </a></li>
+                                <li >                <a href="admin-active-project.jsp">         <i class="fa fa-gift"></i> โครงการที่กำลังระดมทุน </a></li>
                                 <li>                <a href="admin-pending-project.jsp">  <i class="fa fa-legal"></i> โครงการที่รอการอนุมัติ </a></li>
                                 <li>                <a href="admin-reported-project.jsp">    <i class="fa fa-exclamation-triangle"></i> โครงการที่ถูกรายงาน </a></li>
                                 <li> <a href="admin-banned-project.jsp">         <i class="fa fa-ban"></i> โครงการที่ถูกระงับ </a></li>
@@ -170,7 +171,7 @@
                                             <li class="nav-item"> <a href="dashboard-project-setup-image.jsp" class="nav-link"> รูปภาพของโครงการ </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-wishlist.jsp" class="nav-link"> รายการสิ่งที่ต้องการ </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-submit.jsp" class="nav-link"> เสนอโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="project-setup-detail.jsp" class="nav-link"> ดูตัวอย่าง </a> </li>
+                                            <li class="nav-item"> <a href="project-preview.jsp" class="nav-link"> ดูตัวอย่าง </a> </li>
                                         </ul>
                                         <!-- Tab panes -->
                                         <div class="tab-content">

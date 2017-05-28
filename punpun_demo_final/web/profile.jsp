@@ -106,7 +106,7 @@
                                             ${member.firstName}
                                         </span> </a>
                                     <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <a class="dropdown-item" href="profile.jsp/?member_id=${member.memberId}"> <i class="fa fa-user icon"></i> โพรไฟล์ </a>
+                                        <a class="dropdown-item" href="profile.jsp?member_id=${member.memberId}"> <i class="fa fa-user icon"></i> โพรไฟล์ </a>
                                         <a class="dropdown-item" href="dashboard.jsp"> <i class="fa fa-user icon"></i> แดชบอร์ด </a>
                                         <a class="dropdown-item" href="dashboard-project-list.jsp"> <i class="fa fa-bell icon"></i> โครงการของคุณ </a>
                                         <a class="dropdown-item" href="dashboard-account-setting.jsp"> <i class="fa fa-gear icon"></i> ตั้งค่าบัญชีผู้ใช้ </a>
@@ -129,14 +129,14 @@
                         <div class="row">
                             <!--Profile Card : xs up-->
                             <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clearfix">
-                                <div class="card card-block-bg" style="background-image: url('assets/backgrounds/profile-card-1.jpg') ">
+                                <div class="card card-block-bg" style="background-image: url('assets/backgrounds/banner2.png') ">
                                     <!--Image-->
                                     <div class="images-container images-container-center">
                                         <!--Put Image link Here-->
-                                        <img src="assets/backgrounds/profile-card-2.jpg" alt=""/>
+                                        <img src="assets/img/profile/0000${member.memberId}.jpg" alt=""/>
                                     </div>
                                     <!--Username-->
-                                    <h2 class="center-text white-text">Lorem Ipsum</h2>
+                                    <h2 class="center-text white-text">${member.firstName} ${member.lastName}</h2>
                                     <!--Level of Member-->
                                     <div class="card stats" data-exclude="xs">
                                         <div class="card-block">
@@ -144,9 +144,9 @@
                                                 <div class="col-xs-8 stat-col">
                                                     <div class="stat-icon"> <i class="fa fa-flag"></i> </div>
                                                     <div class="stat">
-                                                        <div class="value"> 99999 / 99999 </div>
+                                                        <div class="value"> ${member.point} / 100 </div>
                                                     </div>
-                                                    <progress class="progress stat-progress" value="75" max="100">
+                                                    <progress class="progress stat-progress" value="${member.point}" max="100">
                                                         <div class="progress">
                                                             <span class="progress-bar" style="width: 75%;"></span>
                                                         </div>
@@ -154,7 +154,7 @@
                                                 </div>
 
                                                 <div class="col-xs-4 stat-col-level">
-                                                    <h4><i class="stat-icon hidden-xs-down fa fa-flag"></i> LV. 99</h4>
+                                                    <h4><i class="stat-icon hidden-xs-down fa fa-flag"></i> LV. ${member.level}</h4>
                                                 </div>
 
                                             </div>
@@ -175,7 +175,7 @@
                                     <div class="card-block">
                                         <div class="title-block">
                                             <h4 class="title"> ข้อมูลส่วนตัว </h4>
-                                            <p class="title-description">แสดงอธิบายข้อมูลส่วนตัว บรรยายบลา ๆ ข้อความตรงนี้เอาออกได้นะ</p>
+                                            <p class="title-description"></p>
                                         </div>
 
                                         <div class="row row-sm stats-container">
@@ -185,7 +185,7 @@
                                                 <div class="stat-icon"> <i class="fa fa-envelope"></i> </div>
                                                 <div class="stat">
                                                     <div class="name"> อีเมล </div>
-                                                    <div class="value"> punpun@punpun.com </div>
+                                                    <div class="value"> ${member.email} </div>
                                                 </div>
                                             </div>
 
@@ -194,7 +194,7 @@
                                                 <div class="stat-icon"> <i class="fa fa-globe"></i> </div>
                                                 <div class="stat">
                                                     <div class="name"> เว็บไซต์ </div>
-                                                    <div class="value"> <a href="www.twitter.com/">www.twitter.com</a> </div>
+                                                    <div class="value"> <a href="profile.jsp?id=${member.memberId}">punpun.com/profile/${member.memberId}</a> </div>
                                                 </div>
                                             </div>
 
@@ -205,8 +205,8 @@
                                                     <div class="name"> ความสนใจ </div>
                                                     <div class="value">
                                                         <div>
-                                                            <a href="#" class="btn btn-link"> Tag1 </a>
-                                                            <a href="#" class="btn btn-link"> Tag2 </a>
+                                                            <a href="#" class="btn btn-link"> เทคโนโลยี </a>
+                                                            <a href="#" class="btn btn-link"> คอมพิวเตอร์ </a>
                                                         </div>
                                                     </div>
                                                 </div>
