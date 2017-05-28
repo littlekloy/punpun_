@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sql.DataSource;
+import model.Comments;
 import model.Items;
 import model.Members;
 import model.ProjectItems;
@@ -88,7 +89,7 @@ public class ProjectUtil implements Serializable {
                     Supporter sup = new Supporter();
                     sup.setMemberId(rsSupporter.getInt("member_id"));
                     sup.setFirstName(rsSupporter.getString("first_name"));
-                    sup.setLastName(rsSupporter.getString("first_name"));
+                    sup.setLastName(rsSupporter.getString("last_name"));
                     sup.setFunded(rsSupporter.getInt("sum(amount)"));
                     supporter.add(sup);
                 }
@@ -189,13 +190,37 @@ public class ProjectUtil implements Serializable {
                     Supporter sup = new Supporter();
                     sup.setMemberId(rsSupporter.getInt("member_id"));
                     sup.setFirstName(rsSupporter.getString("first_name"));
-                    sup.setLastName(rsSupporter.getString("first_name"));
+                    sup.setLastName(rsSupporter.getString("last_name"));
                     sup.setFunded(rsSupporter.getInt("sum(amount)"));
                     supporter.add(sup);
                 }
                 System.out.println(supporter);
                 project.setSupporter(supporter);
                 project.setSupporterSize(supporter.size());
+
+                //GET COMMENT
+                String cmd_comment = "SELECT * FROM comments right join members on members.member_id = comments.member_id where project_id = ?";
+                selectComment = conn.prepareStatement(cmd_comment);
+                selectComment.setString(1, rs.getString("project_id"));
+                ResultSet rsComment = selectComment.executeQuery();
+                ArrayList<Comments> comments = new ArrayList<Comments>();
+                while (rsComment.next()) {
+                    Comments comment = new Comments();
+
+                    comment.setCommentId(rsComment.getInt("comment_id"));
+                    comment.setDate(rsComment.getTimestamp("date"));
+                    comment.setText(rsComment.getString("text"));
+                    Members member = new Members();
+                    member.setMemberId(rsComment.getInt("member_id"));
+                    member.setFirstName(rsComment.getString("first_name"));
+                    member.setLastName(rsComment.getString("last_name"));
+                    comment.setMemberId(member);
+                    comment.setProjectId(rsComment.getInt("project_id"));
+                    comments.add(comment);
+
+                }
+                project.setCommentsCollection(comments);
+                System.out.println(project.getCommentsCollection());
                 project.setProjectItemsCollection(project_item);
             }
             return project;
@@ -244,7 +269,7 @@ public class ProjectUtil implements Serializable {
                     Supporter sup = new Supporter();
                     sup.setMemberId(rsSupporter.getInt("member_id"));
                     sup.setFirstName(rsSupporter.getString("first_name"));
-                    sup.setLastName(rsSupporter.getString("first_name"));
+                    sup.setLastName(rsSupporter.getString("last_name"));
                     sup.setFunded(rsSupporter.getInt("sum(amount)"));
                     supporter.add(sup);
                 }

@@ -160,7 +160,7 @@
                                 <div class="col-md-6 ">
                                     <div class="card card-block sameheight-item">
                                         <!--Name-->
-                                        <h3><a href="project-detail.jsp">${project.name}</a></h3>
+                                        <h3><a href="viewProjectServlet?id=${project.project_id}">${project.name}</a></h3>
                                         <!--Short Info-->
                                         <p class=""> ${project.short_description}</p>
 

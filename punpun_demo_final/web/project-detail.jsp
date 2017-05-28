@@ -442,66 +442,44 @@
                                         </div>
                                         <!--Comments Tab-->
                                         <div class="tab-pane fade" id="comments-pills">
-                                            <!-- Comment Card -->
-                                            <div class="col-md-12">
-                                                <div class="card card-default">
-                                                    <div class="card-block card-block-comment">
-                                                        <div style="border-bottom: 1px solid #e9edf0;">
-                                                            <h5>ความคิดเห็นที่ 1</h5>
-                                                            <p>เป็นโครงการที่เหมาะกับชุมชนเป็นอย่างมาก น่าสนับสนุนอย่างยิ่ง ช่วยแชร์กันด้วยนะคะ</p>
-                                                        </div>
-                                                        <!-- Stat Footer -->
-                                                        <div class="want-top">
-                                                            <!-- Pic -->
-                                                            <div class="col-md-2">
-                                                                <div class="images-container images-container-center">
-                                                                    <!--Put Image link Here-->
-                                                                    <img src="assets/backgrounds/profile-card-1.jpg" alt=""/>
-                                                                </div>
+                                            <c:forEach var="comment" items="${project.commentsCollection}">
+                                                <!-- Comment Card -->
+                                                <div class="col-md-12">
+                                                    <div class="card card-default">
+                                                        <div class="card-block card-block-comment">
+                                                            <div style="border-bottom: 1px solid #e9edf0;">
+                                                                <h5>ความคิดเห็น</h5>
+                                                                <p>${comment.text}</p>
                                                             </div>
-                                                            <!--Progress Percent-->
-                                                            <div class="col-md-8">
-                                                                <h5>สมศรี วินัยดี</h5>
-                                                                <p>19:42 25/04/2017</p>
+                                                            <!-- Stat Footer -->
+                                                            <div class="want-top">
+                                                                <!-- Pic -->
+                                                                <div class="col-md-2">
+                                                                    <div class="images-container images-container-center">
+                                                                        <!--Put Image link Here-->
+                                                                        <img src="assets/img/profile/0000${comment.memberId.memberId}.jpg" alt=""/>
+                                                                    </div>
+                                                                </div>
+                                                                <!--Progress Percent-->
+                                                                <div class="col-md-8">
+                                                                    <h5>${comment.memberId.firstName} ${comment.memberId.lastName}</h5>
+                                                                    <p>1${comment.date}</p>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- Comment Card -->
-                                            <div class="col-md-12">
-                                                <div class="card card-default">
-                                                    <div class="card-block card-block-comment">
-                                                        <div style="border-bottom: 1px solid #e9edf0;">
-                                                            <h5>ความคิดเห็นที่ 2</h5>
-                                                            <p>น่าสนใจมาก ๆ ค่ะ อยากให้ทำได้จริง</p>
-                                                        </div>
-                                                        <!-- Stat Footer -->
-                                                        <div class="want-top">
-                                                            <!-- Pic -->
-                                                            <div class="col-md-2">
-                                                                <div class="images-container images-container-center">
-                                                                    <!--Put Image link Here-->
-                                                                    <img src="assets/backgrounds/profile-card-1.jpg" alt=""/>
-                                                                </div>
-                                                            </div>
-                                                            <!--Progress Percent-->
-                                                            <div class="col-md-8">
-                                                                <h5>ชูศรี รักสะอาด</h5>
-                                                                <p>19:42 28/04/2017</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            </c:forEach>
+
+
                                             <!-- New Comment Form Card -->
                                             <div class="col-md-12">
                                                 <div class="card card-default">
                                                     <div class="card-block form-group">
-                                                        <form>
+                                                        <form action="commentSerlvet">
                                                             <label class="control-label">ความคิดเห็น</label>
-                                                            <textarea rows="3" class="form-control boxed" placeholder="...แสดงความคิดเห็นของคุณที่นี่..."></textarea>
-                                                            <input type="submit" class="btn btn-primary want-top" value="แสดงความคิดเห็น" name="comment">
+                                                            <textarea rows="3" class="form-control boxed" placeholder="...แสดงความคิดเห็นของคุณที่นี่..." name="text"></textarea>
+                                                            <input type="submit" class="btn btn-primary want-top" value="แสดงความคิดเห็น" >
                                                             <a href="profile.html" class="btn btn-link want-top"></a>
                                                         </form>
                                                     </div>

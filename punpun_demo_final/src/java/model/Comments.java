@@ -49,7 +49,7 @@ public class Comments implements Serializable {
     private String text;
     @JoinColumn(name = "project_id", referencedColumnName = "project_id")
     @ManyToOne(optional = false)
-    private Projects projectId;
+    private Integer projectId;
     @JoinColumn(name = "member_id", referencedColumnName = "member_id")
     @ManyToOne(optional = false)
     private Members memberId;
@@ -85,11 +85,11 @@ public class Comments implements Serializable {
         this.text = text;
     }
 
-    public Projects getProjectId() {
+    public Integer getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(Projects projectId) {
+    public void setProjectId(Integer projectId) {
         this.projectId = projectId;
     }
 

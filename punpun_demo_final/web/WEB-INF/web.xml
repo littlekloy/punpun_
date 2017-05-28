@@ -36,6 +36,10 @@
         <servlet-name>checkNotificationServlet</servlet-name>
         <servlet-class>controller.checkNotificationServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>commentSerlvet</servlet-name>
+        <servlet-class>controller.commentSerlvet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
@@ -67,6 +71,10 @@
     <servlet-mapping>
         <servlet-name>checkNotificationServlet</servlet-name>
         <url-pattern>/checkNotificationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>commentSerlvet</servlet-name>
+        <url-pattern>/commentSerlvet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
