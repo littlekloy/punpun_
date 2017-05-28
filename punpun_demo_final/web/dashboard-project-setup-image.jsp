@@ -1,11 +1,11 @@
 <%--
-    Document   : dashboard-project-setup-detail
-    Created on : May 28, 2017, 9:34:04 PM
+    Document   : dashboard-project-setup-image
+    Created on : May 28, 2017, 11:18:43 PM
     Author     : kanok
 --%>
-
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,26 +23,6 @@
         <link rel="stylesheet" href="assets/css/vendor.css">
         <!-- Custom CSS. -->
         <link href="assets/css/app-seagreen.css" rel="stylesheet" type="text/css"/>
-
-        <!-- <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script> -->
-        <script type="text/javascript" src='assets/js/tinymce/tinymce.min.js'></script>
-        <script type="text/javascript" src='assets/js/tinymce/jquery.tinymce.min.js'></script>
-        <script>
-            tinymce.init({
-                selector: 'textarea',
-                elementpath: false,
-                plugins: [
-                    "advlist autolink lists link image charmap print preview anchor textcolor",
-                    "searchreplace visualblocks code fullscreen",
-                    "insertdatetime media contextmenu paste imagetools "
-                ],
-                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor",
-                imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
-                content_css: [
-                    'assets/css/vendor.css', 'assets/css/app-seagreen.css'
-                ]
-            });
-        </script>
 
     </head>
     <body>
@@ -169,30 +149,35 @@
                                         <ul class="nav nav-pills">
                                             <li class="nav-item"> <a href="dashboard-project-setup-info.jsp" class="nav-link"> ข้อมูลเบื้องต้น </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-team.jsp" class="nav-link"> ทีมดูแลโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-detail.jsp" class="nav-link active"> รายละเอียดโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-image.jsp" class="nav-link"> รูปภาพของโครงการ </a> </li>
+                                            <li class="nav-item"> <a href="dashboard-project-setup-detail.jsp" class="nav-link"> รายละเอียดโครงการ </a> </li>
+                                            <li class="nav-item"> <a href="dashboard-project-setup-image.jsp" class="nav-link active"> รูปภาพของโครงการ </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-wishlist.jsp" class="nav-link"> รายการสิ่งที่ต้องการ </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-submit.jsp" class="nav-link"> เสนอโครงการ </a> </li>
                                             <li class="nav-item"> <a href="project-setup-detail.jsp" class="nav-link"> ดูตัวอย่าง </a> </li>
                                         </ul>
                                         <!-- Tab panes -->
                                         <div class="tab-content">
-                                            <!-- Detail Tab -->
-                                            <div class="tab-pane fade in active" id="details-pills">
-                                                <div class="card card-block">
-                                                    <h4>รายละเอียดโครงการ</h4>
-                                                    <form role="form" name="divEditor" method="post" action="addServlet">
+                                            <!-- Project Image Tab -->
+                                            <div class="tab-pane fade in active" id="image-pills">
+                                                <form name="item">
+                                                    <!--Category Form Card-->
+                                                    <div class="card card-block">
+                                                        <h4>รูปภาพของโครงการ</h4>
+                                                        <a href="#" class="add-image" data-toggle="modal" data-target="#modal-media">
+                                                            <div class="project-img-container">
+                                                                <div class="image-project" style="background-image: url('assets/backgrounds/profile-card-1.jpg')"></div>
+                                                                <div class="middle-project">
+                                                                    <!--Button-->
+                                                                    <input type="submit" class="btn btn-warning btn-lg"  value="+ อัพโหลดรูปภาพ"  />
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
 
-
-                                                        <textarea id="mytextarea" name="detail"></textarea>
-
-
-                                                        <!--Button-->
-                                                        <input type="submit" class="btn btn-primary btn-block" onclick='submitForm()'  value="บันทึก"  />
-                                                        <input type="submit" class="btn btn-secondary btn-block" onclick='submitForm()'  value="ยกเลิก"  />
-
-                                                    </form>
-                                                </div>
+                                                    <!--Button-->
+                                                    <input type="submit" class="btn btn-primary btn-block" onclick='submitForm()'  value="บันทึก"  />
+                                                    <input type="submit" class="btn btn-secondary btn-block" onclick='submitForm()'  value="ยกเลิก"  />
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -296,6 +281,3 @@
         <script src="assets/js/app.js"></script>
     </body>
 </html>
-
-
-

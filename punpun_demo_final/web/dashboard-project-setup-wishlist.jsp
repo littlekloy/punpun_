@@ -1,9 +1,10 @@
 <%--
-    Document   : dashboard-project-setup-detail
-    Created on : May 28, 2017, 9:34:04 PM
+    Document   : dashboard-project-setup-wishlist
+    Created on : May 28, 2017, 11:28:02 PM
     Author     : kanok
 --%>
-
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!DOCTYPE html>
@@ -23,26 +24,6 @@
         <link rel="stylesheet" href="assets/css/vendor.css">
         <!-- Custom CSS. -->
         <link href="assets/css/app-seagreen.css" rel="stylesheet" type="text/css"/>
-
-        <!-- <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script> -->
-        <script type="text/javascript" src='assets/js/tinymce/tinymce.min.js'></script>
-        <script type="text/javascript" src='assets/js/tinymce/jquery.tinymce.min.js'></script>
-        <script>
-            tinymce.init({
-                selector: 'textarea',
-                elementpath: false,
-                plugins: [
-                    "advlist autolink lists link image charmap print preview anchor textcolor",
-                    "searchreplace visualblocks code fullscreen",
-                    "insertdatetime media contextmenu paste imagetools "
-                ],
-                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor",
-                imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
-                content_css: [
-                    'assets/css/vendor.css', 'assets/css/app-seagreen.css'
-                ]
-            });
-        </script>
 
     </head>
     <body>
@@ -169,31 +150,85 @@
                                         <ul class="nav nav-pills">
                                             <li class="nav-item"> <a href="dashboard-project-setup-info.jsp" class="nav-link"> ข้อมูลเบื้องต้น </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-team.jsp" class="nav-link"> ทีมดูแลโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-detail.jsp" class="nav-link active"> รายละเอียดโครงการ </a> </li>
+                                            <li class="nav-item"> <a href="dashboard-project-setup-detail.jsp" class="nav-link"> รายละเอียดโครงการ </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-image.jsp" class="nav-link"> รูปภาพของโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-wishlist.jsp" class="nav-link"> รายการสิ่งที่ต้องการ </a> </li>
+                                            <li class="nav-item"> <a href="dashboard-project-setup-wishlist.jsp" class="nav-link active"> รายการสิ่งที่ต้องการ </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-submit.jsp" class="nav-link"> เสนอโครงการ </a> </li>
                                             <li class="nav-item"> <a href="project-setup-detail.jsp" class="nav-link"> ดูตัวอย่าง </a> </li>
                                         </ul>
                                         <!-- Tab panes -->
                                         <div class="tab-content">
-                                            <!-- Detail Tab -->
-                                            <div class="tab-pane fade in active" id="details-pills">
+                                            <!-- Wish list Tab -->
+                                            <div class="tab-pane fade in active" id="wanteds-pills">
                                                 <div class="card card-block">
-                                                    <h4>รายละเอียดโครงการ</h4>
-                                                    <form role="form" name="divEditor" method="post" action="addServlet">
+                                                    <h4>คุณต้องการอะไรเท่าไหร่</h4>
+                                                    <!--List of Member Projects-->
+                                                    <div data-exclude="xs,sm,lg">
+                                                        <!-- Table Content -->
+                                                        <form>
+                                                            <ul class="item-list striped">
 
+                                                                <!-- Head of Table -->
+                                                                <li class="item item-list-header hidden-sm-down">
+                                                                    <div class="item-row">
 
-                                                        <textarea id="mytextarea" name="detail"></textarea>
+                                                                        <div class="item-col item-col-header item-col-center">
+                                                                            <div> <span> ประเภท </span> </div>
+                                                                        </div>
+                                                                        <div class="item-col item-col-header item-col-center">
+                                                                            <div class=""> <span> รายการ </span> </div>
+                                                                        </div>
+                                                                        <div class="item-col item-col-header item-col-center">
+                                                                            <div> <span> ยอดเงินที่ต้องการ </span> </div>
+                                                                        </div>
+                                                                        <div class="item-col item-col-header fixed item-col-actions-dropdown"> </div>
+                                                                    </div>
+                                                                </li>
 
+                                                                <!-- Item : Loop here -->
+                                                                <li class="item">
+                                                                    <div class="item-row">
+                                                                        <!-- Category -->
+                                                                        <div class="item-col item-col-center">
+                                                                            <div class="item-heading"> ตำแหน่ง </div>
+                                                                            <select class="c-select form-control boxed">
+                                                                                <option disabled selected>เลือกตำแหน่ง</option>
+                                                                                <option value="1">ผู้ดูแลโครงการ</option>
+                                                                                <option value="2">ผู้ช่วยโครงการ</option>
+                                                                                <option value="3">คนใช้</option>
+                                                                            </select> </div>
+                                                                        <!-- Name of Items -->
+                                                                        <div class="item-col item-col-center">
+                                                                            <div class="item-heading"> ชื่อผู้ใช้ </div>
+                                                                            <input type="text" class="form-control boxed" placeholder="ex. @Frost2Ice" required>
+                                                                        </div>
+                                                                        <!-- TGT Amount -->
+                                                                        <div class="item-col item-col-center">
+                                                                            <div class="item-heading"> ยอดเงินที่ต้องการ </div>
+                                                                            <input type="number" class="form-control boxed" min="0" placeholder=" จำนวนเงินที่ต้องการ " required="">
+                                                                        </div>
+                                                                        <!-- Setting Button -->
+                                                                        <div class="item-col fixed item-col-actions-dropdown">
+                                                                            <div class="item-actions-dropdown">
+                                                                                <input type="submit" class="btn btn-primary btn-block"  value="x"  />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
 
-                                                        <!--Button-->
-                                                        <input type="submit" class="btn btn-primary btn-block" onclick='submitForm()'  value="บันทึก"  />
-                                                        <input type="submit" class="btn btn-secondary btn-block" onclick='submitForm()'  value="ยกเลิก"  />
+                                                            </ul>
+                                                            <div class="card">
+                                                                <div class="card-block">
+                                                                    <!--Button-->
+                                                                    <input type="submit" class="btn btn-warning-outline btn-block"  value="+ เพิ่มรายการ"  />
+                                                                </div>
+                                                            </div>
 
-                                                    </form>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                     <!-- /.card-block -->
@@ -296,6 +331,4 @@
         <script src="assets/js/app.js"></script>
     </body>
 </html>
-
-
 

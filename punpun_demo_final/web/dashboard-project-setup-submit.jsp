@@ -1,11 +1,11 @@
 <%--
-    Document   : dashboard-project-setup-detail
-    Created on : May 28, 2017, 9:34:04 PM
+    Document   : dashboard-project-setup-submit
+    Created on : May 28, 2017, 11:24:41 PM
     Author     : kanok
 --%>
-
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,26 +23,6 @@
         <link rel="stylesheet" href="assets/css/vendor.css">
         <!-- Custom CSS. -->
         <link href="assets/css/app-seagreen.css" rel="stylesheet" type="text/css"/>
-
-        <!-- <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script> -->
-        <script type="text/javascript" src='assets/js/tinymce/tinymce.min.js'></script>
-        <script type="text/javascript" src='assets/js/tinymce/jquery.tinymce.min.js'></script>
-        <script>
-            tinymce.init({
-                selector: 'textarea',
-                elementpath: false,
-                plugins: [
-                    "advlist autolink lists link image charmap print preview anchor textcolor",
-                    "searchreplace visualblocks code fullscreen",
-                    "insertdatetime media contextmenu paste imagetools "
-                ],
-                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor",
-                imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
-                content_css: [
-                    'assets/css/vendor.css', 'assets/css/app-seagreen.css'
-                ]
-            });
-        </script>
 
     </head>
     <body>
@@ -136,7 +116,7 @@
                         <!--Menu-->
                         <nav class="menu">
                             <ul class="nav metismenu" id="sidebar-menu">
-                                <li>                <a href="dashboard.jsp">       <i class="fa fa-home"></i> แดชบอร์ด </a></li>
+                                <li>                <a href="dashboard.jsp">       <i class="fa fa-pointer-o"></i> แดชบอร์ด </a></li>
                                 <li>                <a href="dashboard-profile.jsp">         <i class="fa fa-user"></i> โปรไฟล์ </a></li>
                                 <li>                <a href="dashboard-following.jsp">       <i class="fa fa-bell"></i> การติดตาม </a></li>
                                 <li>                <a href="dashboard-funded-project.jsp">  <i class="fa fa-thumbs-up"></i> โครงการที่เคยร่วมระดมทุน </a></li>
@@ -169,31 +149,42 @@
                                         <ul class="nav nav-pills">
                                             <li class="nav-item"> <a href="dashboard-project-setup-info.jsp" class="nav-link"> ข้อมูลเบื้องต้น </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-team.jsp" class="nav-link"> ทีมดูแลโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-detail.jsp" class="nav-link active"> รายละเอียดโครงการ </a> </li>
+                                            <li class="nav-item"> <a href="dashboard-project-setup-detail.jsp" class="nav-link"> รายละเอียดโครงการ </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-image.jsp" class="nav-link"> รูปภาพของโครงการ </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-wishlist.jsp" class="nav-link"> รายการสิ่งที่ต้องการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-submit.jsp" class="nav-link"> เสนอโครงการ </a> </li>
+                                            <li class="nav-item"> <a href="dashboard-project-setup-submit.jsp" class="nav-link active"> เสนอโครงการ </a> </li>
                                             <li class="nav-item"> <a href="project-setup-detail.jsp" class="nav-link"> ดูตัวอย่าง </a> </li>
                                         </ul>
                                         <!-- Tab panes -->
                                         <div class="tab-content">
-                                            <!-- Detail Tab -->
-                                            <div class="tab-pane fade in active" id="details-pills">
+                                            <!-- Submit Tab -->
+                                            <div class="tab-pane fade in active" id="submit-pills">
                                                 <div class="card card-block">
-                                                    <h4>รายละเอียดโครงการ</h4>
-                                                    <form role="form" name="divEditor" method="post" action="addServlet">
+                                                    <h4>คุณต้องยืนยันข้อมูล และส่งข้อมูลเพื่อให้เจ้าหน้าที่พิจารณา (กระบวนการนี้ใช้เวลาประมาณ 3 - 5 วัน)</h4>
+                                                    <p>แต่ก่อนที่จะเสนอโครงการนี้ คุณต้องตรวจสอบข้อมูลเหล่านี้ให้เรียบร้อยก่อนครับ</p>
 
+                                                    <!--Type of Missing : Loop here-->
+                                                    <h4>ข้อมูลเบื้องต้น</h4>
+                                                    <ol>
+                                                        <!--Missing Item : Loop Here-->
+                                                        <li>ประเภทโครงการ</li>
+                                                        <li>ยอดเงินระดมทุนที่ต้องการ</li>
+                                                        <li>ระยะเวลาของโครงการ</li>
+                                                    </ol>
 
-                                                        <textarea id="mytextarea" name="detail"></textarea>
+                                                    <h4>รูปภาพของโครงการ</h4>
+                                                    <ol>
+                                                        <!--Missing Item : Loop Here-->
+                                                        <li>อัพโหลดรูปภาพ</li>
+                                                    </ol>
 
+                                                    <!--Button-->
+                                                    <input type="submit" class="btn btn-primary btn-block"  value="บันทึก"  />
+                                                    <input type="submit" class="btn btn-primary-outline btn-block"  value="ยกเลิก"  />
 
-                                                        <!--Button-->
-                                                        <input type="submit" class="btn btn-primary btn-block" onclick='submitForm()'  value="บันทึก"  />
-                                                        <input type="submit" class="btn btn-secondary btn-block" onclick='submitForm()'  value="ยกเลิก"  />
-
-                                                    </form>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                     <!-- /.card-block -->
@@ -296,6 +287,3 @@
         <script src="assets/js/app.js"></script>
     </body>
 </html>
-
-
-

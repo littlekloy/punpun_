@@ -1,11 +1,11 @@
 <%--
-    Document   : dashboard-project-setup-detail
-    Created on : May 28, 2017, 9:34:04 PM
+    Document   : dashboard-setting-payment
+    Created on : May 28, 2017, 11:33:15 PM
     Author     : kanok
 --%>
-
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,26 +23,6 @@
         <link rel="stylesheet" href="assets/css/vendor.css">
         <!-- Custom CSS. -->
         <link href="assets/css/app-seagreen.css" rel="stylesheet" type="text/css"/>
-
-        <!-- <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script> -->
-        <script type="text/javascript" src='assets/js/tinymce/tinymce.min.js'></script>
-        <script type="text/javascript" src='assets/js/tinymce/jquery.tinymce.min.js'></script>
-        <script>
-            tinymce.init({
-                selector: 'textarea',
-                elementpath: false,
-                plugins: [
-                    "advlist autolink lists link image charmap print preview anchor textcolor",
-                    "searchreplace visualblocks code fullscreen",
-                    "insertdatetime media contextmenu paste imagetools "
-                ],
-                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor",
-                imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
-                content_css: [
-                    'assets/css/vendor.css', 'assets/css/app-seagreen.css'
-                ]
-            });
-        </script>
 
     </head>
     <body>
@@ -138,10 +118,10 @@
                             <ul class="nav metismenu" id="sidebar-menu">
                                 <li>                <a href="dashboard.jsp">       <i class="fa fa-home"></i> แดชบอร์ด </a></li>
                                 <li>                <a href="dashboard-profile.jsp">         <i class="fa fa-user"></i> โปรไฟล์ </a></li>
-                                <li>                <a href="dashboard-following.jsp">       <i class="fa fa-bell"></i> การติดตาม </a></li>
+                                <li>                <a href="dashboard-following.jsp">         <i class="fa fa-bell"></i> การติดตาม </a></li>
                                 <li>                <a href="dashboard-funded-project.jsp">  <i class="fa fa-thumbs-up"></i> โครงการที่เคยร่วมระดมทุน </a></li>
-                                <li class="active">                <a href="dashboard-project-list.jsp">    <i class="fa fa-th-list"></i> จัดการโครงการของคุณ </a></li>
-                                <li> <a href="dashboard-account-setting.jsp">         <i class="fa fa-gear"></i> ตั้งค่าบัญชีผู้ใช้ </a></li>
+                                <li>                <a href="dashboard-project-list.jsp">    <i class="fa fa-th-list"></i> จัดการโครงการของคุณ </a></li>
+                                <li class="active"> <a href="dashboard-account-setting.jsp">         <i class="fa fa-gear"></i> ตั้งค่าบัญชีผู้ใช้ </a></li>
                                 <li> <hr> </li>
                                 <li>                <a href="admin-dashboard.jsp">       <i class="fa fa-dashboard"></i> แดชบอร์ดของแอดมิน </a></li>
                                 <li>                <a href="admin-payment-control.jsp">         <i class="fa fa-money"></i> หลักฐานการโอนเงิน </a></li>
@@ -158,51 +138,75 @@
 
                 <!-- Content -->
                 <article class="content dashboard-page">
-
                     <!--Pill Tab-->
                     <section class="section">
                         <div class="row">
-                            <div class="col-xl-12 stat-col">
+                            <!-- Title -->
+                            <div class="col-md-12">
+                                <div class="card card-block">
+                                    <!-- <div class="title-block"> -->
+                                    <h2> ตั้งค่าบัญชีและโปรไฟล์ของคุณ</h2>
+                                    <p> ผู้ใช้สามารถติดตามสมาชิกคนอื่น เพื่อรับข่าวสารการสร้างโครงการการกุศลที่น่าสนใจของเขา หรือรับการแจ้งเตือน เมื่อผู้ที่คุณสนใจร่วมระดมทุนกับโครงการต่าง ๆ </p>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                            <!-- Tab -->
+                            <div class="col-md-12">
                                 <div class="card items">
                                     <div class="card-block">
                                         <!-- Nav tabs -->
                                         <ul class="nav nav-pills">
-                                            <li class="nav-item"> <a href="dashboard-project-setup-info.jsp" class="nav-link"> ข้อมูลเบื้องต้น </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-team.jsp" class="nav-link"> ทีมดูแลโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-detail.jsp" class="nav-link active"> รายละเอียดโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-image.jsp" class="nav-link"> รูปภาพของโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-wishlist.jsp" class="nav-link"> รายการสิ่งที่ต้องการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-submit.jsp" class="nav-link"> เสนอโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="project-setup-detail.jsp" class="nav-link"> ดูตัวอย่าง </a> </li>
+                                            <li class="nav-item"> <a href="dashboard-account-setting.jsp" class="nav-link"> ตั้งค่าบัญชี </a> </li>
+                                            <li class="nav-item"> <a href="dashboard-setting-profile.jsp" class="nav-link" > จัดการโปรไฟล์ </a> </li>
+                                            <li class="nav-item"> <a href="dashboard-setting-payment.jsp" class="nav-link active"> การชำระเงิน </a> </li>
                                         </ul>
                                         <!-- Tab panes -->
                                         <div class="tab-content">
-                                            <!-- Detail Tab -->
-                                            <div class="tab-pane fade in active" id="details-pills">
-                                                <div class="card card-block">
-                                                    <h4>รายละเอียดโครงการ</h4>
-                                                    <form role="form" name="divEditor" method="post" action="addServlet">
+                                            <!--Profile Tab-->
+                                            <div class="tab-pane fade in active" id="setting-payment-pills">
+                                                <!-- Payment Title -->
+                                                <div class="col-md-12">
+                                                    <div class="card items">
+                                                        <div class="card-block">
+                                                            <!--Project Following Tab-->
+                                                            <h2>การชำระเงิน</h2>
+                                                            <p>คุณสามารถเพิ่มบัตรเครดิตของคุณได้ที่นี่ เพิ่มความสะดวกสบายในการร่วมบริจาคโครงการที่คุณสนใจ</p>
+                                                            <!--List of Credit card-->
+                                                            <div data-exclude="xs,sm,lg">
+                                                                <!-- Table Content -->
+                                                                <ul class="item-list striped">
 
+                                                                    <!-- Item : Loop here -->
+                                                                    <li class="item">
+                                                                        <div class="item-row">
+                                                                            <!--Name of Following-->
+                                                                            <div class="item-col item-col-center no-overflow no-underline">
+                                                                                <div>
+                                                                                    <p>1651 xxxx xxx xxx xx25</p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--Remove Button-->
+                                                                            <div class="item-col item-col-center">
+                                                                                <div class=""> <a href="promt-password.jsp" class="btn btn-success rounded"><i class="fa fa-trash-o"></i> <span> </span> </a> </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
 
-                                                        <textarea id="mytextarea" name="detail"></textarea>
-
-
-                                                        <!--Button-->
-                                                        <input type="submit" class="btn btn-primary btn-block" onclick='submitForm()'  value="บันทึก"  />
-                                                        <input type="submit" class="btn btn-secondary btn-block" onclick='submitForm()'  value="ยกเลิก"  />
-
-                                                    </form>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="card card-block"> <a href="promt-password.jsp" class="btn btn-block btn-success"> + เพิ่มบัตรเครดิต </a> </div>
+                                                        </div>
+                                                        <!-- /.card-block -->
+                                                    </div>
+                                                    <!-- /.card -->
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- /.card-block -->
                                 </div>
-                                <!-- /.card -->
                             </div>
                         </div>
                     </section>
-
                 </article>
 
                 <!-- Footer -->
@@ -241,8 +245,6 @@
                                     <div class="tab-pane fade active in" id="upload" role="tabpanel">
                                         <div class="upload-container">
                                             <div id="dropzone">
-
-                                                <!--Form Upload-->
                                                 <form action="/" method="POST" enctype="multipart/form-data" class="dropzone needsclick dz-clickable" id="demo-upload">
                                                     <div class="dz-message-block">
                                                         <div class="dz-message needsclick"> Drop files here or click to upload. </div>
@@ -294,8 +296,7 @@
         <!-- Script -->
         <script src="assets/js/vendor.js"></script>
         <script src="assets/js/app.js"></script>
+
     </body>
 </html>
-
-
 

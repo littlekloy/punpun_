@@ -1,11 +1,11 @@
 <%--
-    Document   : dashboard-project-setup-detail
-    Created on : May 28, 2017, 9:34:04 PM
+    Document   : dashboard-comment
+    Created on : May 28, 2017, 11:05:32 PM
     Author     : kanok
 --%>
-
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,25 +24,8 @@
         <!-- Custom CSS. -->
         <link href="assets/css/app-seagreen.css" rel="stylesheet" type="text/css"/>
 
-        <!-- <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script> -->
-        <script type="text/javascript" src='assets/js/tinymce/tinymce.min.js'></script>
-        <script type="text/javascript" src='assets/js/tinymce/jquery.tinymce.min.js'></script>
-        <script>
-            tinymce.init({
-                selector: 'textarea',
-                elementpath: false,
-                plugins: [
-                    "advlist autolink lists link image charmap print preview anchor textcolor",
-                    "searchreplace visualblocks code fullscreen",
-                    "insertdatetime media contextmenu paste imagetools "
-                ],
-                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor",
-                imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
-                content_css: [
-                    'assets/css/vendor.css', 'assets/css/app-seagreen.css'
-                ]
-            });
-        </script>
+        <link href="assets/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
 
     </head>
     <body>
@@ -131,7 +114,8 @@
                         <!--Logo-->
                         <div class="sidebar-header">
                             <div class="brand">
-                                <div class="image-container logo"> <img src="assets/logo/punpun_white.png" alt="Punpun"> </div></div>
+                                <div class="image-container logo"> <img src="assets/logo/punpun_white.png" alt="Punpun"> </div>
+                            </div>
                         </div>
                         <!--Menu-->
                         <nav class="menu">
@@ -151,7 +135,6 @@
                                 <li> <a href="admin-banned-project.jsp">         <i class="fa fa-ban"></i> โครงการที่ถูกระงับ </a></li>
                             </ul>
                         </nav>
-
                     </div>
                 </aside>
                 <div class="sidebar-overlay" id="sidebar-overlay"></div>
@@ -162,36 +145,63 @@
                     <!--Pill Tab-->
                     <section class="section">
                         <div class="row">
-                            <div class="col-xl-12 stat-col">
+                            <div class="col-xl-12">
                                 <div class="card items">
                                     <div class="card-block">
                                         <!-- Nav tabs -->
                                         <ul class="nav nav-pills">
-                                            <li class="nav-item"> <a href="dashboard-project-setup-info.jsp" class="nav-link"> ข้อมูลเบื้องต้น </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-team.jsp" class="nav-link"> ทีมดูแลโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-detail.jsp" class="nav-link active"> รายละเอียดโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-image.jsp" class="nav-link"> รูปภาพของโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-wishlist.jsp" class="nav-link"> รายการสิ่งที่ต้องการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-submit.jsp" class="nav-link"> เสนอโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="project-setup-detail.jsp" class="nav-link"> ดูตัวอย่าง </a> </li>
+                                            <li class="nav-item"> <a href="" class="nav-link active" data-target="#comments-pills" aria-controls="comments-pills" data-toggle="tab" role="tab">ความคิดเห็น</a> </li>
                                         </ul>
                                         <!-- Tab panes -->
                                         <div class="tab-content">
-                                            <!-- Detail Tab -->
-                                            <div class="tab-pane fade in active" id="details-pills">
-                                                <div class="card card-block">
-                                                    <h4>รายละเอียดโครงการ</h4>
-                                                    <form role="form" name="divEditor" method="post" action="addServlet">
+                                            <!--Comments Tab-->
+                                            <div class="tab-pane fade in active" id="comments-pills">
+                                                <h4>Messages Tab</h4>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                <!--List of Funded Projects-->
+                                                <div data-exclude="xs,sm,lg">
+                                                    <!-- Table Content -->
+                                                    <ul class="item-list striped">
 
+                                                        <!-- Head of Table -->
+                                                        <li class="item item-list-header hidden-sm-down">
+                                                            <div class="item-row">
+                                                                <div class="item-col item-col-header item-col-title ">
+                                                                    <div class="center-text"> <span> ความคิดเห็น </span> </div>
+                                                                </div>
+                                                                <div class="item-col item-col-header item-col-center">
+                                                                    <div > <span> ผู้แสดงความคิดเห็น </span> </div>
+                                                                </div>
+                                                                <div class="item-col item-col-header item-col-center">
+                                                                    <div > <span> เวลา </span> </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
 
-                                                        <textarea id="mytextarea" name="detail"></textarea>
+                                                        <!-- Comment Item : Loop here -->
+                                                        <li class="item">
+                                                            <div class="item-row">
+                                                                <!--Comment-->
+                                                                <div class="item-col item-col-title">
+                                                                    <div> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </div>
+                                                                </div>
+                                                                <!--Name of Commenter-->
+                                                                <div class="item-col item-col-center no-underline">
+                                                                    <div>
+                                                                        <a href="error-404.jsp" class="" >
+                                                                            Disanuwat Worajirakan
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <!--Date-->
+                                                                <div class="item-col item-col-center">
+                                                                    <div class="item-heading"> แสดงความคิดเห็นเวลา </div>
+                                                                    <div> 21/09/2016 10:47 </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
 
-
-                                                        <!--Button-->
-                                                        <input type="submit" class="btn btn-primary btn-block" onclick='submitForm()'  value="บันทึก"  />
-                                                        <input type="submit" class="btn btn-secondary btn-block" onclick='submitForm()'  value="ยกเลิก"  />
-
-                                                    </form>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
@@ -202,7 +212,6 @@
                             </div>
                         </div>
                     </section>
-
                 </article>
 
                 <!-- Footer -->
@@ -217,68 +226,6 @@
                     </div>
                 </footer>
 
-                <!-- Modal -->
-                <div class="modal fade" id="modal-media">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    <span class="sr-only">Close</span>
-                                </button>
-                                <h4 class="modal-title">Media Library</h4>
-                            </div>
-                            <div class="modal-body modal-tab-container">
-                                <ul class="nav nav-tabs modal-tabs" role="tablist">
-                                    <li class="nav-item"> <a class="nav-link" href="#gallery" data-toggle="tab" role="tab">Gallery</a> </li>
-                                    <li class="nav-item"> <a class="nav-link active" href="#upload" data-toggle="tab" role="tab">Upload</a> </li>
-                                </ul>
-                                <div class="tab-content modal-tab-content">
-                                    <div class="tab-pane fade" id="gallery" role="tabpanel">
-                                        <div class="images-container">
-                                            <div class="row"> </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade active in" id="upload" role="tabpanel">
-                                        <div class="upload-container">
-                                            <div id="dropzone">
-
-                                                <!--Form Upload-->
-                                                <form action="/" method="POST" enctype="multipart/form-data" class="dropzone needsclick dz-clickable" id="demo-upload">
-                                                    <div class="dz-message-block">
-                                                        <div class="dz-message needsclick"> Drop files here or click to upload. </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Insert Selected</button> </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-                <div class="modal fade" id="confirm-modal">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <h4 class="modal-title"><i class="fa fa-warning"></i> Alert</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>Are you sure want to do this?</p>
-                            </div>
-                            <div class="modal-footer"> <button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button> <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button> </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-
             </div>
         </div>
 
@@ -292,10 +239,105 @@
         </div>
 
         <!-- Script -->
-        <script src="assets/js/vendor.js"></script>
-        <script src="assets/js/app.js"></script>
+        <script src="js/vendor.js"></script>
+        <script src="js/app.js"></script>
+
+        <!-- jQuery and jQuery UI are required dependencies. -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+        <!-- The real Tag -->
+        <script src="assets/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Tag -->
+        <script>
+            $(function () {
+                var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
+
+                //-------------------------------
+                // Minimal
+                //-------------------------------
+                $('#myTags').tagit();
+
+                //-------------------------------
+                // Preloading data in markup
+                //-------------------------------
+                $('#myULTags').tagit({
+                    availableTags: sampleTags, // this param is of course optional. it's for autocomplete.
+                    // configure the name of the input field (will be submitted with form), default: item[tags]
+                    itemName: 'item',
+                    fieldName: 'tags'
+                });
+
+                //-------------------------------
+                // Tag events
+                //-------------------------------
+                var eventTags = $('#eventTags');
+
+                var addEvent = function (text) {
+                    $('#events_container').append(text + '<br>');
+                };
+
+                eventTags.tagit({
+                    availableTags: sampleTags,
+                    beforeTagAdded: function (evt, ui) {
+                        if (!ui.duringInitialization) {
+                            addEvent('beforeTagAdded: ' + eventTags.tagit('tagLabel', ui.tag));
+                        }
+                    },
+                    afterTagAdded: function (evt, ui) {
+                        if (!ui.duringInitialization) {
+                            addEvent('afterTagAdded: ' + eventTags.tagit('tagLabel', ui.tag));
+                        }
+                    },
+                    beforeTagRemoved: function (evt, ui) {
+                        addEvent('beforeTagRemoved: ' + eventTags.tagit('tagLabel', ui.tag));
+                    },
+                    afterTagRemoved: function (evt, ui) {
+                        addEvent('afterTagRemoved: ' + eventTags.tagit('tagLabel', ui.tag));
+                    },
+                    onTagClicked: function (evt, ui) {
+                        addEvent('onTagClicked: ' + eventTags.tagit('tagLabel', ui.tag));
+                    },
+                    onTagExists: function (evt, ui) {
+                        addEvent('onTagExists: ' + eventTags.tagit('tagLabel', ui.existingTag));
+                    }
+                });
+
+                //-------------------------------
+                // Read-only
+                //-------------------------------
+                $('#readOnlyTags').tagit({
+                    readOnly: true
+                });
+
+                //-------------------------------
+                // Tag-it methods
+                //-------------------------------
+                $('#methodTags').tagit({
+                    availableTags: sampleTags
+                });
+
+                //-------------------------------
+                // Allow spaces without quotes.
+                //-------------------------------
+                $('#allowSpacesTags').tagit({
+                    availableTags: sampleTags,
+                    allowSpaces: true
+                });
+
+                //-------------------------------
+                // Remove confirmation
+                //-------------------------------
+                $('#removeConfirmationTags').tagit({
+                    availableTags: sampleTags,
+                    removeConfirmation: true
+                });
+
+            });
+        </script>
+
     </body>
 </html>
-
-
 

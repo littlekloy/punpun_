@@ -1,11 +1,11 @@
 <%--
-    Document   : dashboard-project-setup-detail
-    Created on : May 28, 2017, 9:34:04 PM
+    Document   : dashboard-project-setup-team
+    Created on : May 28, 2017, 11:26:06 PM
     Author     : kanok
 --%>
-
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,26 +23,6 @@
         <link rel="stylesheet" href="assets/css/vendor.css">
         <!-- Custom CSS. -->
         <link href="assets/css/app-seagreen.css" rel="stylesheet" type="text/css"/>
-
-        <!-- <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script> -->
-        <script type="text/javascript" src='assets/js/tinymce/tinymce.min.js'></script>
-        <script type="text/javascript" src='assets/js/tinymce/jquery.tinymce.min.js'></script>
-        <script>
-            tinymce.init({
-                selector: 'textarea',
-                elementpath: false,
-                plugins: [
-                    "advlist autolink lists link image charmap print preview anchor textcolor",
-                    "searchreplace visualblocks code fullscreen",
-                    "insertdatetime media contextmenu paste imagetools "
-                ],
-                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor",
-                imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
-                content_css: [
-                    'assets/css/vendor.css', 'assets/css/app-seagreen.css'
-                ]
-            });
-        </script>
 
     </head>
     <body>
@@ -168,8 +148,8 @@
                                         <!-- Nav tabs -->
                                         <ul class="nav nav-pills">
                                             <li class="nav-item"> <a href="dashboard-project-setup-info.jsp" class="nav-link"> ข้อมูลเบื้องต้น </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-team.jsp" class="nav-link"> ทีมดูแลโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-detail.jsp" class="nav-link active"> รายละเอียดโครงการ </a> </li>
+                                            <li class="nav-item"> <a href="dashboard-project-setup-team.jsp" class="nav-link active"> ทีมดูแลโครงการ </a> </li>
+                                            <li class="nav-item"> <a href="dashboard-project-setup-detail.jsp" class="nav-link"> รายละเอียดโครงการ </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-image.jsp" class="nav-link"> รูปภาพของโครงการ </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-wishlist.jsp" class="nav-link"> รายการสิ่งที่ต้องการ </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-submit.jsp" class="nav-link"> เสนอโครงการ </a> </li>
@@ -177,21 +157,90 @@
                                         </ul>
                                         <!-- Tab panes -->
                                         <div class="tab-content">
-                                            <!-- Detail Tab -->
-                                            <div class="tab-pane fade in active" id="details-pills">
+                                            <!-- Teams Tab -->
+                                            <div class="tab-pane fade in active" id="teams-pills">
                                                 <div class="card card-block">
-                                                    <h4>รายละเอียดโครงการ</h4>
-                                                    <form role="form" name="divEditor" method="post" action="addServlet">
+                                                    <h4>จัดทีมที่จะมาช่วยคุณ</h4>
+                                                    <!--List of Member Projects-->
+                                                    <div data-exclude="xs,sm,lg">
+                                                        <!-- Table Content -->
+                                                        <form>
+                                                            <ul class="item-list striped">
 
+                                                                <!-- Head of Table -->
+                                                                <li class="item item-list-header hidden-sm-down">
+                                                                    <div class="item-row">
+                                                                        <div class="item-col item-col-header item-col-title">
+                                                                            <div class="center-text"> <span>ชื่อ - นามสกุล</span> </div>
+                                                                        </div>
+                                                                        <div class="item-col item-col-header item-col-center">
+                                                                            <div> <span>ตำแหน่ง</span> </div>
+                                                                        </div>
+                                                                        <div class="item-col item-col-header item-col-stats">
+                                                                            <div class="center-text" > <span> ผลการอนุมัติ </span> </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
 
-                                                        <textarea id="mytextarea" name="detail"></textarea>
+                                                                <!-- Project Owner : Do not Repeat this!!-->
+                                                                <li class="item">
+                                                                    <div class="item-row">
+                                                                        <!--Name of Team-->
+                                                                        <div class="item-col item-col-title no-overflow no-underline">
+                                                                            <div>
+                                                                                <a href="error-404.jsp" class="center-text">
+                                                                                    เจ้าของ โครงการ
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!--Position-->
+                                                                        <div class="item-col item-col-center">
+                                                                            <div class="item-heading"> ตำแหน่ง </div>
+                                                                            <div> เจ้าโครงการ </div>
+                                                                        </div>
+                                                                        <div class="item-col item-col-header item-col-stats">
+                                                                            <div > <span> </span> </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
 
+                                                                <!-- Team Item : Loop here -->
+                                                                <li class="item">
+                                                                    <div class="item-row">
+                                                                        <!--Name of Team-->
+                                                                        <div class="item-col item-col-title no-overflow no-underline">
+                                                                            <div>
+                                                                                <input type="text" name="name" class="form-control boxed" placeholder="ตัวอย่าง : กนกวรรณ มุตตามระ">
+                                                                            </div>
+                                                                        </div>
+                                                                        <!--Position-->
+                                                                        <div class="item-col item-col-center">
+                                                                            <div class="item-heading"> ตำแหน่ง </div>
+                                                                            <select class="c-select form-control boxed">
+                                                                                <option disabled selected>เลือกตำแหน่ง</option>
+                                                                                <option value="1">ผู้ดูแลโครงการ</option>
+                                                                                <option value="2">ผู้ช่วยโครงการ</option>
+                                                                                <option value="3">คนใช้</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <!-- Setting Button -->
+                                                                        <div class="item-col  item-col-stats">
+                                                                            <div class="item-actions-dropdown center-text">
+                                                                                <input type="submit" class="btn btn-danger"  value="ลบ"  />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
 
-                                                        <!--Button-->
-                                                        <input type="submit" class="btn btn-primary btn-block" onclick='submitForm()'  value="บันทึก"  />
-                                                        <input type="submit" class="btn btn-secondary btn-block" onclick='submitForm()'  value="ยกเลิก"  />
+                                                            </ul>
+                                                            <!--Button-->
+                                                            <div class="want-top">
+                                                                <input type="submit" class="btn btn-primary btn-block"  value="บันทึก"  />
+                                                                <input type="submit" class="btn btn-secondary btn-block"  value="ยกเลิก"  />
+                                                            </div>
 
-                                                    </form>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -296,6 +345,4 @@
         <script src="assets/js/app.js"></script>
     </body>
 </html>
-
-
 

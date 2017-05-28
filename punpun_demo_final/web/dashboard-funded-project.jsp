@@ -1,11 +1,11 @@
 <%--
-    Document   : dashboard-project-setup-detail
-    Created on : May 28, 2017, 9:34:04 PM
+    Document   : dashboard-funded-project
+    Created on : May 28, 2017, 11:09:43 PM
     Author     : kanok
 --%>
-
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,35 +14,15 @@
         <title>Punpun: HTML5 App Not JSP</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!-- Place favicon.ico in the root directory -->
+        <!-- Favicon -->
         <link rel="shortcut icon" href="assets/logo/gift.png"/>
         <!-- Bootstrap 4 -->
         <!--<link href="css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css"/>-->
-        <!-- Animation CSS File. "Please, Don't Touch it" - Ice -->
+        <!-- Vendor CSS File -->
         <link rel="stylesheet" href="assets/css/vendor.css">
-        <!-- Custom CSS. -->
+        <!-- Custom CSS -->
         <link href="assets/css/app-seagreen.css" rel="stylesheet" type="text/css"/>
 
-        <!-- <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script> -->
-        <script type="text/javascript" src='assets/js/tinymce/tinymce.min.js'></script>
-        <script type="text/javascript" src='assets/js/tinymce/jquery.tinymce.min.js'></script>
-        <script>
-            tinymce.init({
-                selector: 'textarea',
-                elementpath: false,
-                plugins: [
-                    "advlist autolink lists link image charmap print preview anchor textcolor",
-                    "searchreplace visualblocks code fullscreen",
-                    "insertdatetime media contextmenu paste imagetools "
-                ],
-                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor",
-                imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
-                content_css: [
-                    'assets/css/vendor.css', 'assets/css/app-seagreen.css'
-                ]
-            });
-        </script>
 
     </head>
     <body>
@@ -139,8 +119,8 @@
                                 <li>                <a href="dashboard.jsp">       <i class="fa fa-home"></i> แดชบอร์ด </a></li>
                                 <li>                <a href="dashboard-profile.jsp">         <i class="fa fa-user"></i> โปรไฟล์ </a></li>
                                 <li>                <a href="dashboard-following.jsp">       <i class="fa fa-bell"></i> การติดตาม </a></li>
-                                <li>                <a href="dashboard-funded-project.jsp">  <i class="fa fa-thumbs-up"></i> โครงการที่เคยร่วมระดมทุน </a></li>
-                                <li class="active">                <a href="dashboard-project-list.jsp">    <i class="fa fa-th-list"></i> จัดการโครงการของคุณ </a></li>
+                                <li class="active">                <a href="dashboard-funded-project.jsp">  <i class="fa fa-thumbs-up"></i> โครงการที่เคยร่วมระดมทุน </a></li>
+                                <li>                <a href="dashboard-project-list.jsp">    <i class="fa fa-th-list"></i> จัดการโครงการของคุณ </a></li>
                                 <li> <a href="dashboard-account-setting.jsp">         <i class="fa fa-gear"></i> ตั้งค่าบัญชีผู้ใช้ </a></li>
                                 <li> <hr> </li>
                                 <li>                <a href="admin-dashboard.jsp">       <i class="fa fa-dashboard"></i> แดชบอร์ดของแอดมิน </a></li>
@@ -157,51 +137,114 @@
                 <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
                 <!-- Content -->
-                <article class="content dashboard-page">
+                <article class="content items-list-page">
 
-                    <!--Pill Tab-->
-                    <section class="section">
-                        <div class="row">
-                            <div class="col-xl-12 stat-col">
-                                <div class="card items">
-                                    <div class="card-block">
-                                        <!-- Nav tabs -->
-                                        <ul class="nav nav-pills">
-                                            <li class="nav-item"> <a href="dashboard-project-setup-info.jsp" class="nav-link"> ข้อมูลเบื้องต้น </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-team.jsp" class="nav-link"> ทีมดูแลโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-detail.jsp" class="nav-link active"> รายละเอียดโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-image.jsp" class="nav-link"> รูปภาพของโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-wishlist.jsp" class="nav-link"> รายการสิ่งที่ต้องการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-submit.jsp" class="nav-link"> เสนอโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="project-setup-detail.jsp" class="nav-link"> ดูตัวอย่าง </a> </li>
-                                        </ul>
-                                        <!-- Tab panes -->
-                                        <div class="tab-content">
-                                            <!-- Detail Tab -->
-                                            <div class="tab-pane fade in active" id="details-pills">
-                                                <div class="card card-block">
-                                                    <h4>รายละเอียดโครงการ</h4>
-                                                    <form role="form" name="divEditor" method="post" action="addServlet">
-
-
-                                                        <textarea id="mytextarea" name="detail"></textarea>
-
-
-                                                        <!--Button-->
-                                                        <input type="submit" class="btn btn-primary btn-block" onclick='submitForm()'  value="บันทึก"  />
-                                                        <input type="submit" class="btn btn-secondary btn-block" onclick='submitForm()'  value="ยกเลิก"  />
-
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.card-block -->
+                    <!-- Title -->
+                    <div class="title-search-block">
+                        <div class="title-block">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3 class="title"> โครงการที่เคยร่วมระดมทุน </h3>
+                                    <p class="title-description"> List of Funded Projects</p>
                                 </div>
-                                <!-- /.card -->
                             </div>
                         </div>
-                    </section>
+                    </div>
+
+                    <!-- Table of Project -->
+                    <div class="card items">
+                        <ul class="item-list striped">
+
+                            <!-- Header of Table -->
+                            <li class="item item-list-header hidden-sm-down">
+                                <div class="item-row">
+                                    <div class="item-col item-col-header fixed item-col-img md">
+                                        <div> <span>รูป</span> </div>
+                                    </div>
+                                    <div class="item-col item-col-header item-col-title">
+                                        <div class="center-text"> <span>ชื่อโครงการ</span> </div>
+                                    </div>
+                                    <div class="item-col item-col-header item-col-sales">
+                                        <div> <span>จำนวนเงิน</span> </div>
+                                    </div>
+                                    <div class="item-col item-col-header item-col-category">
+                                        <div class="no-overflow"> <span>ประเภท</span> </div>
+                                    </div>
+                                    <div class="item-col item-col-header item-col-author">
+                                        <div class="no-overflow"> <span>เจ้าของโครงการ</span> </div>
+                                    </div>
+                                    <div class="item-col item-col-header item-col-date">
+                                        <div> <span>วันที่ระดมทุน</span> </div>
+                                    </div>
+                                </div>
+
+                            </li>
+
+                            <!-- Item -->
+                            <li class="item">
+                                <div class="item-row">
+
+                                    <div class="item-col fixed item-col-img md">
+                                        <a href="item-editor.jsp">
+                                            <div class="item-img rounded" style="background-image: url(https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg)"></div>
+                                        </a>
+                                    </div>
+                                    <div class="item-col fixed pull-left item-col-title">
+                                        <div class="item-heading">ชื่อโครงการ</div>
+                                        <div>
+                                            <a href="dashboard-project-details.jsp" class="center-text">
+                                                <h4 class="item-title"> ปล่อยช้างกับป่าแม่สาย </h4>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="item-col item-col-sales">
+                                        <div class="item-heading">จำนวนเงิน</div>
+                                        <div> 500 </div>
+                                    </div>
+                                    <div class="item-col item-col-category no-overflow">
+                                        <div class="item-heading">ประเภท</div>
+                                        <div class="no-overflow"> <a href="">สัตว์</a> </div>
+                                    </div>
+                                    <div class="item-col item-col-author">
+                                        <div class="item-heading">เจ้าของโครงการ</div>
+                                        <div class="no-overflow"> <a href="">บุญมี สีทนนาน</a> </div>
+                                    </div>
+                                    <div class="item-col item-col-date">
+                                        <div class="item-heading">วันที่ระดมทุน</div>
+                                        <div class="no-overflow"> 21 JAN 16 10:45 </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <!--Pagination-->
+                    <nav class="text-xs-right">
+                        <ul class="pagination">
+                            <li class="page-item"> <a class="page-link" href="">
+                                    Prev
+                                </a> </li>
+                            <li class="page-item active"> <a class="page-link" href="">
+                                    1
+                                </a> </li>
+                            <li class="page-item"> <a class="page-link" href="">
+                                    2
+                                </a> </li>
+                            <li class="page-item"> <a class="page-link" href="">
+                                    3
+                                </a> </li>
+                            <li class="page-item"> <a class="page-link" href="">
+                                    4
+                                </a> </li>
+                            <li class="page-item"> <a class="page-link" href="">
+                                    5
+                                </a> </li>
+                            <li class="page-item"> <a class="page-link" href="">
+                                    Next
+                                </a> </li>
+                        </ul>
+                    </nav>
 
                 </article>
 
@@ -241,8 +284,6 @@
                                     <div class="tab-pane fade active in" id="upload" role="tabpanel">
                                         <div class="upload-container">
                                             <div id="dropzone">
-
-                                                <!--Form Upload-->
                                                 <form action="/" method="POST" enctype="multipart/form-data" class="dropzone needsclick dz-clickable" id="demo-upload">
                                                     <div class="dz-message-block">
                                                         <div class="dz-message needsclick"> Drop files here or click to upload. </div>
@@ -292,10 +333,10 @@
         </div>
 
         <!-- Script -->
-        <script src="assets/js/vendor.js"></script>
-        <script src="assets/js/app.js"></script>
+        <!-- vendor.js first!! Don't change it. -->
+        <script src="assets/js/vendor.js" type="text/javascript"></script>
+        <script src="assets/js/app.js" type="text/javascript"></script>
+
     </body>
 </html>
-
-
 

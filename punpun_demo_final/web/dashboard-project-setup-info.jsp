@@ -1,11 +1,11 @@
 <%--
-    Document   : dashboard-project-setup-detail
-    Created on : May 28, 2017, 9:34:04 PM
+    Document   : dashboard-project-setup-info
+    Created on : May 28, 2017, 11:22:10 PM
     Author     : kanok
 --%>
-
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,25 +24,8 @@
         <!-- Custom CSS. -->
         <link href="assets/css/app-seagreen.css" rel="stylesheet" type="text/css"/>
 
-        <!-- <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script> -->
-        <script type="text/javascript" src='assets/js/tinymce/tinymce.min.js'></script>
-        <script type="text/javascript" src='assets/js/tinymce/jquery.tinymce.min.js'></script>
-        <script>
-            tinymce.init({
-                selector: 'textarea',
-                elementpath: false,
-                plugins: [
-                    "advlist autolink lists link image charmap print preview anchor textcolor",
-                    "searchreplace visualblocks code fullscreen",
-                    "insertdatetime media contextmenu paste imagetools "
-                ],
-                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor",
-                imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
-                content_css: [
-                    'assets/css/vendor.css', 'assets/css/app-seagreen.css'
-                ]
-            });
-        </script>
+        <link href="assets/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
 
     </head>
     <body>
@@ -131,7 +114,8 @@
                         <!--Logo-->
                         <div class="sidebar-header">
                             <div class="brand">
-                                <div class="image-container logo"> <img src="assets/logo/punpun_white.png" alt="Punpun"> </div></div>
+                                <div class="image-container logo"> <img src="assets/logo/punpun_white.png" alt="Punpun"> </div>
+                            </div>
                         </div>
                         <!--Menu-->
                         <nav class="menu">
@@ -167,9 +151,9 @@
                                     <div class="card-block">
                                         <!-- Nav tabs -->
                                         <ul class="nav nav-pills">
-                                            <li class="nav-item"> <a href="dashboard-project-setup-info.jsp" class="nav-link"> ข้อมูลเบื้องต้น </a> </li>
+                                            <li class="nav-item"> <a href="dashboard-project-setup-info.jsp" class="nav-link active"> ข้อมูลเบื้องต้น </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-team.jsp" class="nav-link"> ทีมดูแลโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-detail.jsp" class="nav-link active"> รายละเอียดโครงการ </a> </li>
+                                            <li class="nav-item"> <a href="dashboard-project-setup-detail.jsp" class="nav-link"> รายละเอียดโครงการ </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-image.jsp" class="nav-link"> รูปภาพของโครงการ </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-wishlist.jsp" class="nav-link"> รายการสิ่งที่ต้องการ </a> </li>
                                             <li class="nav-item"> <a href="dashboard-project-setup-submit.jsp" class="nav-link"> เสนอโครงการ </a> </li>
@@ -177,22 +161,70 @@
                                         </ul>
                                         <!-- Tab panes -->
                                         <div class="tab-content">
-                                            <!-- Detail Tab -->
-                                            <div class="tab-pane fade in active" id="details-pills">
-                                                <div class="card card-block">
-                                                    <h4>รายละเอียดโครงการ</h4>
-                                                    <form role="form" name="divEditor" method="post" action="addServlet">
+                                            <!--Basic Tab-->
+                                            <div class="tab-pane fade in active" id="basic-pills">
+                                                <form name="item">
 
+                                                    <!--Title Form Card-->
+                                                    <div class="card card-block">
+                                                        <h4>สร้างโครงการของคุณ</h4>
+                                                        <p>กรอกข้อมูลและรายละเอียดต่าง ๆ ของโครงการของคุณ</p>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> ชื่อโครงการ : </label>
+                                                            <div class="col-sm-6"> <input type="text" class="form-control boxed" placeholder="ตัวอย่าง 'ปั่นยังไงให้เสร็จในหนึ่งเดือน' "> </div>
+                                                        </div>
+                                                    </div>
 
-                                                        <textarea id="mytextarea" name="detail"></textarea>
+                                                    <!--Category Form Card-->
+                                                    <div class="card card-block">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> เลือกประเภท : </label>
+                                                            <div class="col-sm-6">
+                                                                <select class="c-select form-control boxed">
+                                                                    <option disabled selected>เลือกประเภท</option>
+                                                                    <option value="1">One</option>
+                                                                    <option value="2">Two</option>
+                                                                    <option value="3">Three</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
+                                                    <!--Target Form Card-->
+                                                    <div class="card card-block">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> จำนวนเงิน : </label>
+                                                            <div class="col-sm-6"> <input type="number" class="form-control boxed" min="0" placeholder=" จำนวนเงินที่ต้องการ "> </div>
+                                                        </div>
+                                                    </div>
 
-                                                        <!--Button-->
-                                                        <input type="submit" class="btn btn-primary btn-block" onclick='submitForm()'  value="บันทึก"  />
-                                                        <input type="submit" class="btn btn-secondary btn-block" onclick='submitForm()'  value="ยกเลิก"  />
+                                                    <!--Duration Form Card-->
+                                                    <div class="card card-block">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> ระยะเวลา : </label>
+                                                            <div class="col-sm-6"> <input type="number" class="form-control boxed" name="duration" min="3" max="90" placeholder="ระบุจำนวนวัน" value="90"> </div>
+                                                        </div>
+                                                    </div>
 
-                                                    </form>
-                                                </div>
+                                                    <!-- Tag Form Card -->
+                                                    <div class="card card-block">
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> แท๊ก : </label>
+                                                            <div class="col-sm-6">
+                                                                <ul id="myULTags">
+                                                                    <li>การศึกษา</li>
+                                                                    <li>ชาวเขา</li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--Button-->
+                                                    <div class="col-sm-6 offset-sm-3">
+                                                        <input type="submit" class="btn btn-primary btn-block"  value="บันทึก"  />
+                                                        <input type="submit" class="btn btn-secondary btn-block"  value="ยกเลิก"  />
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -217,68 +249,6 @@
                     </div>
                 </footer>
 
-                <!-- Modal -->
-                <div class="modal fade" id="modal-media">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    <span class="sr-only">Close</span>
-                                </button>
-                                <h4 class="modal-title">Media Library</h4>
-                            </div>
-                            <div class="modal-body modal-tab-container">
-                                <ul class="nav nav-tabs modal-tabs" role="tablist">
-                                    <li class="nav-item"> <a class="nav-link" href="#gallery" data-toggle="tab" role="tab">Gallery</a> </li>
-                                    <li class="nav-item"> <a class="nav-link active" href="#upload" data-toggle="tab" role="tab">Upload</a> </li>
-                                </ul>
-                                <div class="tab-content modal-tab-content">
-                                    <div class="tab-pane fade" id="gallery" role="tabpanel">
-                                        <div class="images-container">
-                                            <div class="row"> </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade active in" id="upload" role="tabpanel">
-                                        <div class="upload-container">
-                                            <div id="dropzone">
-
-                                                <!--Form Upload-->
-                                                <form action="/" method="POST" enctype="multipart/form-data" class="dropzone needsclick dz-clickable" id="demo-upload">
-                                                    <div class="dz-message-block">
-                                                        <div class="dz-message needsclick"> Drop files here or click to upload. </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Insert Selected</button> </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-                <div class="modal fade" id="confirm-modal">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <h4 class="modal-title"><i class="fa fa-warning"></i> Alert</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>Are you sure want to do this?</p>
-                            </div>
-                            <div class="modal-footer"> <button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button> <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button> </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-
             </div>
         </div>
 
@@ -294,8 +264,103 @@
         <!-- Script -->
         <script src="assets/js/vendor.js"></script>
         <script src="assets/js/app.js"></script>
+
+        <!-- jQuery and jQuery UI are required dependencies. -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+        <!-- The real Tag -->
+        <script src="assets/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Tag -->
+        <script>
+            $(function () {
+                var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
+
+                //-------------------------------
+                // Minimal
+                //-------------------------------
+                $('#myTags').tagit();
+
+                //-------------------------------
+                // Preloading data in markup
+                //-------------------------------
+                $('#myULTags').tagit({
+                    availableTags: sampleTags, // this param is of course optional. it's for autocomplete.
+                    // configure the name of the input field (will be submitted with form), default: item[tags]
+                    itemName: 'item',
+                    fieldName: 'tags'
+                });
+
+                //-------------------------------
+                // Tag events
+                //-------------------------------
+                var eventTags = $('#eventTags');
+
+                var addEvent = function (text) {
+                    $('#events_container').append(text + '<br>');
+                };
+
+                eventTags.tagit({
+                    availableTags: sampleTags,
+                    beforeTagAdded: function (evt, ui) {
+                        if (!ui.duringInitialization) {
+                            addEvent('beforeTagAdded: ' + eventTags.tagit('tagLabel', ui.tag));
+                        }
+                    },
+                    afterTagAdded: function (evt, ui) {
+                        if (!ui.duringInitialization) {
+                            addEvent('afterTagAdded: ' + eventTags.tagit('tagLabel', ui.tag));
+                        }
+                    },
+                    beforeTagRemoved: function (evt, ui) {
+                        addEvent('beforeTagRemoved: ' + eventTags.tagit('tagLabel', ui.tag));
+                    },
+                    afterTagRemoved: function (evt, ui) {
+                        addEvent('afterTagRemoved: ' + eventTags.tagit('tagLabel', ui.tag));
+                    },
+                    onTagClicked: function (evt, ui) {
+                        addEvent('onTagClicked: ' + eventTags.tagit('tagLabel', ui.tag));
+                    },
+                    onTagExists: function (evt, ui) {
+                        addEvent('onTagExists: ' + eventTags.tagit('tagLabel', ui.existingTag));
+                    }
+                });
+
+                //-------------------------------
+                // Read-only
+                //-------------------------------
+                $('#readOnlyTags').tagit({
+                    readOnly: true
+                });
+
+                //-------------------------------
+                // Tag-it methods
+                //-------------------------------
+                $('#methodTags').tagit({
+                    availableTags: sampleTags
+                });
+
+                //-------------------------------
+                // Allow spaces without quotes.
+                //-------------------------------
+                $('#allowSpacesTags').tagit({
+                    availableTags: sampleTags,
+                    allowSpaces: true
+                });
+
+                //-------------------------------
+                // Remove confirmation
+                //-------------------------------
+                $('#removeConfirmationTags').tagit({
+                    availableTags: sampleTags,
+                    removeConfirmation: true
+                });
+
+            });
+        </script>
+
     </body>
 </html>
-
-
 

@@ -1,11 +1,11 @@
 <%--
-    Document   : dashboard-project-setup-detail
-    Created on : May 28, 2017, 9:34:04 PM
+    Document   : dashboard-add-payment
+    Created on : May 28, 2017, 11:00:23 PM
     Author     : kanok
 --%>
-
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,26 +24,6 @@
         <!-- Custom CSS. -->
         <link href="assets/css/app-seagreen.css" rel="stylesheet" type="text/css"/>
 
-        <!-- <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script> -->
-        <script type="text/javascript" src='assets/js/tinymce/tinymce.min.js'></script>
-        <script type="text/javascript" src='assets/js/tinymce/jquery.tinymce.min.js'></script>
-        <script>
-            tinymce.init({
-                selector: 'textarea',
-                elementpath: false,
-                plugins: [
-                    "advlist autolink lists link image charmap print preview anchor textcolor",
-                    "searchreplace visualblocks code fullscreen",
-                    "insertdatetime media contextmenu paste imagetools "
-                ],
-                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor",
-                imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
-                content_css: [
-                    'assets/css/vendor.css', 'assets/css/app-seagreen.css'
-                ]
-            });
-        </script>
-
     </head>
     <body>
 
@@ -53,9 +33,11 @@
 
                 <!-- Header bar -->
                 <header class="header">
-                    <div class="header-block header-block-collapse hidden-lg-up"> <button class="collapse-btn" id="sidebar-collapse-btn">
+                    <div class="header-block header-block-collapse hidden-lg-up">
+                        <button class="collapse-btn" id="sidebar-collapse-btn">
                             <i class="fa fa-bars"></i>
-                        </button> </div>
+                        </button>
+                    </div>
                     <div class="header-block header-block-nav">
                         <ul class="nav-profile">
                             <li class="header-block header-block-buttons">
@@ -109,9 +91,8 @@
                             </li>
                             <li class="profile dropdown">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <div class="img" style="background-image: url('https://avatars3.githubusercontent.com/u/3959008?v=3&s=40')"> </div> <span class="name">
-                                        John Doe
-                                    </span> </a>
+                                    <div class="img" style="background-image: url('https://avatars3.githubusercontent.com/u/3959008?v=3&s=40')"> </div> <span class="name">John Doe</span>
+                                </a>
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <a class="dropdown-item" href="dashboard-profile.jsp"> <i class="fa fa-user icon"></i> โปรไฟล์ </a>
                                     <a class="dropdown-item" href="dashboard-project-list.jsp"> <i class="fa fa-bell icon"></i> โครงการของคุณ </a>
@@ -131,7 +112,8 @@
                         <!--Logo-->
                         <div class="sidebar-header">
                             <div class="brand">
-                                <div class="image-container logo"> <img src="assets/logo/punpun_white.png" alt="Punpun"> </div></div>
+                                <div class="image-container logo"> <img src="assets/logo/punpun_white.png" alt="Punpun"> </div>
+                            </div>
                         </div>
                         <!--Menu-->
                         <nav class="menu">
@@ -140,8 +122,8 @@
                                 <li>                <a href="dashboard-profile.jsp">         <i class="fa fa-user"></i> โปรไฟล์ </a></li>
                                 <li>                <a href="dashboard-following.jsp">       <i class="fa fa-bell"></i> การติดตาม </a></li>
                                 <li>                <a href="dashboard-funded-project.jsp">  <i class="fa fa-thumbs-up"></i> โครงการที่เคยร่วมระดมทุน </a></li>
-                                <li class="active">                <a href="dashboard-project-list.jsp">    <i class="fa fa-th-list"></i> จัดการโครงการของคุณ </a></li>
-                                <li> <a href="dashboard-account-setting.jsp">         <i class="fa fa-gear"></i> ตั้งค่าบัญชีผู้ใช้ </a></li>
+                                <li>                <a href="dashboard-project-list.jsp">    <i class="fa fa-th-list"></i> จัดการโครงการของคุณ </a></li>
+                                <li class="active"> <a href="dashboard-account-setting.jsp">         <i class="fa fa-gear"></i> ตั้งค่าบัญชีผู้ใช้ </a></li>
                                 <li> <hr> </li>
                                 <li>                <a href="admin-dashboard.jsp">       <i class="fa fa-dashboard"></i> แดชบอร์ดของแอดมิน </a></li>
                                 <li>                <a href="admin-payment-control.jsp">         <i class="fa fa-money"></i> หลักฐานการโอนเงิน </a></li>
@@ -151,58 +133,79 @@
                                 <li> <a href="admin-banned-project.jsp">         <i class="fa fa-ban"></i> โครงการที่ถูกระงับ </a></li>
                             </ul>
                         </nav>
-
                     </div>
                 </aside>
                 <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
                 <!-- Content -->
                 <article class="content dashboard-page">
+                    <!--Credit Card Info-->
+                    <div class="title-block">
+                        <h3 class="title"> ข้อมูลบัตรเครดิต </h3>
+                    </div>
+                    <!--Form Here-->
+                    <form name="item">
+                        <div class="card card-block">
 
-                    <!--Pill Tab-->
-                    <section class="section">
-                        <div class="row">
-                            <div class="col-xl-12 stat-col">
-                                <div class="card items">
-                                    <div class="card-block">
-                                        <!-- Nav tabs -->
-                                        <ul class="nav nav-pills">
-                                            <li class="nav-item"> <a href="dashboard-project-setup-info.jsp" class="nav-link"> ข้อมูลเบื้องต้น </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-team.jsp" class="nav-link"> ทีมดูแลโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-detail.jsp" class="nav-link active"> รายละเอียดโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-image.jsp" class="nav-link"> รูปภาพของโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-wishlist.jsp" class="nav-link"> รายการสิ่งที่ต้องการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-submit.jsp" class="nav-link"> เสนอโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="project-setup-detail.jsp" class="nav-link"> ดูตัวอย่าง </a> </li>
-                                        </ul>
-                                        <!-- Tab panes -->
-                                        <div class="tab-content">
-                                            <!-- Detail Tab -->
-                                            <div class="tab-pane fade in active" id="details-pills">
-                                                <div class="card card-block">
-                                                    <h4>รายละเอียดโครงการ</h4>
-                                                    <form role="form" name="divEditor" method="post" action="addServlet">
-
-
-                                                        <textarea id="mytextarea" name="detail"></textarea>
-
-
-                                                        <!--Button-->
-                                                        <input type="submit" class="btn btn-primary btn-block" onclick='submitForm()'  value="บันทึก"  />
-                                                        <input type="submit" class="btn btn-secondary btn-block" onclick='submitForm()'  value="ยกเลิก"  />
-
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.card-block -->
+                            <!--Username-->
+                            <div class="form-group row">
+                                <label class="col-sm-2 form-control-label text-xs-right" for="cardNumber"> เลขบัตรเครดิต : </label>
+                                <div class="col-sm-10">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        name="cardNumber"
+                                        placeholder="Valid Card Number"
+                                        autocomplete="cc-number"
+                                        required autofocus
+                                        />
                                 </div>
-                                <!-- /.card -->
                             </div>
-                        </div>
-                    </section>
 
+                            <!--Name-->
+                            <div class="form-group row">
+                                <label class="col-sm-2 form-control-label text-xs-right" for="cardExpiry"> วันหมดอายุ : </label>
+                                <div class="col-sm-10">
+                                    <input
+                                        type="month"
+                                        class="form-control"
+                                        name="cardExpiry"
+                                        placeholder="MM / YY"
+                                        autocomplete="cc-exp"
+                                        required
+                                        />
+                                </div>
+                            </div>
+
+                            <!--Email-->
+                            <div class="form-group row">
+                                <label class="col-sm-2 form-control-label text-xs-right">
+                                    CVV :
+                                </label>
+                                <div class="col-sm-10">
+                                    <input
+                                        type="password"
+                                        class="form-control"
+                                        name="cardCVV"
+                                        placeholder="CVV"
+                                        autocomplete="cc-cvv"
+                                        maxlength="5"
+                                        required
+                                        />
+                                </div>
+                            </div>
+
+                            <!--Submit Btn-->
+                            <div class="form-group row">
+                                <div class="col-md-10 offset-md-2 col-sm-10 offset-sm-2">
+                                    <button type="submit" class="btn btn-primary btn-block">
+                                        บันทึก
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
                 </article>
 
                 <!-- Footer -->
@@ -216,68 +219,6 @@
                         </ul>
                     </div>
                 </footer>
-
-                <!-- Modal -->
-                <div class="modal fade" id="modal-media">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    <span class="sr-only">Close</span>
-                                </button>
-                                <h4 class="modal-title">Media Library</h4>
-                            </div>
-                            <div class="modal-body modal-tab-container">
-                                <ul class="nav nav-tabs modal-tabs" role="tablist">
-                                    <li class="nav-item"> <a class="nav-link" href="#gallery" data-toggle="tab" role="tab">Gallery</a> </li>
-                                    <li class="nav-item"> <a class="nav-link active" href="#upload" data-toggle="tab" role="tab">Upload</a> </li>
-                                </ul>
-                                <div class="tab-content modal-tab-content">
-                                    <div class="tab-pane fade" id="gallery" role="tabpanel">
-                                        <div class="images-container">
-                                            <div class="row"> </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade active in" id="upload" role="tabpanel">
-                                        <div class="upload-container">
-                                            <div id="dropzone">
-
-                                                <!--Form Upload-->
-                                                <form action="/" method="POST" enctype="multipart/form-data" class="dropzone needsclick dz-clickable" id="demo-upload">
-                                                    <div class="dz-message-block">
-                                                        <div class="dz-message needsclick"> Drop files here or click to upload. </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer"> <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary">Insert Selected</button> </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-                <div class="modal fade" id="confirm-modal">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <h4 class="modal-title"><i class="fa fa-warning"></i> Alert</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>Are you sure want to do this?</p>
-                            </div>
-                            <div class="modal-footer"> <button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button> <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button> </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
 
             </div>
         </div>
@@ -294,8 +235,6 @@
         <!-- Script -->
         <script src="assets/js/vendor.js"></script>
         <script src="assets/js/app.js"></script>
+
     </body>
 </html>
-
-
-

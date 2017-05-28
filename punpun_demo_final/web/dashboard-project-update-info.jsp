@@ -1,11 +1,11 @@
 <%--
-    Document   : dashboard-project-setup-detail
-    Created on : May 28, 2017, 9:34:04 PM
+    Document   : dashboard-project-update-info
+    Created on : May 28, 2017, 11:29:30 PM
     Author     : kanok
 --%>
-
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,7 +30,6 @@
         <script>
             tinymce.init({
                 selector: 'textarea',
-                elementpath: false,
                 plugins: [
                     "advlist autolink lists link image charmap print preview anchor textcolor",
                     "searchreplace visualblocks code fullscreen",
@@ -39,7 +38,7 @@
                 toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor",
                 imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
                 content_css: [
-                    'assets/css/vendor.css', 'assets/css/app-seagreen.css'
+                    'css/app-seagreen.css', 'css/vendor.css'
                 ]
             });
         </script>
@@ -131,7 +130,8 @@
                         <!--Logo-->
                         <div class="sidebar-header">
                             <div class="brand">
-                                <div class="image-container logo"> <img src="assets/logo/punpun_white.png" alt="Punpun"> </div></div>
+                                <div class="image-container logo"> <img src="assets/logo/punpun_white.png" alt="Punpun"> </div>
+                            </div>
                         </div>
                         <!--Menu-->
                         <nav class="menu">
@@ -167,38 +167,119 @@
                                     <div class="card-block">
                                         <!-- Nav tabs -->
                                         <ul class="nav nav-pills">
-                                            <li class="nav-item"> <a href="dashboard-project-setup-info.jsp" class="nav-link"> ข้อมูลเบื้องต้น </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-team.jsp" class="nav-link"> ทีมดูแลโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-detail.jsp" class="nav-link active"> รายละเอียดโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-image.jsp" class="nav-link"> รูปภาพของโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-wishlist.jsp" class="nav-link"> รายการสิ่งที่ต้องการ </a> </li>
-                                            <li class="nav-item"> <a href="dashboard-project-setup-submit.jsp" class="nav-link"> เสนอโครงการ </a> </li>
-                                            <li class="nav-item"> <a href="project-setup-detail.jsp" class="nav-link"> ดูตัวอย่าง </a> </li>
+                                            <li class="nav-item"> <a href="" class="nav-link active" data-target="#detail-pills" aria-controls="detail-pills" data-toggle="tab" role="tab"> รายละเอียดโครงการ </a> </li>
+                                            <li class="nav-item"> <a href="" class="nav-link" data-target="#team-pills" aria-controls="team-pills" data-toggle="tab" role="tab"> ทีมดูแลโครงการ </a> </li>
+                                            <li class="nav-item"> <a href="" class="nav-link" data-target="#image-pills" aria-controls="image-pills" data-toggle="tab" role="tab"> รูปภาพของโครงการ </a> </li>
                                         </ul>
                                         <!-- Tab panes -->
                                         <div class="tab-content">
                                             <!-- Detail Tab -->
-                                            <div class="tab-pane fade in active" id="details-pills">
+                                            <div class="tab-pane fade in active" id="detail-pills">
                                                 <div class="card card-block">
                                                     <h4>รายละเอียดโครงการ</h4>
-                                                    <form role="form" name="divEditor" method="post" action="addServlet">
-
-
-                                                        <textarea id="mytextarea" name="detail"></textarea>
-
-
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                                    <form role="form" name="divEditor" method="get" action="error-404.jsp">
+                                                        <textarea id="mytextarea" name="detail">Hello, World!</textarea>
                                                         <!--Button-->
-                                                        <input type="submit" class="btn btn-primary btn-block" onclick='submitForm()'  value="บันทึก"  />
-                                                        <input type="submit" class="btn btn-secondary btn-block" onclick='submitForm()'  value="ยกเลิก"  />
-
+                                                        <input type="submit" class="btn btn-primary btn-block" onclick='submitForm()'  value="Submit"  />
+                                                        <input type="submit" class="btn btn-secondary btn-block" onclick='submitForm()'  value="Cancel"  />
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <!-- Teams Tab -->
+                                            <div class="tab-pane fade" id="team-pills">
+                                                <div class="card card-block">
+                                                    <h4>จัดทีมที่จะมาช่วยคุณ</h4>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                    <!--List of Member Projects-->
+                                                    <div data-exclude="xs,sm,lg">
+                                                        <!-- Table Content -->
+                                                        <form>
+                                                            <ul class="item-list striped">
+                                                                <!-- Head of Table -->
+                                                                <li class="item item-list-header hidden-sm-down">
+                                                                    <div class="item-row">
+                                                                        <div class="item-col item-col-header item-col-title">
+                                                                            <div class="center-text"> <span>ชื่อ - นามสกุล</span> </div>
+                                                                        </div>
+                                                                        <div class="item-col item-col-header item-col-center">
+                                                                            <div> <span>ตำแหน่ง</span> </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <!-- Project Owner : Do not Repeat this!!-->
+                                                                <li class="item">
+                                                                    <div class="item-row">
+                                                                        <!--Name of Team-->
+                                                                        <div class="item-col item-col-title no-overflow no-underline">
+                                                                            <div>
+                                                                                <a href="error-404.jsp" class="center-text">
+                                                                                    เจ้าของ โครงการจ๊ะ
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!--Position-->
+                                                                        <div class="item-col item-col-center">
+                                                                            <div class="item-heading"> ตำแหน่ง </div>
+                                                                            <div> เจ้าโครงการ </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <!-- Team Item : Loop here -->
+                                                                <li class="item">
+                                                                    <div class="item-row">
+                                                                        <!--Name of Team-->
+                                                                        <div class="item-col item-col-title no-overflow no-underline">
+                                                                            <div>
+                                                                                <input type="text" name="name" class="form-control boxed" placeholder="ตัวอย่าง : กนกวรรณ มุตตามระ">
+                                                                            </div>
+                                                                        </div>
+                                                                        <!--Position-->
+                                                                        <div class="item-col item-col-center">
+                                                                            <div class="item-heading"> ตำแหน่ง </div>
+                                                                            <select class="c-select form-control boxed">
+                                                                                <option disabled selected>เลือกตำแหน่ง</option>
+                                                                                <option value="1">ผู้ดูแลโครงการ</option>
+                                                                                <option value="2">ผู้ช่วยโครงการ</option>
+                                                                                <option value="3">คนใช้</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                            <!--Button-->
+                                                            <div class="want-top">
+                                                                <input type="submit" class="btn btn-primary btn-block"  value="Submit"  />
+                                                                <input type="submit" class="btn btn-secondary btn-block"  value="Cancel"  />
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Project Image Tab -->
+                                            <div class="tab-pane fade" id="image-pills">
+                                                <div class="card card-block">
+                                                    <h4>รูปภาพของโครงการ</h4>
+                                                    <p>รูปนี้จะโชว์ไปทั่วทุกที่ในเว็บนาจา เลือกดีๆ อัตราส่วนภาพควรเป็น 16:9 และมีขนาดที่ไม่เล็กเกินไป ไม่งั้นภาพแตกน้า เพื่อความสวยงามก็เลือก ๆ หน่อยนาจา</p>
+                                                    <form name="item">
+                                                        <a href="#" class="add-image" data-toggle="modal" data-target="#modal-media">
+                                                            <div class="project-img-container want-bottom">
+                                                                <div class="image-project" style="background-image: url('assets/backgrounds/profile-card-1.jpg')"></div>
+                                                                <div class="middle-project">
+                                                                    <!--Button-->
+                                                                    <input type="submit" class="btn btn-warning btn-lg"  value="+ อัพโหลดรูปภาพ"  />
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <!--Button-->
+                                                        <input type="submit" class="btn btn-primary btn-block" onclick='submitForm()'  value="Submit"  />
+                                                        <input type="submit" class="btn btn-secondary btn-block" onclick='submitForm()'  value="Cancel"  />
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- /.card-block -->
                                 </div>
-                                <!-- /.card -->
                             </div>
                         </div>
                     </section>
@@ -221,7 +302,8 @@
                 <div class="modal fade" id="modal-media">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
-                            <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     <span class="sr-only">Close</span>
                                 </button>
@@ -229,15 +311,9 @@
                             </div>
                             <div class="modal-body modal-tab-container">
                                 <ul class="nav nav-tabs modal-tabs" role="tablist">
-                                    <li class="nav-item"> <a class="nav-link" href="#gallery" data-toggle="tab" role="tab">Gallery</a> </li>
                                     <li class="nav-item"> <a class="nav-link active" href="#upload" data-toggle="tab" role="tab">Upload</a> </li>
                                 </ul>
                                 <div class="tab-content modal-tab-content">
-                                    <div class="tab-pane fade" id="gallery" role="tabpanel">
-                                        <div class="images-container">
-                                            <div class="row"> </div>
-                                        </div>
-                                    </div>
                                     <div class="tab-pane fade active in" id="upload" role="tabpanel">
                                         <div class="upload-container">
                                             <div id="dropzone">
@@ -259,11 +335,11 @@
                     </div>
                     <!-- /.modal-dialog -->
                 </div>
-                <!-- /.modal -->
                 <div class="modal fade" id="confirm-modal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 <h4 class="modal-title"><i class="fa fa-warning"></i> Alert</h4>
@@ -277,7 +353,6 @@
                     </div>
                     <!-- /.modal-dialog -->
                 </div>
-                <!-- /.modal -->
 
             </div>
         </div>
@@ -296,6 +371,5 @@
         <script src="assets/js/app.js"></script>
     </body>
 </html>
-
 
 

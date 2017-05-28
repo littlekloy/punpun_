@@ -1,6 +1,6 @@
 <%--
-    Document   : dashboard
-    Created on : May 15, 2017, 4:57:27 AM
+    Document   : dashboard-profile
+    Created on : May 28, 2017, 11:11:02 PM
     Author     : kanok
 --%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
@@ -9,21 +9,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Punpun.com เว็บไซต์การระดมทุนจากมวลชลแบบแจกแจงรายการ</title>
+        <title>Punpun: HTML5 App Not JSP</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="assets/logo/gift.png"/>
+        <!-- Bootstrap 4 -->
+        <!--<link href="css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css"/>-->
         <!-- Vendor CSS File -->
         <link rel="stylesheet" href="assets/css/vendor.css">
         <!-- Custom CSS -->
         <link href="assets/css/app-seagreen.css" rel="stylesheet" type="text/css"/>
 
+        <link href="assets/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
 
     </head>
     <body>
@@ -112,19 +115,21 @@
                         <!--Logo-->
                         <div class="sidebar-header">
                             <div class="brand">
-                                <div class="image-container logo"> <img src="assets/logo/punpun_white.png" alt="Punpun"> </div></div>
+                                <div class="image-container logo"> <img src="assets/logo/punpun_white.png" alt="Punpun"> </div>
+                            </div>
                         </div>
                         <!--Menu-->
                         <nav class="menu">
                             <ul class="nav metismenu" id="sidebar-menu">
-                                <li class="active">                <a href="dashboard.jsp">       <i class="fa fa-home"></i> แดชบอร์ด </a></li>
-                                <li>                <a href="dashboard-profile.jsp">         <i class="fa fa-user"></i> โปรไฟล์ </a></li>
-                                <li>                <a href="dashboard-following.jsp">         <i class="fa fa-bell"></i> การติดตาม </a></li>
+                                <li>                <a href="dashboard.jsp">       <i class="fa fa-home"></i> แดชบอร์ด </a></li>
+                                <li class="active">                <a href="dashboard-profile.jsp">         <i class="fa fa-user"></i> โปรไฟล์ </a></li>
+                                <li>                <a href="dashboard-following.jsp">       <i class="fa fa-bell"></i> การติดตาม </a></li>
                                 <li>                <a href="dashboard-funded-project.jsp">  <i class="fa fa-thumbs-up"></i> โครงการที่เคยร่วมระดมทุน </a></li>
                                 <li>                <a href="dashboard-project-list.jsp">    <i class="fa fa-th-list"></i> จัดการโครงการของคุณ </a></li>
                                 <li> <a href="dashboard-account-setting.jsp">         <i class="fa fa-gear"></i> ตั้งค่าบัญชีผู้ใช้ </a></li>
                                 <li> <hr> </li>
                                 <li>                <a href="admin-dashboard.jsp">       <i class="fa fa-dashboard"></i> แดชบอร์ดของแอดมิน </a></li>
+                                <li>                <a href="admin-payment-control.jsp">         <i class="fa fa-money"></i> หลักฐานการโอนเงิน </a></li>
                                 <li>                <a href="admin-active-project.jsp">         <i class="fa fa-gift"></i> โครงการที่กำลังระดมทุน </a></li>
                                 <li>                <a href="admin-pending-project.jsp">  <i class="fa fa-legal"></i> โครงการที่รอการอนุมัติ </a></li>
                                 <li>                <a href="admin-reported-project.jsp">    <i class="fa fa-exclamation-triangle"></i> โครงการที่ถูกรายงาน </a></li>
@@ -139,227 +144,145 @@
                 <!-- Content -->
                 <article class="content dashboard-page">
 
-                    <!--Summary My Project-->
-                    <div class="title-block">
-                        <h3 class="title"> ภาพรวมโครงการของคุณ </h3>
-                        <p class="title-description">    </p>
-                    </div>
+                    <!--Profile Card-->
                     <section class="section">
                         <div class="row sameheight-container">
-                            <!--Stat for My project-->
-                            <div class="col-md-7 hidden-md-down clearfix sameheight-item">
-                                <div class="row sameheight-container">
-                                    <!-- Active -->
-                                    <a style="display:block" href="admin-active-project.jsp">
-                                        <div class="col-md-6 col-xl-4">
-                                            <div class="card card-activeproject sameheight-item">
-                                                <div class="card-header">
-                                                    <div class="header-block">
-                                                        <p class="title"> กำลังระดมทุน </p>
+                            <!--Profile Card : xs up-->
+                            <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clearfix">
+                                <div class="card card-block-bg sameheight-item " style="background-image: url('assets/backgrounds/profile-card-1.jpg') ">
+                                    <!--Image-->
+                                    <div class="images-container images-container-center">
+                                        <!--Put Image link Here-->
+                                        <img src="assets/backgrounds/profile-card-2.jpg" alt=""/>
+                                    </div>
+                                    <!--Username-->
+                                    <h2 class="center-text white-text">Lorem Ipsum</h2>
+                                    <!--Level of Member-->
+                                    <div class="card stats" data-exclude="xs">
+                                        <div class="card-block">
+                                            <div class="row row-sm stats-container">
+                                                <div class="col-xs-8 stat-col">
+                                                    <div class="stat-icon"> <i class="fa fa-flag"></i> </div>
+                                                    <div class="stat">
+                                                        <div class="value"> 99999 / 99999 </div>
                                                     </div>
+                                                    <progress class="progress stat-progress" value="75" max="100">
+                                                        <div class="progress">
+                                                            <span class="progress-bar" style="width: 75%;"></span>
+                                                        </div>
+                                                    </progress>
                                                 </div>
-                                                <div class="card-block hover-effect">
-                                                    <h3 class="center-text"> 2 </h3>
+
+                                                <div class="col-xs-4 stat-col-level">
+                                                    <h4><i class="stat-icon hidden-xs-down fa fa-flag-checkered"></i> LV. 99</h4>
                                                 </div>
+
                                             </div>
-                                        </div>
-                                    </a>
-                                    <!-- Closed -->
-                                    <a style="display:block" href="admin-reported-project.jsp">
-                                        <div class="col-md-6 col-xl-4">
-                                            <div class="card card-close sameheight-item">
-                                                <div class="card-header">
-                                                    <div class="header-block">
-                                                        <p class="title"> เสร็จสิ้นแล้ว </p>
-                                                    </div>
-                                                </div>
-                                                <div class="card-block hover-effect">
-                                                    <h3 class="center-text"> 4 </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <!-- Banned -->
-                                    <a style="display:block" href="admin-banned-project.jsp">
-                                        <div class="col-md-6 col-xl-4">
-                                            <div class="card card-danger sameheight-item">
-                                                <div class="card-header">
-                                                    <div class="header-block">
-                                                        <p class="title" style="color: white"> ถูกระงับ </p>
-                                                    </div>
-                                                </div>
-                                                <div class="card-block hover-effect">
-                                                    <h3 class="center-text"> 6 </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <!-- Draft -->
-                                    <a style="display:block" href="draft-project.jsp">
-                                        <div class="col-md-6 col-xl-4">
-                                            <div class="card card-info sameheight-item">
-                                                <div class="card-header">
-                                                    <div class="header-block">
-                                                        <p class="title"> แบบร่าง </p>
-                                                    </div>
-                                                </div>
-                                                <div class="card-block hover-effect">
-                                                    <h3 class="center-text"> 8 </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <!-- Wait For Approve -->
-                                    <a style="display:block" href="dashboard.jsp">
-                                        <div class="col-md-6 col-xl-4">
-                                            <div class="card card-success sameheight-item">
-                                                <div class="card-header">
-                                                    <div class="header-block">
-                                                        <p class="title"> รอการอนุมัติ </p>
-                                                    </div>
-                                                </div>
-                                                <div class="card-block hover-effect">
-                                                    <h3 class="center-text"> 10 </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <!-- Template -->
-                                    <a style="display:block" href="template-project.jsp">
-                                        <div class="col-md-6 col-xl-4">
-                                            <div class="card card-draft sameheight-item">
-                                                <div class="card-header">
-                                                    <div class="header-block">
-                                                        <p class="title"> โครงการที่บันทึก </p>
-                                                    </div>
-                                                </div>
-                                                <div class="card-block hover-effect">
-                                                    <h3 class="center-text"> 12 </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <!--List of Funded Projects-->
-                            <div class="col-sm-12 col-md-12 col-lg-5 sameheight-item">
-                                <div class="card sameheight-item items" data-exclude="xs,sm,lg">
-                                    <!-- Table Title-->
-                                    <div class="card-header bordered">
-                                        <div class="header-block">
-                                            <h3 class="title"> โครงการของคุณ </h3> <a href="item-editor.jsp" class="btn btn-primary btn-sm rounded">ดูเพิ่มเติม</a>
                                         </div>
                                     </div>
-                                    <!-- Table Content -->
-                                    <ul class="item-list striped">
-                                        <!-- Head of Table -->
-                                        <li class="item item-list-header hidden-sm-down">
-                                            <div class="item-row">
-                                                <div class="item-col item-col-header fixed item-col-img xs"></div>
-                                                <div class="item-col item-col-header item-col-title">
-                                                    <div> <span>ชื่อโครงการ</span> </div>
-                                                </div>
-                                                <div class="item-col item-col-header item-col-sales">
-                                                    <div> <span>จำนวน</span> </div>
-                                                </div>
-                                            </div>
-                                        </li>
-
-                                        <!-- Item : Loop here -->
-                                        <li class="item">
-                                            <div class="item-row">
-                                                <!--Name of Project-->
-                                                <div class="item-col item-col-title no-overflow">
-                                                    <div>
-                                                        <a href="" class="">
-                                                            <h4 class="item-title no-wrap"> 12 Myths Uncovered About IT &amp; Software </h4>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <!--Amount of Funded-->
-                                                <div class="item-col item-col-sales">
-                                                    <div class="item-heading"> จำนวนเงินที่ระดมทุน </div>
-                                                    <div> 4958 ฿</div>
-                                                </div>
-                                            </div>
-                                        </li>
-
-                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </section>
 
-                    <!--Summary Stats-->
-                    <div class="title-block">
-                        <h3 class="title"> ภาพรวมการร่วมระดมทุนของคุณ </h3>
-                        <p class="title-description">  </p>
-                    </div>
+                    <!--Summary Profile-->
                     <section class="section">
                         <div class="row sameheight-container">
-                            <div class="col col-xs-12 col-sm-12 col-md-12 col-xl-12 stats-col">
+
+                            <div class="col col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 stats-col">
                                 <div class="card sameheight-item stats" data-exclude="xs">
                                     <div class="card-block">
                                         <div class="title-block">
-                                            <h4 class="title"> ภาพรวมของบัญชี </h4>
+                                            <h4 class="title"> ข้อมูลส่วนตัว </h4>
                                             <p class="title-description"> </p>
                                         </div>
+                                        <!--Personal Info-->
                                         <div class="row row-sm stats-container">
 
-                                            <!--Score-->
+                                            <!--Email-->
                                             <div class="col-xs-12 col-sm-6 stat-col">
-                                                <div class="stat-icon"> <i class="fa fa-trophy"></i> </div>
+                                                <div class="stat-icon"> <i class="fa fa-envelope"></i> </div>
                                                 <div class="stat">
-                                                    <div class="value"> 5407 </div>
-                                                    <div class="name"> คะแนน (อาจจะเรียกอย่างอื่น) </div>
+                                                    <div class="name"> อีเมล </div>
+                                                    <div class="value"> punpun@punpun.com </div>
                                                 </div>
                                             </div>
 
-                                            <!--Total Outcome-->
+                                            <!--Website-->
                                             <div class="col-xs-12 col-sm-6 stat-col">
-                                                <div class="stat-icon"> <i class="fa fa-money"></i> </div>
+                                                <div class="stat-icon"> <i class="fa fa-globe"></i> </div>
                                                 <div class="stat">
-                                                    <div class="value"> 54070 </div>
-                                                    <div class="name"> ยอดรวมการรระดมทุน </div>
+                                                    <div class="name"> เว็บไซต์ </div>
+                                                    <div class="value"> <a href="www.twitter.com/">www.twitter.com</a> </div>
                                                 </div>
                                             </div>
 
-                                            <!--Interesting Projects-->
-                                            <div class="col-xs-12 col-sm-6 stat-col">
-                                                <div class="stat-icon"> <i class="fa fa-star"></i> </div>
+                                            <!--Tags-->
+                                            <div class="col-xs-12 col-sm-12 stat-col">
+                                                <div class="stat-icon"> <i class="fa fa-tags"></i> </div>
                                                 <div class="stat">
-                                                    <div class="value"> 97 </div>
-                                                    <div class="name"> โครงการที่ติดตาม </div>
+                                                    <div class="name"> ความสนใจ </div>
+                                                    <div class="value">
+                                                        <div>
+                                                            <a href="#" class="btn btn-link"> Tag1 </a>
+                                                            <a href="#" class="btn btn-link"> Tag2 </a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                            <!--Funded Projects-->
-                                            <div class="col-xs-12 col-sm-6 stat-col">
-                                                <div class="stat-icon"> <i class="fa fa-heart"></i> </div>
-                                                <div class="stat">
-                                                    <div class="value"> 64 </div>
-                                                    <div class="name"> โครงการที่ร่วมระดมทุน </div>
-                                                </div>
-                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                                            <!--Following-->
-                                            <div class="col-xs-12 col-sm-6 stat-col">
-                                                <div class="stat-icon"> <i class="fa fa-user"></i> </div>
-                                                <div class="stat">
-                                                    <div class="value"> 124 </div>
-                                                    <div class="name"> กำลังติดตาม </div>
-                                                </div>
-                                            </div>
+                            <!--Following Stats : xs up-->
+                            <div class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 stats-col">
+                                <div class="card sameheight-item stats" data-exclude="xs">
+                                    <div class="card-block">
+                                        <!--Stat Icon-->
+                                        <div class="row row-sm stats-container">
 
-                                            <!--Followers-->
-                                            <div class="col-xs-12 col-sm-6 stat-col">
-                                                <div class="stat-icon"> <i class="fa fa-user"></i> </div>
-                                                <div class="stat">
-                                                    <div class="value"> 157 </div>
-                                                    <div class="name"> ผู้ติดตาม </div>
-                                                </div>
-                                            </div>
+                                            <ul class="item-list">
+                                                <li>
+                                                    <!--Interesting Projects-->
+                                                    <div class="col-xs-12 stat-col">
+                                                        <div class="stat-icon"> <i class="fa fa-star"></i> </div>
+                                                        <div class="stat">
+                                                            <div class="value"> 97 </div>
+                                                            <div class="name"> โครงการที่กำลังติดตาม </div>
+                                                        </div>
+                                                    </div>
 
+                                                </li>
+
+                                                <li>
+                                                    <!--Following-->
+                                                    <div class="col-xs-12 stat-col">
+                                                        <div class="stat-icon"> <i class="fa fa-user"></i> </div>
+                                                        <div class="stat">
+                                                            <div class="value"> 124 </div>
+                                                            <div class="name"> คนที่คุณกำลังติดตาม </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                                <li>
+                                                    <!--Followers-->
+                                                    <div class="col-xs-12 stat-col">
+                                                        <div class="stat-icon"> <i class="fa fa-user"></i> </div>
+                                                        <div class="stat">
+                                                            <div class="value"> 157 </div>
+                                                            <div class="name"> คนที่ติดตามคุณ </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                        <!--Button-->
+                                        <div style="padding-bottom: 10px;">
+                                            <a href="dashboard-following.jsp" class="btn btn-primary btn-block rounded"> ดูเพิ่มเติม </a>
                                         </div>
                                     </div>
                                 </div>
@@ -371,14 +294,18 @@
                     <section class="section">
                         <div class="row sameheight-container">
                             <!--List of Funded Projects-->
-                            <div class="col-md-12">
+                            <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
                                 <div class="card sameheight-item items" data-exclude="xs,sm,lg">
 
                                     <!-- Table Title-->
                                     <div class="card-header bordered">
                                         <div class="header-block">
-                                            <h3 class="title"> โครงการที่ร่วมระดมทุน </h3>
-                                            <a href="dashboard-funded-project.jsp" class="btn btn-primary btn-sm rounded"> ดูเพิ่มเติม </a></div>
+                                            <h3 class="title"> โครงการที่เคยร่วมระดมทุนล่าสุด </h3>
+                                            <a href="dashboard-funded-project.jsp" class="btn btn-primary btn-sm rounded">ดูเพิ่มเติม</a>
+                                        </div>
+                                        <div class="header-block pull-right">
+
+                                        </div>
                                     </div>
 
                                     <!-- Table Content -->
@@ -438,14 +365,56 @@
                                             </div>
                                         </li>
 
-
                                     </ul>
-
+                                </div>
+                            </div>
+                            <!--Following Stats-->
+                            <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 stats-col">
+                                <div class="card sameheight-item stats" data-exclude="xs">
+                                    <div class="card-block">
+                                        <!--Stat Icon-->
+                                        <div class="row row-sm stats-container">
+                                            <ul class="item-list">
+                                                <li>
+                                                    <!--Score-->
+                                                    <div class="col-xs-12 col-sm-4 stat-col">
+                                                        <div class="stat-icon"> <i class="fa fa-trophy"></i> </div>
+                                                        <div class="stat">
+                                                            <div class="value"> 5407 </div>
+                                                            <div class="name"> คะแนน </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <!--Total Outcome-->
+                                                    <div class="col-xs-12 col-sm-4 stat-col">
+                                                        <div class="stat-icon"> <i class="fa fa-money"></i> </div>
+                                                        <div class="stat">
+                                                            <div class="value"> 54070 </div>
+                                                            <div class="name"> ยอดรวมการรระดมทุน </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <!--Funded Projects-->
+                                                    <div class="col-xs-12 col-sm-4 stat-col">
+                                                        <div class="stat-icon"> <i class="fa fa-heart"></i> </div>
+                                                        <div class="stat">
+                                                            <div class="value"> 64 </div>
+                                                            <div class="name"> โครงการที่ร่วมระดมทุน </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div style="padding-bottom: 10px;">
+                                            <a href="dashboard-funded-project.jsp" class="btn btn-primary btn-block rounded"> ดูเพิ่มเติม </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </section>
-
                 </article>
 
                 <!-- Footer -->
@@ -455,6 +424,7 @@
                         <ul>
                             <li> Theme by <a href="https://github.com/modularcode"> ModularCode </a> </li>
                             <li> Created by <a href=""> Disanuwat & Kanokwan </a> </li>
+                            <li> <a href="www.it.kmitl.ac.th"> IT KMITL </a> </li>
                         </ul>
                     </div>
                 </footer>
@@ -463,7 +433,8 @@
                 <div class="modal fade" id="modal-media">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
-                            <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     <span class="sr-only">Close</span>
                                 </button>
@@ -503,7 +474,8 @@
                 <div class="modal fade" id="confirm-modal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 <h4 class="modal-title"><i class="fa fa-warning"></i> Alert</h4>
@@ -522,20 +494,43 @@
             </div>
         </div>
 
-        <!-- Reference block for JS -->
-        <div class="ref" id="ref">
-            <div class="color-primary"></div>
-            <div class="chart">
-                <div class="color-primary"></div>
-                <div class="color-secondary"></div>
-            </div>
-        </div>
-
         <!-- Script -->
         <!-- vendor.js first!! Don't change it. -->
         <script src="assets/js/vendor.js" type="text/javascript"></script>
         <script src="assets/js/app.js" type="text/javascript"></script>
 
+        <!-- jQuery and jQuery UI are required dependencies. -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+        <!-- The real Tag -->
+        <script src="assets/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Tag -->
+        <script>
+            $(function () {
+                var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
+
+
+                //-------------------------------
+                // Preloading data in markup
+                //-------------------------------
+                $('#myULTags').tagit({
+                    availableTags: sampleTags, // this param is of course optional. it's for autocomplete.
+                    // configure the name of the input field (will be submitted with form), default: item[tags]
+                    itemName: 'item',
+                    fieldName: 'tags'
+                });
+                //-------------------------------
+                // Read-only
+                //-------------------------------
+                $('#readOnlyTags').tagit({
+                    readOnly: true
+                });
+
+            });
+        </script>
+
     </body>
 </html>
-
