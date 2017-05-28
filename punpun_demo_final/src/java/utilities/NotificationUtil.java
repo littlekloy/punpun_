@@ -51,23 +51,26 @@ public class NotificationUtil {
         }
     }
 
-    public ArrayList<Notifications> findAllNotification(String id) {
+    public ArrayList<Notifications> findAllNotification(Integer id) {
         String cmd = "select * from notifications where member_id = ?";
         ArrayList<Notifications> notifications = new ArrayList<Notifications>();
         try {
             selectData = conn.prepareStatement(cmd);
-
-            selectData.setString(1, id);
+            selectData.setInt(1, id);
             ResultSet rs = selectData.executeQuery();
             while (rs.next()) {
                 Notifications noti = new Notifications();
-                noti.setAction(rs.getString("action"));
-                noti.setActor(rs.getString("actor"));
                 noti.setNotificationId(rs.getInt("notification_id"));
+                noti.setActor(rs.getString("actor"));
+                noti.setAction(rs.getString("action"));
                 noti.setDetail(rs.getString("detail"));
+                noti.setTimestamp(rs.getTimestamp("timestamp"));
                 noti.setChecked(rs.getInt("checked"));
-
+                noti.setMemberId(rs.getInt("member_id"));
+                notifications.add(noti);
             }
+            System.out.println(notifications);
+            return notifications;
 
         } catch (SQLException ex) {
             Logger.getLogger(NotificationUtil.class.getName()).log(Level.SEVERE, null, ex);
@@ -76,4 +79,31 @@ public class NotificationUtil {
         return null;
     }
 
+    public ArrayList<Notifications> findUncheckNotificationById(Integer id) {
+        String cmd = "select * from notifications where member_id = ? and checked = 0";
+        ArrayList<Notifications> notifications = new ArrayList<Notifications>();
+        try {
+            selectData = conn.prepareStatement(cmd);
+            selectData.setInt(1, id);
+            ResultSet rs = selectData.executeQuery();
+            while (rs.next()) {
+                Notifications noti = new Notifications();
+                noti.setNotificationId(rs.getInt("notification_id"));
+                noti.setActor(rs.getString("actor"));
+                noti.setAction(rs.getString("action"));
+                noti.setDetail(rs.getString("detail"));
+                noti.setTimestamp(rs.getTimestamp("timestamp"));
+                noti.setChecked(rs.getInt("checked"));
+                noti.setMemberId(rs.getInt("member_id"));
+                notifications.add(noti);
+            }
+            System.out.println(notifications);
+            return notifications;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NotificationUtil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
+    }
 }

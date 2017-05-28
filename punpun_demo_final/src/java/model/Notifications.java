@@ -59,7 +59,7 @@ public class Notifications implements Serializable {
     private Integer checked;
     @JoinColumn(name = "member_id", referencedColumnName = "member_id")
     @ManyToOne
-    private Members memberId;
+    private Integer memberId;
 
     public Notifications() {
     }
@@ -121,11 +121,11 @@ public class Notifications implements Serializable {
         this.checked = checked;
     }
 
-    public Members getMemberId() {
+    public Integer getMemberId() {
         return memberId;
     }
 
-    public void setMemberId(Members memberId) {
+    public void setMemberId(Integer memberId) {
         this.memberId = memberId;
     }
 

@@ -67,27 +67,20 @@
                             </li>
                         </c:if>
                         <c:if test="${member != null }">
-                            <sql:query var="data" dataSource="punpun">
-                                SELECT * FROM notifications where member_id = ${member.memberId} and checked = 'F'
-                            </sql:query>
-                            <sql:query var="count" dataSource="punpun">
-                                SELECT count(notification_id) as count FROM notifications where member_id = ${member.memberId} and checked = 'F'
-                            </sql:query>
+
                             <!-- notification -->
                             <li class="notifications new">
-                                <c:forEach var="num" items="${count.rows}">
-                                    <a href="" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <sup>
-                                            <span class="counter">${num.count}</span>
-                                        </sup>
-                                    </a>
-                                </c:forEach>
+                                <a href="" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <sup>
+                                        <span class="counter">${countNoti}</span>
+                                    </sup>
+                                </a>
                                 <div class="dropdown-menu notifications-dropdown-menu">
                                     <ul class="notifications-container">
-                                        <c:forEach var="noti" items="${data.rows}">
+                                        <c:forEach var="noti" items="${uncheckNoti}">
                                             <li>
                                                 <a href="" class="notification-item">
                                                     <div class="img-col">
-                                                        <div class="img" style="background-image: url('assets/img/logo.png')"></div>
+                                                        <div class="img" style="background-image: url('assets/img/profile/0000${noti.memberId}.jpg')"></div>
                                                     </div>
                                                     <div class="body-col">
                                                         <p> <span class="accent">${noti.actor}</span> ${noti.action}: <span class="accent"> ${noti.detail}</span>. </p>
@@ -98,7 +91,7 @@
                                     </ul>
                                     <footer>
                                         <ul>
-                                            <li> <a href="">
+                                            <li> <a href="viewAllNotificationServlet?id=${member.memberId}">
                                                     View All
                                                 </a> </li>
                                         </ul>
@@ -106,11 +99,10 @@
                                 </div>
                             </li>
 
-
                             <!-- profile -->
                             <li class="profile dropdown">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <div class="img" style="background-image: url('assets/img/profile/${member.memberId}.jpg')"> </div> <span class="name">
+                                    <div class="img" style="background-image: url('assets/img/profile/0000${member.memberId}.jpg')"> </div> <span class="name">
                                         ${member.firstName}
                                     </span> </a>
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">

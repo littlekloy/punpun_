@@ -1,3 +1,11 @@
+<%--
+    Document   : notification
+    Created on : May 28, 2017, 3:39:01 PM
+    Author     : kanok
+--%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,10 +35,10 @@
                     <div class="image-container logo hidden-sm-up"style="width: 30px; height: 30px;"> <img src="assets/logo/punpun_white.png" alt="Punpun"> </div>
                 </div>
                 <div class="header-block header-block-search hidden-md-down">
-                    <form role="search" action="">
+                    <form role="search" action="searchServlet">
                         <div class="input-container">
                             <div>
-                                <i class="fa fa-search"></i> <input type="search" placeholder="...ค้นหาโครงการ...">
+                                <i class="fa fa-search"></i> <input type="search" name="keyword" placeholder="...ค้นหาโครงการ...">
                             </div>
                         </div>
                     </form>
@@ -38,79 +46,74 @@
                 <div class="header-block header-block-nav">
                     <ul class="nav-profile">
                         <li class="header-block header-block-buttons">
-                            <a href="index.html" class="btn btn-none-shadow header-btn"> <i class="fa fa-home"></i> <span> หน้าแรก </span> </a>
+                            <a href="index.jsp" class="btn btn-none-shadow header-btn"> <i class="fa fa-home"></i> <span> หน้าแรก </span> </a>
                         </li>
                         <li class="header-block header-block-buttons">
-                            <a href="browse.html" class="btn btn-none-shadow header-btn"> <i class="fa fa-file-text"></i> <span> โครงการต่าง ๆ </span> </a>
+                            <a href="ViewAllServlet" class="btn btn-none-shadow header-btn"> <i class="fa fa-file-text"></i> <span> โครงการต่าง ๆ </span> </a>
                         </li>
                         <li class="header-block header-block-buttons">
-                            <a href="browse.html" class="btn btn-none-shadow header-btn"> <i class="fa fa-list-ul"></i> <span> ขั้นตอนการบริจาค </span> </a>
+                            <a href="how-it-works.jsp" class="btn btn-none-shadow header-btn"> <i class="fa fa-list-ul"></i> <span> ขั้นตอนการบริจาค </span> </a>
                         </li>
                         <li class="header-block header-block-buttons">
-                            <a href="dashboard-project-setup-info.html" class="btn btn-none-shadow header-btn"> <i class="fa fa-plus"></i> <span> สร้างโครงการ </span> </a>
+                            <a href="dashboard-project-setup-info.jsp" class="btn btn-none-shadow header-btn"> <i class="fa fa-plus"></i> <span> สร้างโครงการ </span> </a>
                         </li>
-                        <li class="header-block header-block-buttons">
-                            <a href="login.html" class="btn btn-none-shadow header-btn"> <i class="fa fa-sign-in"></i> <span> ลงชื่อเข้าใช้ </span> </a>
-                        </li>
-                        <li class="notifications new">
-                            <a href="" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <sup>
-                                    <span class="counter">8</span>
-                                </sup> </a>
-                            <div class="dropdown-menu notifications-dropdown-menu">
-                                <ul class="notifications-container">
-                                    <li>
-                                        <a href="" class="notification-item">
-                                            <div class="img-col">
-                                                <div class="img" style="background-image: url('assets/faces/3.jpg')"></div>
-                                            </div>
-                                            <div class="body-col">
-                                                <p> <span class="accent">Zack Alien</span> pushed new commit: <span class="accent">Fix page load performance issue</span>. </p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="notification-item">
-                                            <div class="img-col">
-                                                <div class="img" style="background-image: url('assets/faces/5.jpg')"></div>
-                                            </div>
-                                            <div class="body-col">
-                                                <p> <span class="accent">Amaiya Hatsumi</span> started new task: <span class="accent">Dashboard UI design.</span>. </p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="" class="notification-item">
-                                            <div class="img-col">
-                                                <div class="img" style="background-image: url('assets/faces/8.jpg')"></div>
-                                            </div>
-                                            <div class="body-col">
-                                                <p> <span class="accent">Andy Nouman</span> deployed new version of <span class="accent">NodeJS REST Api V3</span> </p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <footer>
-                                    <ul>
-                                        <li> <a href="">
-                                                View All
-                                            </a> </li>
+                        <c:if test="${empty member}">
+                            <!-- login -->
+                            <li class="header-block header-block-buttons">
+                                <a href="login.jsp" class="btn btn-none-shadow header-btn"> <i class="fa fa-sign-in"></i> <span> ลงชื่อเข้าใช้ </span> </a>
+                            </li>
+                        </c:if>
+                        <c:if test="${member != null }">
+
+                            <!-- notification -->
+                            <li class="notifications new">
+                                <a href="" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <sup>
+                                        <span class="counter">${countNoti}</span>
+                                    </sup>
+                                </a>
+                                <div class="dropdown-menu notifications-dropdown-menu">
+                                    <ul class="notifications-container">
+                                        <c:forEach var="noti" items="${uncheckNoti}">
+                                            <li>
+                                                <a href="" class="notification-item">
+                                                    <div class="img-col">
+                                                        <div class="img" style="background-image: url('assets/img/profile/0000${noti.memberId}.jpg')"></div>
+                                                    </div>
+                                                    <div class="body-col">
+                                                        <p> <span class="accent">${noti.actor}</span> ${noti.action}: <span class="accent"> ${noti.detail}</span>. </p>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </c:forEach>
                                     </ul>
-                                </footer>
-                            </div>
-                        </li>
-                        <li class="profile dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <div class="img" style="background-image: url('https://avatars3.githubusercontent.com/u/3959008?v=3&s=40')"> </div> <span class="name">
-                                    John Doe
-                                </span> </a>
-                            <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <a class="dropdown-item" href="dashboard-profile.html"> <i class="fa fa-user icon"></i> โปรไฟล์ </a>
-                                <a class="dropdown-item" href="dashboard-project-list.html"> <i class="fa fa-bell icon"></i> โครงการของคุณ </a>
-                                <a class="dropdown-item" href="dashboard-account-setting.html"> <i class="fa fa-gear icon"></i> ตั้งค่าบัญชี </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="login.html"> <i class="fa fa-power-off icon"></i> ลงชื่อออก </a>
-                            </div>
-                        </li>
+                                    <footer>
+                                        <ul>
+                                            <li> <a href="viewAllNotificationServlet?id=${member.memberId}">
+                                                    View All
+                                                </a> </li>
+                                        </ul>
+                                    </footer>
+                                </div>
+                            </li>
+
+                            <!-- profile -->
+                            <li class="profile dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <div class="img" style="background-image: url('assets/img/profile/0000${member.memberId}.jpg')"> </div> <span class="name">
+                                        ${member.firstName}
+                                    </span> </a>
+                                <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <a class="dropdown-item" href="profile.jsp/?member_id=${member.memberId}"> <i class="fa fa-user icon"></i> โพรไฟล์ </a>
+                                    <a class="dropdown-item" href="dashboard.jsp"> <i class="fa fa-user icon"></i> แดชบอร์ด </a>
+                                    <a class="dropdown-item" href="dashboard-project-list.jsp"> <i class="fa fa-bell icon"></i> โครงการของคุณ </a>
+                                    <a class="dropdown-item" href="dashboard-account-setting.jsp"> <i class="fa fa-gear icon"></i> ตั้งค่าบัญชีผู้ใช้ </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="logoutServlet"> <i class="fa fa-power-off icon"></i> ลงชื่อออก </a>
+                                </div>
+                            </li>
+
+
+                        </c:if>
                     </ul>
                 </div>
             </header>
@@ -180,23 +183,22 @@
                     <div class="container content">
                         <div class="col-md-4">
                             <p> <h3>เกี่ยวกับเรา</h3> </p>
-                            <h6><a href="about-us.html">เรื่องราวของปันปัน</a></h6>
-                            <h6><a href="about-us.html">ทีมปันปัน</a></h6>
-                            <h6><a href="about-us.html">ขั้นตอนการบริจาค</a></h6>
-                            <h6><a href="about-us.html">ค่าใช้จ่ายในการระดมทุน</a></h6>
+                            <h6><a href="about-us.jsp">เรื่องราวของปันปัน</a></h6>
+                            <h6><a href="team.jsp">ทีมปันปัน</a></h6>
+                            <h6><a href="how-it-works.jsp">ขั้นตอนการบริจาค</a></h6>
+                            <h6><a href="fee.jsp">ค่าใช้จ่ายในการระดมทุน</a></h6>
                         </div>
                         <div class="col-md-4">
                             <p> <h3>โครงการทั้งหมด</h3> </p>
-                            <h6><a href="about-us.html">ทั้งหมด</a></h6>
-                            <h6><a href="about-us.html">ทีมปันปัน</a></h6>
-                            <h6><a href="about-us.html">ขั้นตอนการบริจาค</a></h6>
-                            <h6><a href="about-us.html">ค่าใช้จ่ายในการระดมทุน</a></h6>
-                            <h6><a href="about-us.html">ทีมปันปัน</a></h6>
-                            <h6><a href="about-us.html">ขั้นตอนการบริจาค</a></h6>
-                            <h6><a href="about-us.html">ค่าใช้จ่ายในการระดมทุน</a></h6>
-                            <h6><a href="about-us.html">ทีมปันปัน</a></h6>
-                            <h6><a href="about-us.html">ขั้นตอนการบริจาค</a></h6>
-                            <h6><a href="about-us.html">ค่าใช้จ่ายในการระดมทุน</a></h6>
+                            <sql:query var="category" dataSource="punpun">
+                                SELECT * FROM project_categories
+                            </sql:query>
+                            <h6><a href="browse.jsp?category=0&sort=0">ทั้งหมด</a></h6>
+                            <c:forEach var="data3" items="${category.rows}">
+                                <h6><a href="browse.jsp?category=${data3.project_category_id}&sort=0">${data3.name}</a></h6>
+
+                            </c:forEach>
+
                         </div>
                         <div class="col-md-4">
                             <p> <h3>การติดต่อ</h3> </p>

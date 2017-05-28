@@ -7,33 +7,16 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.util.ArrayList;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
-import model.Members;
-import model.Notifications;
-import utilities.MemberUtil;
-import utilities.NotificationUtil;
 
 /**
  *
  * @author kanok
  */
-public class loginServlet extends HttpServlet {
-
-    private Connection conn;
-    private PreparedStatement selectData;
-
-    public void init() {
-        conn = (Connection) getServletContext().getAttribute("connection");
-    }
+public class viewAllNotificationServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,32 +32,15 @@ public class loginServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String user = request.getParameter("email");
-            String pass = request.getParameter("password");
-            HttpSession session = request.getSession();
-
-            ServletContext context = getServletContext();
-            DataSource ds = (DataSource) context.getAttribute("dataSource");
-
-            MemberUtil memberUtil = new MemberUtil(ds);
-            memberUtil.connect();
-            Members member = memberUtil.authenicate(user, pass);
-            System.out.println(member);
-
-            NotificationUtil notiUtil = new NotificationUtil(ds);
-            notiUtil.connect();
-            ArrayList<Notifications> notifications = new ArrayList<Notifications>();
-            notifications = notiUtil.findUncheckNotificationById(member.getMemberId());
-            System.out.println(notifications.size());
-            System.out.println(notifications.get(1).getMemberId());
-            session.setAttribute("countNoti", notifications.size());
-            session.setAttribute("uncheckNoti", notifications);
-            if (member == null) {
-                response.sendRedirect("test.html");
-            } else {
-                session.setAttribute("member", member);
-                response.sendRedirect("index.jsp");
-            }
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet viewAllNotificationServlet</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet viewAllNotificationServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
