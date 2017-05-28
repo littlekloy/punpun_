@@ -301,41 +301,35 @@
                                                 <div data-exclude="xs,sm,lg">
                                                     <!-- Table Content -->
                                                     <ul class="item-list striped">
-                                                        <sql:query var="result2" dataSource="punpun">
-                                                            SELECT * FROM member_team_pivot where team_id = ${project.teamId}
-                                                        </sql:query>
-                                                        <c:forEach var="member" items="${result2.rows}">
-                                                            <sql:query var="data" dataSource="punpun">
-                                                                SELECT * FROM members where member_id = ${member.member_id}
-                                                            </sql:query>
-                                                            <c:forEach var="detail" items="${data.rows}">
-                                                                <!-- Team Item : Loop here -->
-                                                                <li class="item">
-                                                                    <div class="item-row">
-                                                                        <div class="item-col fixed item-col-img md">
-                                                                            <a href="item-editor.html">
-                                                                                <div class="item-img rounded" style="background-image: url('assets/img/profile/0000${member.member_id}.jpg')"></div>
+                                                        ${project.teamCollection}
+                                                        <c:forEach var="teamMember" items="${project.teamCollection}">
+                                                            <!-- Team Item : Loop here -->
+                                                            <li class="item">
+                                                                <div class="item-row">
+                                                                    <div class="item-col fixed item-col-img md">
+                                                                        <a href="item-editor.html">
+                                                                            <div class="item-img rounded" style="background-image: url('assets/img/profile/0000${teamMember.memberId}.jpg')"></div>
+                                                                        </a>
+                                                                    </div>
+                                                                    <!--Name of Team-->
+                                                                    <div class="item-col item-col-title no-overflow no-underline">
+                                                                        <div>
+                                                                            <a href="error-404.html" class="center-text">
+                                                                                ${teamMember.firstName} ${teamMember.lastName}
                                                                             </a>
                                                                         </div>
-                                                                        <!--Name of Team-->
-                                                                        <div class="item-col item-col-title no-overflow no-underline">
-                                                                            <div>
-                                                                                <a href="error-404.html" class="center-text">
-                                                                                    ${detail.first_name} ${detail.last_name}
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--Position-->
-                                                                        <div class="item-col item-col-center">
-                                                                            <div class="item-heading"> ตำแหน่ง </div>
-                                                                            <div> ${member.position} </div>
-                                                                        </div>
-
                                                                     </div>
-                                                                </li>
-                                                            </c:forEach>
+                                                                    <!--Position-->
+                                                                    <div class="item-col item-col-center">
+                                                                        <div class="item-heading"> ตำแหน่ง </div>
+                                                                        <div> ${teamMember.position} </div>
+                                                                    </div>
 
+                                                                </div>
+                                                            </li>
                                                         </c:forEach>
+
+
 
                                                     </ul>
                                                 </div>

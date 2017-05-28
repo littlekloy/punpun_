@@ -6,6 +6,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -89,17 +90,19 @@ public class Projects implements Serializable {
         @JoinColumn(name = "project_id", referencedColumnName = "project_id")}, inverseJoinColumns = {
         @JoinColumn(name = "tag_id", referencedColumnName = "tag_id")})
     @ManyToMany
-    private Collection<Tags> tagsCollection;
+    private ArrayList<Tags> tagsCollection;
+    private ArrayList<Members> teamCollection;
+
     @ManyToMany(mappedBy = "projectsCollection")
-    private Collection<Members> membersCollection;
+    private ArrayList<Members> membersCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "projects")
-    private Collection<ProjectItems> projectItemsCollection;
+    private ArrayList<ProjectItems> projectItemsCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "projectID")
     private Collection<DeleteLog> deleteLogCollection;
     @OneToMany(mappedBy = "projectId")
     private Collection<ReportLog> reportLogCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "projectId")
-    private Collection<Donations> donationsCollection;
+    private ArrayList<Donations> donationsCollection;
     @OneToMany(mappedBy = "projectId")
     private Collection<UpdateLog> updateLogCollection;
     @JoinColumn(name = "team_id", referencedColumnName = "team_id")
@@ -109,11 +112,11 @@ public class Projects implements Serializable {
     @ManyToOne
     private Integer projectCategoryId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "projectId")
-    private Collection<ProjectDonations> projectDonationsCollection;
+    private ArrayList<ProjectDonations> projectDonationsCollection;
     @OneToMany(mappedBy = "projectId")
     private Collection<EditLog> editLogCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "projectId")
-    private Collection<Comments> commentsCollection;
+    private ArrayList<Comments> commentsCollection;
 
     public Projects() {
     }
@@ -226,12 +229,20 @@ public class Projects implements Serializable {
         this.funded = funded;
     }
 
+    public ArrayList<Members> getTeamCollection() {
+        return teamCollection;
+    }
+
+    public void setTeamCollection(ArrayList<Members> teamCollection) {
+        this.teamCollection = teamCollection;
+    }
+
     @XmlTransient
     public Collection<Tags> getTagsCollection() {
         return tagsCollection;
     }
 
-    public void setTagsCollection(Collection<Tags> tagsCollection) {
+    public void setTagsCollection(ArrayList<Tags> tagsCollection) {
         this.tagsCollection = tagsCollection;
     }
 
@@ -240,7 +251,7 @@ public class Projects implements Serializable {
         return membersCollection;
     }
 
-    public void setMembersCollection(Collection<Members> membersCollection) {
+    public void setMembersCollection(ArrayList<Members> membersCollection) {
         this.membersCollection = membersCollection;
     }
 
@@ -249,7 +260,7 @@ public class Projects implements Serializable {
         return projectItemsCollection;
     }
 
-    public void setProjectItemsCollection(Collection<ProjectItems> projectItemsCollection) {
+    public void setProjectItemsCollection(ArrayList<ProjectItems> projectItemsCollection) {
         this.projectItemsCollection = projectItemsCollection;
     }
 
@@ -276,7 +287,7 @@ public class Projects implements Serializable {
         return donationsCollection;
     }
 
-    public void setDonationsCollection(Collection<Donations> donationsCollection) {
+    public void setDonationsCollection(ArrayList<Donations> donationsCollection) {
         this.donationsCollection = donationsCollection;
     }
 
@@ -310,7 +321,7 @@ public class Projects implements Serializable {
         return projectDonationsCollection;
     }
 
-    public void setProjectDonationsCollection(Collection<ProjectDonations> projectDonationsCollection) {
+    public void setProjectDonationsCollection(ArrayList<ProjectDonations> projectDonationsCollection) {
         this.projectDonationsCollection = projectDonationsCollection;
     }
 
@@ -328,7 +339,7 @@ public class Projects implements Serializable {
         return commentsCollection;
     }
 
-    public void setCommentsCollection(Collection<Comments> commentsCollection) {
+    public void setCommentsCollection(ArrayList<Comments> commentsCollection) {
         this.commentsCollection = commentsCollection;
     }
 

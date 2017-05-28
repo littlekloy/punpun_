@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+import model.Projects;
 import utilities.ProjectUtil;
 
 /**
@@ -45,13 +46,15 @@ public class viewProjectServlet extends HttpServlet {
             projectUtil.connect();
 
             String id = request.getParameter("id");
-            projectUtil.findProjectById(Integer.parseInt(id));
+            System.err.println(id);
+            Projects project = projectUtil.findProjectById(Integer.parseInt(id));
+            session.setAttribute("project", project);
+            System.out.println(project);
 
-            session.setAttribute("project", projectUtil.findProjectById(Integer.parseInt(id)));
-            System.out.print(projectUtil.findProjectById(Integer.parseInt(id)));
             String url = "project-detail.jsp?id=" + id;
             response.sendRedirect(url);
             projectUtil.closeConnection();
+
         }
     }
 

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sql.DataSource;
+import model.Members;
 import model.Projects;
 
 /**
@@ -24,7 +25,7 @@ public class ProjectUtil implements Serializable {
 
     private DataSource ds;
     private Connection conn;
-    private PreparedStatement selectData;
+    private PreparedStatement selectData, selectData2, selectItem, selectSupporter, selectComment;
 
     public ProjectUtil() {
     }
@@ -87,8 +88,12 @@ public class ProjectUtil implements Serializable {
     public Projects findProjectById(Integer id) {
         String cmd = "select * from projects where project_id = ?";
         Projects project = new Projects();
+        String cmd_team = "SELECT * FROM  members right join member_team_pivot ";
+        String cmd_team_on = "on members.member_id = member_team_pivot.member_id where team_id = ?";
+
         try {
             selectData = conn.prepareStatement(cmd);
+            selectData2 = conn.prepareStatement(cmd_team + cmd_team_on);
             selectData.setInt(1, id);
             ResultSet rs = selectData.executeQuery();
             if (rs.next()) {
@@ -107,7 +112,26 @@ public class ProjectUtil implements Serializable {
                 project.setSupporter(rs.getInt("supporter"));
                 project.setFunded(rs.getInt("funded"));
                 project.setTeamId(rs.getInt("team_id"));
+                selectData2.setInt(1, rs.getInt("team_id"));
+                System.out.println(selectData2);
+                ResultSet rs2 = selectData2.executeQuery();
+                ArrayList<Members> team = new ArrayList<Members>();
+                while (rs2.next()) {
+                    Members member = new Members();
+                    member.setUsername(rs2.getString("username"));
+                    member.setEmail(rs2.getString("email"));
+                    member.setPassword(rs2.getString("password"));
+                    member.setFirstName(rs2.getString("first_name"));
+                    member.setLastName(rs2.getString("last_name"));
+                    member.setMemberId(rs2.getInt("member_id"));
+                    member.setPosition(rs2.getString("position"));
+                    team.add(member);
+                    System.out.println(member);
+                }
+                project.setTeamCollection(team);
+
                 System.out.println(project);
+                System.out.println(project.getTeamCollection());
             }
             return project;
         } catch (SQLException ex) {

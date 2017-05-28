@@ -77,6 +77,7 @@ public class Members implements Serializable {
     private int level;
     @Column(name = "facebook_id")
     private String facebookId;
+    private String position;
     @JoinTable(name = "following", joinColumns = {
         @JoinColumn(name = "followee_id", referencedColumnName = "member_id")}, inverseJoinColumns = {
         @JoinColumn(name = "followee_id", referencedColumnName = "member_id")})
@@ -210,6 +211,14 @@ public class Members implements Serializable {
 
     public void setFacebookId(String facebookId) {
         this.facebookId = facebookId;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     @XmlTransient
