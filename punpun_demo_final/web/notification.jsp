@@ -144,29 +144,31 @@
                                                 <!-- Table Content -->
                                                 <ul class="item-list striped">
                                                     <!-- Item : Loop here -->
-                                                    <li class="item">
-                                                        <div class="item-row">
-                                                            <div class="item-col fixed item-col-img md">
-                                                                <a href="item-editor.html">
-                                                                    <div class="item-img rounded" style="background-image: url('assets/backgrounds/profile-card-1.jpg')"></div>
-                                                                </a>
-                                                            </div>
-                                                            <!--Name of Supporter-->
-                                                            <div class="item-col item-col-center no-overflow no-underline">
-                                                                <div>
-                                                                    <a href="error-404.html" class="center-text">
-                                                                        Firstname Lastname
+
+                                                    <c:forEach var="noti" items="${allNoti}">
+                                                        <li class="item">
+                                                            <div class="item-row">
+                                                                <div class="item-col fixed item-col-img md">
+                                                                    <a href="item-editor.html">
+                                                                        <div class="item-img rounded" style="background-image: url('assets/backgrounds/profile-card-1.jpg')"></div>
                                                                     </a>
                                                                 </div>
+                                                                <!--Name of Supporter-->
+                                                                <div class="item-col item-col-center no-overflow no-underline">
+                                                                    <div>
+                                                                        <a href="error-404.html" class="center-text">
+                                                                            ${noti.actor} ${noti.action} ${noti.detail}
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <!--Amount of Funded-->
+                                                                <div class="item-col item-col-center">
+                                                                    <div class="item-heading"> จำนวน(บาท) </div>
+                                                                    <div class=""> ${noti.timestamp} </div>
+                                                                </div>
                                                             </div>
-                                                            <!--Amount of Funded-->
-                                                            <div class="item-col item-col-center">
-                                                                <div class="item-heading"> จำนวน(บาท) </div>
-                                                                <div class=""> 4958 </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
+                                                        </li>
+                                                    </c:forEach>
                                                 </ul>
                                             </div>
                                         </div>

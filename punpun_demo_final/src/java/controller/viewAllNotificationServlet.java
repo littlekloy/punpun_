@@ -7,10 +7,17 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
+import model.Members;
+import model.Notifications;
+import utilities.NotificationUtil;
 
 /**
  *
@@ -32,15 +39,19 @@ public class viewAllNotificationServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet viewAllNotificationServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet viewAllNotificationServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            HttpSession session = request.getSession();
+
+            ServletContext context = getServletContext();
+            DataSource ds = (DataSource) context.getAttribute("dataSource");
+            NotificationUtil notiUtil = new NotificationUtil(ds);
+            notiUtil.connect();
+            ArrayList<Notifications> notifications = new ArrayList<Notifications>();
+            Members member = (Members) session.getAttribute("member");
+            notifications = notiUtil.findAllNotification((Integer) member.getMemberId());
+            System.out.println(member);
+            System.out.println("from Notiservlet" + notifications);
+            session.setAttribute("allNoti", notifications);
+            response.sendRedirect("notification.jsp");
         }
     }
 

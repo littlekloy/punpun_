@@ -66,7 +66,7 @@ public class loginServlet extends HttpServlet {
             ArrayList<Notifications> notifications = new ArrayList<Notifications>();
             notifications = notiUtil.findUncheckNotificationById(member.getMemberId());
             System.out.println(notifications.size());
-            System.out.println(notifications.get(1).getMemberId());
+            System.out.println(notifications);
             session.setAttribute("countNoti", notifications.size());
             session.setAttribute("uncheckNoti", notifications);
             if (member == null) {
