@@ -184,63 +184,73 @@
                                 </div>
 
                             </li>
+                            <sql:query var="result" dataSource="punpun">
+                                SELECT *  FROM projects
+                            </sql:query>
 
-                            <!-- Item -->
-                            <li class="item">
-                                <div class="item-row">
 
-                                    <!--Edit at class="item-title" Not item-heading-->
-                                    <div class="item-col fixed item-col-img md">
-                                        <a href="dashboard-project-details.jsp">
-                                            <div class="item-img rounded" style="background-image: url('assets/backgrounds/profile-card-2.jpg')"></div>
-                                        </a>
-                                    </div>
-                                    <div class="item-col fixed pull-left item-col-title">
-                                        <div class="item-heading">ชื่อโครงการ</div>
-                                        <div>
-                                            <a href="project-detail.jsp" class="center-text">
-                                                <h4 class="item-title"> โครงการปลูกป่าฝ่าวิกฤตโลกร้อน </h4>
+                            <c:forEach var="project_" items="${result.rows}">
+
+                                <!-- Item -->
+                                <li class="item">
+                                    <div class="item-row">
+
+                                        <!--Edit at class="item-title" Not item-heading-->
+                                        <div class="item-col fixed item-col-img md">
+                                            <a href="dashboard-project-details.jsp">
+                                                <div class="item-img rounded" style="background-image: url('assets/img/Project_Pic/${project_.project_id}/${project_.project_id}.jpg')"></div>
                                             </a>
                                         </div>
-                                    </div>
-                                    <div class="item-col item-col-sales">
-                                        <div class="item-heading">จำนวนเงิน</div>
-                                        <div> 46323 </div>
-                                    </div>
-                                    <div class="item-col item-col-category no-overflow">
-                                        <div class="item-heading">ประเภท</div>
-                                        <div class="no-overflow"> <a href="">สัตว์</a> </div>
-                                    </div>
-                                    <div class="item-col item-col-author">
-                                        <div class="item-heading">เจ้าของโครงการ</div>
-                                        <div class="no-overflow"> <a href="dashboard-profile.jsp">Meadow Katheryne</a> </div>
-                                    </div>
-                                    <div class="item-col item-col-date">
-                                        <div class="item-heading">สิ้นสุดโครงการ</div>
-                                        <div class="no-overflow"> 22 AUG 2017 </div>
-                                    </div>
-                                    <!--Option For this Item-->
-                                    <div class="item-col fixed item-col-actions-dropdown">
-                                        <div class="item-actions-dropdown">
-                                            <a class="item-actions-toggle-btn"> <span class="inactive">
-                                                    <i class="fa fa-cog"></i>
-                                                </span> <span class="active">
-                                                    <i class="fa fa-chevron-circle-right"></i>
-                                                </span> </a>
-                                            <div class="item-actions-block">
-                                                <ul class="item-actions-list">
-                                                    <li>
-                                                        <a class="remove" href="#" data-toggle="modal" data-target="#confirm-modal"> <i class="fa fa-trash-o "></i> </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="edit" href="item-editor.jsp"> <i class="fa fa-pencil"></i> </a>
-                                                    </li>
-                                                </ul>
+                                        <div class="item-col fixed pull-left item-col-title">
+                                            <div class="item-heading">ชื่อโครงการ</div>
+                                            <div>
+                                                <a href="project-detail.jsp" class="center-text">
+                                                    <h4 class="item-title"> ${project_.name} </h4>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="item-col item-col-sales">
+                                            <div class="item-heading">จำนวนเงิน</div>
+                                            <div> ${project_.budget} </div>
+                                        </div>
+                                        <div class="item-col item-col-category no-overflow">
+                                            <div class="item-heading">ประเภท</div>
+                                            <div class="no-overflow"> <a href="">${project_.project_category_id}</a> </div>
+                                        </div>
+                                        <div class="item-col item-col-author">
+                                            <div class="item-heading">เจ้าของโครงการ</div>
+                                            <div class="no-overflow"> <a href="dashboard-profile.jsp"> ${project_.team_id}</a> </div>
+                                        </div>
+                                        <div class="item-col item-col-date">
+                                            <div class="item-heading">สิ้นสุดโครงการ</div>
+                                            <div class="no-overflow"> ${project_.end_date} </div>
+                                        </div>
+                                        <!--Option For this Item-->
+                                        <div class="item-col fixed item-col-actions-dropdown">
+                                            <div class="item-actions-dropdown">
+                                                <a class="item-actions-toggle-btn"> <span class="inactive">
+                                                        <i class="fa fa-cog"></i>
+                                                    </span> <span class="active">
+                                                        <i class="fa fa-chevron-circle-right"></i>
+                                                    </span> </a>
+                                                <div class="item-actions-block">
+                                                    <ul class="item-actions-list">
+                                                        <li>
+                                                            <a class="remove" href="#" data-toggle="modal" data-target="#confirm-modal"> <i class="fa fa-trash-o "></i> </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="edit" href="item-editor.jsp"> <i class="fa fa-pencil"></i> </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
+
+                            </c:forEach>
+
+
 
                         </ul>
                     </div>

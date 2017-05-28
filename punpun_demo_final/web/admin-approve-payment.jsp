@@ -153,19 +153,19 @@
                                                 <div class="want-top">
                                                     <div class="form-group row">
                                                         <label class="col-sm-4 form-control-label text-xs-right"> Donation ID </label>
-                                                        <div class="col-sm-8"> <h4> 989-9-09000-90-8</h4> </div>
+                                                        <div class="col-sm-8"> <h4> 00001 </h4> </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-sm-4 form-control-label text-xs-right"> ชื่อโครงการ </label>
-                                                        <div class="col-sm-8"> <h4> โครงการช่วยเด็กอ้วนม้วนเสื่อขาย</h4> </div>
+                                                        <div class="col-sm-8"> <h4> อุปกรณ์การเรียนแก่เด็กอมก๋อย </h4> </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-sm-4 form-control-label text-xs-right"> จำนวนเงินที่โอน </label>
-                                                        <div class="col-sm-8"> <p> 98742.00 บาท </p> </div>
+                                                        <div class="col-sm-8"> <p> 200 บาท </p> </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-sm-4 form-control-label text-xs-right"> ธนาคาร </label>
-                                                        <div class="col-sm-8"> <p> กู้ร้อยดอกล้าน </p> </div>
+                                                        <div class="col-sm-8"> <p> ไทยพาณิชย์ </p> </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-sm-4 form-control-label text-xs-right"> ชื่อผู้โอน </label>
@@ -178,16 +178,16 @@
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-sm-4 form-control-label text-xs-right"> ตำบล </label>
-                                                        <div class="col-sm-8"> <p> อนุบาล </p> </div>
+                                                        <div class="col-sm-8"> <p> ท้ายบ้านใหม่ </p> </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-sm-4 form-control-label text-xs-right"> อำเภอ </label>
-                                                        <div class="col-sm-8"> <p> ประถม </p> </div>
+                                                        <div class="col-sm-8"> <p> เมืองสมุทรปราการ </p> </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-sm-4 form-control-label text-xs-right"> จังหวัด </label>
-                                                        <div class="col-sm-4"> <p> มัธยม </p> </div>
-                                                        <div class="col-sm-4"> <p> 10270 </p> </div>
+                                                        <div class="col-sm-4"> <p> สมุทรปราการ </p> </div>
+                                                        <div class="col-sm-4"> <p> 10280 </p> </div>
                                                     </div>
                                                 </div>
                                             </div>

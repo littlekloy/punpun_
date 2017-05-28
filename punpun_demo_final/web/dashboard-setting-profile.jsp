@@ -120,11 +120,11 @@
                                 <li>                <a href="dashboard-following.jsp">       <i class="fa fa-bell"></i> การติดตาม </a></li>
                                 <li>                <a href="dashboard-funded-project.jsp">  <i class="fa fa-thumbs-up"></i> โครงการที่เคยร่วมระดมทุน </a></li>
                                 <li>                <a href="dashboard-project-list.jsp">    <i class="fa fa-th-list"></i> จัดการโครงการของคุณ </a></li>
-                                <li> <a href="dashboard-account-setting.jsp">         <i class="fa fa-gear"></i> ตั้งค่าบัญชีผู้ใช้ </a></li>
+                                <li class="active"> <a href="dashboard-account-setting.jsp">         <i class="fa fa-gear"></i> ตั้งค่าบัญชีผู้ใช้ </a></li>
                                 <li> <hr> </li>
                                 <li>                <a href="admin-dashboard.jsp">       <i class="fa fa-dashboard"></i> แดชบอร์ดของแอดมิน </a></li>
                                 <li>                <a href="admin-payment-control.jsp">         <i class="fa fa-money"></i> หลักฐานการโอนเงิน </a></li>
-                                <li class="active">                <a href="admin-active-project.jsp">         <i class="fa fa-gift"></i> โครงการที่กำลังระดมทุน </a></li>
+                                <li>                <a href="admin-active-project.jsp">         <i class="fa fa-gift"></i> โครงการที่กำลังระดมทุน </a></li>
                                 <li>                <a href="admin-pending-project.jsp">  <i class="fa fa-legal"></i> โครงการที่รอการอนุมัติ </a></li>
                                 <li>                <a href="admin-reported-project.jsp">    <i class="fa fa-exclamation-triangle"></i> โครงการที่ถูกรายงาน </a></li>
                                 <li> <a href="admin-banned-project.jsp">         <i class="fa fa-ban"></i> โครงการที่ถูกระงับ </a></li>
@@ -146,7 +146,7 @@
                                 <div class="card card-block">
                                     <!-- <div class="title-block"> -->
                                     <h2> ตั้งค่าบัญชีและโปรไฟล์ของคุณ</h2>
-                                    <p> ผู้ใช้สามารถติดตามสมาชิกคนอื่น เพื่อรับข่าวสารการสร้างโครงการการกุศลที่น่าสนใจของเขา หรือรับการแจ้งเตือน เมื่อผู้ที่คุณสนใจร่วมระดมทุนกับโครงการต่าง ๆ </p>
+                                    <p>  </p>
                                     <!-- </div> -->
                                 </div>
                             </div>
@@ -174,7 +174,7 @@
 
                                                             <a href="#" class="add-image" data-toggle="modal" data-target="#modal-media">
                                                                 <div class=" project-img-container">
-                                                                    <div class="image-project" style="background-image: url('assets/backgrounds/profile-card-1.jpg');"></div>
+                                                                    <div class="image-project" style="background-image: url('assets/img/profile/0000${member.memberId}.jpg');"></div>
                                                                     <div class="middle-project">
                                                                         <!--Button-->
                                                                         <input type="submit" class="btn btn-warning btn-lg"  value="+ อัพโหลดรูปภาพ"  />
@@ -201,7 +201,7 @@
                                                                     <!--Website-->
                                                                     <div class="col-xs-12 col-sm-12 stat-col">
                                                                         <div class="name"> <i class="fa fa-globe"></i> เว็บไซต์ </div>
-                                                                        <div class="value"><input type="text" class="form-control" placeholder="ตัวอย่าง 'www.facebook.com/punpun'" value="www.twiter.com"></div>
+                                                                        <div class="value"><input type="text" class="form-control" placeholder="ตัวอย่าง 'www.facebook.com/punpun'" value="punpun.com/profile?id=${member.memberId}"></div>
                                                                     </div>
                                                                     <!--Tags-->
                                                                     <div class="col-xs-12 col-sm-12 stat-col">
@@ -209,8 +209,8 @@
 
                                                                         <div class="form-group">
                                                                             <ul id="myULTags">
-                                                                                <li>Tag1</li>
-                                                                                <li>Tag2</li>
+                                                                                <li>เด็ก</li>
+                                                                                <li>สัตว์</li>
                                                                             </ul>
                                                                         </div>
 

@@ -117,11 +117,11 @@
                                 <li>                <a href="dashboard-following.jsp">       <i class="fa fa-bell"></i> การติดตาม </a></li>
                                 <li>                <a href="dashboard-funded-project.jsp">  <i class="fa fa-thumbs-up"></i> โครงการที่เคยร่วมระดมทุน </a></li>
                                 <li>                <a href="dashboard-project-list.jsp">    <i class="fa fa-th-list"></i> จัดการโครงการของคุณ </a></li>
-                                <li> <a href="dashboard-account-setting.jsp">         <i class="fa fa-gear"></i> ตั้งค่าบัญชีผู้ใช้ </a></li>
+                                <li class="active"> <a href="dashboard-account-setting.jsp">         <i class="fa fa-gear"></i> ตั้งค่าบัญชีผู้ใช้ </a></li>
                                 <li> <hr> </li>
                                 <li>                <a href="admin-dashboard.jsp">       <i class="fa fa-dashboard"></i> แดชบอร์ดของแอดมิน </a></li>
                                 <li>                <a href="admin-payment-control.jsp">         <i class="fa fa-money"></i> หลักฐานการโอนเงิน </a></li>
-                                <li class="active">                <a href="admin-active-project.jsp">         <i class="fa fa-gift"></i> โครงการที่กำลังระดมทุน </a></li>
+                                <li>                <a href="admin-active-project.jsp">         <i class="fa fa-gift"></i> โครงการที่กำลังระดมทุน </a></li>
                                 <li>                <a href="admin-pending-project.jsp">  <i class="fa fa-legal"></i> โครงการที่รอการอนุมัติ </a></li>
                                 <li>                <a href="admin-reported-project.jsp">    <i class="fa fa-exclamation-triangle"></i> โครงการที่ถูกรายงาน </a></li>
                                 <li> <a href="admin-banned-project.jsp">         <i class="fa fa-ban"></i> โครงการที่ถูกระงับ </a></li>
@@ -143,7 +143,7 @@
                                 <div class="card card-block">
                                     <!-- <div class="title-block"> -->
                                     <h2> ตั้งค่าบัญชีและโปรไฟล์ของคุณ</h2>
-                                    <p> ผู้ใช้สามารถติดตามสมาชิกคนอื่น เพื่อรับข่าวสารการสร้างโครงการการกุศลที่น่าสนใจของเขา หรือรับการแจ้งเตือน เมื่อผู้ที่คุณสนใจร่วมระดมทุนกับโครงการต่าง ๆ </p>
+                                    <p> </p>
                                     <!-- </div> -->
                                 </div>
                             </div>
@@ -175,7 +175,7 @@
                                                             <label class="col-sm-2 form-control-label text-xs-right">
                                                                 ชื่อผู้ใช้:
                                                             </label>
-                                                            <div class="col-sm-10"> <input type="text" readonly="readonly" class="form-control" value="KonDeeSriSungKom"> </div>
+                                                            <div class="col-sm-10"> <input type="text" readonly="readonly" class="form-control" value="${member.username}"> </div>
                                                         </div>
 
                                                         <!--Name-->
@@ -183,7 +183,7 @@
                                                             <label class="col-sm-2 form-control-label text-xs-right">
                                                                 ชื่อ-นามสกุล:
                                                             </label>
-                                                            <div class="col-sm-10"> <input type="text" class="form-control" placeholder=""> </div>
+                                                            <div class="col-sm-10"> <input type="text" class="form-control" value="${member.firstName} ${member.lastName}" placeholder=""> </div>
                                                         </div>
 
                                                         <!--Email-->
@@ -191,7 +191,7 @@
                                                             <label class="col-sm-2 form-control-label text-xs-right">
                                                                 อีเมล:
                                                             </label>
-                                                            <div class="col-sm-10"> <input type="email" class="form-control" placeholder=""> </div>
+                                                            <div class="col-sm-10"> <input type="email" class="form-control" value="${member.email}" placeholder=""> </div>
                                                         </div>
 
                                                         <!--Submit Btn-->

@@ -172,7 +172,7 @@
                                     <div class="item-col item-col-title">
                                         <div>
                                             <a href="dashboard-project-details.jsp" class="center-text" >
-                                                อพยพเด็กต่างด้าวกลับบ้านเกิด
+                                                ไม่มีโครงการ
                                             </a>
                                         </div>
                                     </div>
@@ -180,14 +180,14 @@
                                     <div class="item-col item-col-stats no-underline">
                                         <div>
                                             <a href="profile.jsp" class="" >
-                                                มานี มีหมี
+
                                             </a>
                                         </div>
                                     </div>
                                     <!--Date-->
                                     <div class="item-col item-col-stats">
                                         <div class="item-heading"> จำนวนครั้งที่ถูกรายงาน </div>
-                                        <div> 1 </div>
+                                        <div>  </div>
                                     </div>
                                 </div>
                             </li>
@@ -196,7 +196,7 @@
 
                     </div>
 
-                    <!--Pagination-->
+                    <!--Pagination
                     <nav class="text-xs-right">
                         <ul class="pagination">
                             <li class="page-item"> <a class="page-link" href="">
@@ -222,7 +222,7 @@
                                 </a> </li>
                         </ul>
                     </nav>
-
+                    -->
                 </article>
 
                 <!-- Footer -->

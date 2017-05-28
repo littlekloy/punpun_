@@ -5,11 +5,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author kanok
  */
-public class Supporter {
+public class Supporter implements Serializable {
 
     private String firstName, lastName;
     private Integer Funded, memberId;
