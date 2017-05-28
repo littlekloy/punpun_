@@ -47,7 +47,7 @@ public class addServlet extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             String detail = request.getParameter("detail");
             out.print(detail);
-            String update = "update projects SET story = ? where project_id = 5";
+            String update = "update projects SET story = ? where project_id = ?";
             PreparedStatement updateData = conn.prepareStatement(update);
             updateData.setString(1, detail);
             System.out.println(updateData.executeUpdate());

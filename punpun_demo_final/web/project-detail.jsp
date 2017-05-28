@@ -138,12 +138,18 @@
                                         <div class="title-block">
                                             <div class="col-md-9 col-sm-6">
                                                 <h1 class="title" style="font-size: 150%"> ${project.name} </h1>
-                                                <p class="title-description"> โดย Kanokwan Muttamara </p>
+
+                                                <p class="title-description"> โดย Kanokwan Muutamara </p>
+
                                                 <div class="">
+
+
+                                                    <!-- Project TAG HERE
                                                     <p><i class="fa fa-tag" > </i> <span>
-                                                            <a href="#"> อุปกรณ์การเรียน </a>
-                                                            <a href="#"> ทุรกันดาร </a>
-                                                        </span></p>
+                                                    <a href="#"> อุปกรณ์การเรียน </a>
+                                                     <a href="#"> ทุรกันดาร </a>
+                                                    </span></p>-->
+
                                                 </div>
                                             </div>
                                             <div class="col-md-3 col-sm-6 social-block">
