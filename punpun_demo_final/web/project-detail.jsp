@@ -161,7 +161,7 @@
                                             <!--Image-->
                                             <div class="col-md-8 col-xs-12  stat-col">
                                                 <div class="project-img-container">
-                                                    <div class="image-project-no-opacity" style="background-image: url('assets/img/Project_Pic/${param.id}/${param.id}.jpg')"></div>
+                                                    <div class="image-project-no-opacity" style="background-image: url('assets/img/Project_Pic/${project.projectId}/${project.projectId}.jpg')"></div>
 
                                                 </div>
                                             </div>
@@ -282,20 +282,7 @@
                                         <!--Detail Tab-->
                                         <div class="tab-pane fade in active" id="details-pills">
                                             <div class="card-block">
-                                                <h2>โครงการสร้างอาคารเรียนดินแก่เด็กอมก๋อย</h2>
-                                                <div class="col-md-4 card-block float-right">
-                                                    <div class="project-img-container">
-                                                        <div class="image-project-detail">
-                                                            <img src="assets/img/Project_Pic/1/P1.jpg" alt=""/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <p>จังหวัดเชียงใหม่ ซึ่งทางเทใจระดมทุนในการสร้างสำเร็จใจเพสแรกนั้น เราจึงอยากชวนทุกคนทำให้อาคารเรียนแห่งนี้มีความพร้อมเพื่อในการสอนหนังสือเด็กอย่างแท้จริงด้วยการระดมทุนซื้อ โต๊ะ เก้าอี้ กระดานไวท์บอร์ด สื่อการสอนและเครื่องครัวเพื่อเด็ก ๆ ที่ห่างไกล </p>
-
-                                                <h2>เด็ก ๆ อยู่ไกลแค่ไหน ?</h2>
-                                                <p> หมู่บ้านปิยอทะ (วาโซทะ) ตั้งอยู่ในตำบลแม่ตื่น อำเภออมก๋อย จังหวัดเชียงใหม่ อยู่ห่างจากจังหวัดเชียงใหม่ประมาณ 300 กิโลเมตร ต้องใช้เวลาขับรถมากกว่า 6-8 ชั่วโมงกว่าจะถึงที่หมาย ยิ่งการเดินทางในฤดูฝนนั้นต้องในรถยนต์ขับเคลื่อน 4 ล้อ ประชากรส่วนใหญ่เป็นชาวเขาชนเผ่ากะเหรี่ยงสะกอร์ ประกอบอาชีพเกษตรกรรม ปลูกข้าวไร่เลื่อนลอย ฐานะยากจนและขาดโอกาสทางการศึกษา เด็ก ๆ ในหมู่บ้านส่วนใหญ่จึงเป็นเด็กยากจนและด้อยโอกาส มีจำนวนครั้วเรือนทั้งหมด 115 ครัวเรือน จาก 3 ย่อมบ้าน คือ ย่อมบ้าน วะโซะทะ ย่อมบ้านปิยอทะ และย่อมบ้านแมะแตะและกิว มีจำนวนประชากรทั้งหมด 485 คน มีเด็กแรกเด็กถึง เด็กอายุ 12 ปี จำนวน 97 คน </p>
-                                                <h2>ดังนั้น เราจึง...</h2>
-                                                <p>ทางคณะกรรมการหมู่บ้านคริสตจักรวาโซทะ ได้จัดกิจกรรมการส่งเสริมการเรียนรู้ ให้กับเด็กในชมชน ตั้งแต่อายุ 3 ปี ถึง อายุ 12 ปี ทุกวันเสาร์และวันอาทิตย์ ปัจจุบัน มีนักเรียนอยู่ 97 คน เป็นชาย 35 คน หญิง 43 คน ช่วงระยะเวลา 2 ปี ที่ผ่านมาทางผู้ปกครองเด็กและเยาวชน จำนวน 60 คน ได้ร่วมกันปรับพื้นที่และร่วมสร้างอาคารเรียนให้กับเด็กๆ ในหมู่บ้าน แต่ปัจจุบันสภาพอาคารที่สร้างจากไม่ไผ่ชำรุด มีความลำบากต่อการจัดกิจกรรมวันเสาร์และวันอาทิตย์ ทางคณะกรรมการชุมชนจึงตัดสินใจที่จะสร้างอาคารเรียนด้วยดิน เพื่อลดการตัดไม้ทำลายป่า</p>
+                                                ${project.story}
                                                 <h1>ทีมดูแลโครงการ</h1>
                                                 <!--List of Teams-->
                                                 <div data-exclude="xs,sm,lg">
@@ -502,102 +489,18 @@
                                                                     </div>
                                                                     <div class="timeline-event timeline-event-default">
                                                                         <div class="timeline-heading">
-                                                                            <h4>timeline-event timeline-event-default</h4>
+                                                                            <h4>เริ่มสร้างโครงการในปันปัน</h4>
                                                                         </div>
                                                                         <div class="timeline-body">
-                                                                            <p>Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p>
+                                                                            <p>เปิดรับการระดมทุน โดยผ่านเว็บไซต์การระดมทุนจากมวลชนที่มีชื่อว่า PUNPUN.COM</p>
                                                                         </div>
                                                                         <div class="timeline-footer">
-                                                                            <p class="text-right">Feb-21-2014</p>
+                                                                            <p class="text-right">${project.startDate}</p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
-                                                                <!-- Update Item : Red -->
-                                                                <div class="timeline-item">
-                                                                    <div class="timeline-point timeline-point-primary">
-                                                                        <i class="fa fa-circle"></i>
-                                                                    </div>
-                                                                    <div class="timeline-event timeline-event-primary">
-                                                                        <div class="timeline-heading">
-                                                                            <h4>timeline-event timeline-event-primary</h4>
-                                                                        </div>
-                                                                        <div class="timeline-body">
-                                                                            <p>Stranguillione in deinde cepit roseo commendavit patris super color est se sed. Virginis plus plorantes abscederem assignato ipsum ait regem Ardalio nos filiae Hellenicus mihi cum. Theophilo litore in lucem in modo invenit quasi nomen magni ergo est se est Apollonius, habet clementiae venit ad nomine sed dominum depressit filia navem.</p>
-                                                                        </div>
-                                                                        <div class="timeline-footer">
-                                                                            <p class="text-right">Feb-23-2014</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
 
-                                                                <div class="timeline-item">
-                                                                    <div class="timeline-point timeline-point-default">
-                                                                        <i class="fa fa-circle"></i>
-                                                                    </div>
-                                                                    <div class="timeline-event timeline-event-default">
-                                                                        <div class="timeline-heading">
-                                                                            <h4>timeline-event timeline-event-default</h4>
-                                                                        </div>
-                                                                        <div class="timeline-body">
-                                                                            <p>Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p>
-                                                                        </div>
-                                                                        <div class="timeline-footer">
-                                                                            <p class="text-right">Feb-21-2014</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="timeline-item">
-                                                                    <div class="timeline-point timeline-point-primary">
-                                                                        <i class="fa fa-circle"></i>
-                                                                    </div>
-                                                                    <div class="timeline-event timeline-event-primary">
-                                                                        <div class="timeline-heading">
-                                                                            <h4>timeline-event timeline-event-primary</h4>
-                                                                        </div>
-                                                                        <div class="timeline-body">
-                                                                            <p>Stranguillione in deinde cepit roseo commendavit patris super color est se sed. Virginis plus plorantes abscederem assignato ipsum ait regem Ardalio nos filiae Hellenicus mihi cum. Theophilo litore in lucem in modo invenit quasi nomen magni ergo est se est Apollonius, habet clementiae venit ad nomine sed dominum depressit filia navem.</p>
-                                                                        </div>
-                                                                        <div class="timeline-footer">
-                                                                            <p class="text-right">Feb-23-2014</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="timeline-item">
-                                                                    <div class="timeline-point timeline-point-default">
-                                                                        <i class="fa fa-circle"></i>
-                                                                    </div>
-                                                                    <div class="timeline-event timeline-event-default">
-                                                                        <div class="timeline-heading">
-                                                                            <h4>timeline-event timeline-event-default</h4>
-                                                                        </div>
-                                                                        <div class="timeline-body">
-                                                                            <p>Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p>
-                                                                        </div>
-                                                                        <div class="timeline-footer">
-                                                                            <p class="text-right">Feb-21-2014</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="timeline-item">
-                                                                    <div class="timeline-point timeline-point-primary">
-                                                                        <i class="fa fa-circle"></i>
-                                                                    </div>
-                                                                    <div class="timeline-event timeline-event-primary">
-                                                                        <div class="timeline-heading">
-                                                                            <h4>timeline-event timeline-event-primary</h4>
-                                                                        </div>
-                                                                        <div class="timeline-body">
-                                                                            <p>Stranguillione in deinde cepit roseo commendavit patris super color est se sed. Virginis plus plorantes abscederem assignato ipsum ait regem Ardalio nos filiae Hellenicus mihi cum. Theophilo litore in lucem in modo invenit quasi nomen magni ergo est se est Apollonius, habet clementiae venit ad nomine sed dominum depressit filia navem.</p>
-                                                                        </div>
-                                                                        <div class="timeline-footer">
-                                                                            <p class="text-right">Feb-23-2014</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
 
                                                                 <span class="timeline-label">
                                                                     <button class="btn btn-oval btn-danger"><i class="fa fa-flag"></i> เริ่มโครงการ</button>
