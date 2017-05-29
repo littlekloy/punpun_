@@ -48,6 +48,10 @@
         <servlet-name>donationServlet</servlet-name>
         <servlet-class>controller.donationServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>reportServlet</servlet-name>
+        <servlet-class>controller.reportServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
@@ -91,6 +95,10 @@
     <servlet-mapping>
         <servlet-name>donationServlet</servlet-name>
         <url-pattern>/donationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>reportServlet</servlet-name>
+        <url-pattern>/reportServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

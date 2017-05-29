@@ -157,9 +157,10 @@
                                     <div class="item-col item-col-header item-col-title ">
                                         <div class="center-text"> <span> ชื่อโครงการ </span> </div>
                                     </div>
+                                    <!--
                                     <div class="item-col item-col-header item-col-stats">
                                         <div > <span> เจ้าของโครงการ </span> </div>
-                                    </div>
+                                    </div>-->
                                     <div class="item-col item-col-header item-col-stats">
                                         <div > <span> ถูกรายงาน </span> </div>
                                     </div>
@@ -168,40 +169,48 @@
                                     </div>
                                 </div>
                             </li>
+                            <sql:query var="result" dataSource="punpun">
+                                SELECT count(report_log_id) num, report_log.project_id, name FROM report_log join projects on projects.project_id = report_log.project_id group by project_id
+                            </sql:query>
 
-                            <!-- Comment Item : Loop here -->
-                            <li class="item">
-                                <div class="item-row">
-                                    <!--Comment-->
-                                    <div class="item-col item-col-title">
-                                        <div>
-                                            <a href="project-detail.jsp" class="center-text" >
-                                                พิซซ่าเพื่อเด็กน้อยด้อยโอกาส
-                                            </a>
+
+                            <c:forEach var="row" items="${result.rows}">
+                                <!-- Comment Item : Loop here -->
+                                <li class="item">
+                                    <div class="item-row">
+                                        <!--Comment-->
+                                        <div class="item-col item-col-title">
+                                            <div>
+                                                <a href="viewProjectServlet?id=${row.project_id}" class="center-text" >
+                                                    ${row.name}
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!--Name of Commenter
+                                        <div class="item-col item-col-stats no-underline">
+                                            <div>
+                                                <a href="dashboard-profile.jsp" class="" >
+                                                    สมศรี ซื่อสัตย์
+                                                </a>
+                                            </div>
+                                        </div>-->
+                                        <!--Date-->
+                                        <div class="item-col item-col-stats">
+                                            <div class="item-heading"> จำนวนครั้งที่ถูกรายงาน </div>
+                                            <div> ${row.num} </div>
+                                        </div>
+                                        <!-- Setting Button -->
+                                        <div class="item-col item-col-stats">
+                                            <div class="item-actions-dropdown">
+                                                <input type="submit" class="btn btn-danger btn-block"  value="ระงับ"  />
+                                                <input type="submit" class="btn btn-danger-outline btn-block"  value="ไม่ระงับ"  />
+                                            </div>
                                         </div>
                                     </div>
-                                    <!--Name of Commenter-->
-                                    <div class="item-col item-col-stats no-underline">
-                                        <div>
-                                            <a href="dashboard-profile.jsp" class="" >
-                                                สมศรี ซื่อสัตย์
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!--Date-->
-                                    <div class="item-col item-col-stats">
-                                        <div class="item-heading"> จำนวนครั้งที่ถูกรายงาน </div>
-                                        <div> 1 </div>
-                                    </div>
-                                    <!-- Setting Button -->
-                                    <div class="item-col item-col-stats">
-                                        <div class="item-actions-dropdown">
-                                            <input type="submit" class="btn btn-danger btn-block"  value="ระงับ"  />
-                                            <input type="submit" class="btn btn-danger-outline btn-block"  value="ไม่ระงับ"  />
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                                </li>
+                            </c:forEach>
+
+
 
                         </ul>
 

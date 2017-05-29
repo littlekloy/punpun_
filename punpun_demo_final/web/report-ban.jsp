@@ -136,12 +136,12 @@
                                     <!-- Project Name -->
                                     <div class="title-block">
                                         <div class="col-md-9 col-sm-6">
-                                            <h1 class="title" style="font-size: 150%"> ${param.id} </h1>
-                                            <p class="title-description">โดย Lorem Ipsum</p>
+                                            <h1 class="title" style="font-size: 150%"> ${project.name} </h1>
+                                            <p class="title-description">โดย Kanokwan Muttamara</p>
                                             <div class="">
                                                 <p><i class="fa fa-tag" > </i> <span>
-                                                        <a href="#"> Tag1 </a>
-                                                        <a href="#"> Tag2 </a>
+                                                        <a href="#"> เด็ก </a>
+                                                        <a href="#"> ทะเล </a>
                                                     </span></p>
                                             </div>
                                         </div>
@@ -151,12 +151,12 @@
                                         <!--Image-->
                                         <div class="col-md-6 col-xs-12  stat-col">
                                             <div class="project-img-container">
-                                                <div class="image-project-no-opacity" style="background-image: url('assets/backgrounds/profile-card-1.jpg')"></div>
+                                                <div class="image-project-no-opacity" style="background-image: url('assets/img/Project_Pic/${project.projectId}/${project.projectId}.jpg')"></div>
                                             </div>
                                         </div>
                                         <!--Icon Stat-->
                                         <div class="col-md-6 col-xs-12">
-                                            <p class=""> Fitzroy Crossing is very remote. It is very expensive to get anything there, and even more expensive to buy things there. Bawoorrooga is 500KM from Broome, and over 2000km from Perth. We need as much as we can to help get these guys back on their feet again </p>
+                                            <p class=""> ${project.shortDescription} </p>
                                         </div>
                                     </div>
                                     <!-- Report Form Card -->
@@ -166,22 +166,22 @@
                                                 <div class="title-block">
                                                     <h3 class="title">ทำไมโครงการนี้ถึงไม่เหมาะสม</h3>
                                                 </div>
-                                                <form role="form">
+                                                <form role="form" action="reportServlet">
                                                     <div class="form-group">
-                                                        <select class="form-control boxed" onchange="">
+                                                        <select class="form-control boxed" onchange="" name="reason">
                                                             <option disabled selected value="0"> -- เลือกเหตุผล --</option>
-                                                            <option value="1">แจ้งอะไรก็ไม่ชัด งง</option>
-                                                            <option value="2">ใช้เงินเยอะเกินความจำเป็น เอาไปสร้างจรวดหรอ</option>
-                                                            <option value="3">มัน-อแหล ก๊อปคนอื่นมา</option>
-                                                            <option value="4">อื่น ๆ</option>
+                                                            <option value="รายละเอีดยโครงการไม่ชัดเจน"> รายละเอีดยโครงการไม่ชัดเจน  </option>
+                                                            <option value="ใช้ค่าใช้จ่ายมากเกินความจำเป็น"> ใช้ค่าใช้จ่ายมากเกินความจำเป็น</option>
+                                                            <option value="คัดลอกโครงการอื่นมk"> คัดลอกโครงการอื่นมา</option>
+                                                            <option value="อื่น ๆ"> อื่น ๆ</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <textarea rows="2" class="form-control boxed" placeholder="... อื่นๆ กรอกที่นี่ ..."></textarea>
+                                                        <textarea rows="2" class="form-control boxed" name="detail" placeholder="... รายละเอียดเพิ่มเดิม ..."></textarea>
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="submit" class="btn btn-danger" value="แสดงความคิดเห็น" name="comment">
-                                                        <a href="project-detail.html" class="btn btn-danger-outline">ยกเลิก</a>
+                                                        <input type="submit" class="btn btn-danger" value="รายงานโครงการ" name="">
+                                                        <a href="project-detail.jsp" class="btn btn-danger-outline">ยกเลิก</a>
                                                     </div>
                                                 </form>
                                             </div>

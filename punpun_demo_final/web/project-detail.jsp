@@ -294,7 +294,7 @@
                                                 <div data-exclude="xs,sm,lg">
                                                     <!-- Table Content -->
                                                     <ul class="item-list striped">
-                                                        ${project.teamCollection}
+
                                                         <c:forEach var="teamMember" items="${project.teamCollection}">
                                                             <!-- Team Item : Loop here -->
                                                             <li class="item">
