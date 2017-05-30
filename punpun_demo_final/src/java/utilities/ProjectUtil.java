@@ -60,7 +60,7 @@ public class ProjectUtil implements Serializable {
     }
 
     public ArrayList<Projects> findAllProjects() {
-        String cmd = "select * from projects";
+        String cmd = "select * from projects where status = 'accept'";
         ArrayList<Projects> projects = new ArrayList<Projects>();
         try {
             selectData = conn.prepareStatement(cmd);
@@ -316,25 +316,13 @@ public class ProjectUtil implements Serializable {
         return null;
     }
 
-    public Projects createProject(Projects project) {
-        try {
-            Projects newProject = project;
-            String sql = "Insert into project values (?,?,?,?)";
-            PreparedStatement insertData = conn.prepareStatement(sql);
-            return newProject;
-        } catch (SQLException ex) {
-            Logger.getLogger(ProjectUtil.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-
     public ArrayList<ProjectCategories> getAllCategory() {
         try {
             ArrayList<ProjectCategories> category = new ArrayList<ProjectCategories>();
             String cmdSelect = "SELECT * FROM project_categories";
             PreparedStatement selectData = conn.prepareStatement(cmdSelect);
             ResultSet rs = selectData.executeQuery();
-            int i = 0;
+
             while (rs.next()) {
                 ProjectCategories cate = new ProjectCategories();
                 cate.setName(rs.getString("name"));
@@ -349,4 +337,57 @@ public class ProjectUtil implements Serializable {
         return null;
     }
 
+    public Integer updateProjectInfo(Projects project) {
+        try {
+            PreparedStatement insertData;
+            String cmd_1 = "UPDATE projects SET name = ?, funding_duration = ?, budget = ?, short_description = ?, story = ?,";
+            String cmd_2 = " project_category_id = ? WHERE project_id = ?";
+            insertData = conn.prepareStatement(cmd_1 + cmd_2);
+            insertData.setString(1, project.getName());
+            insertData.setInt(2, project.getFundingDuration());
+            insertData.setFloat(3, project.getBudget());
+            insertData.setString(4, project.getShortDescription());
+            insertData.setString(5, project.getStory());
+            insertData.setInt(6, project.getProjectCategoryId());
+            insertData.setInt(7, project.getProjectId());
+            System.out.println(insertData);
+            addProjectItem(project.getItemCollection(), project);
+            return insertData.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectUtil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public Integer addProjectItem(ArrayList<ProjectItems> projectItem, Projects project) {
+        for (ProjectItems pj : projectItem) {
+            try {
+                System.out.println(pj.getItems().getName());
+                PreparedStatement insertItem = conn.prepareStatement("Insert into project_items (project_id,item_id,amount) values (?,?,?)");
+                insertItem.setInt(1, project.getProjectId());
+                insertItem.setInt(2, pj.getItems().getItemId());
+                insertItem.setFloat(3, pj.getAmount());
+                System.out.println(insertItem);
+                insertItem.executeUpdate();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(ProjectUtil.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
+    }
+
+    public Integer deleteProjectItem(Projects project) {
+        try {
+            PreparedStatement deleteItem = conn.prepareStatement("DELETE FROM project_items WHERE project_id = ?");
+            deleteItem.setInt(1, project.getProjectId());
+            System.out.println(deleteItem);
+            return deleteItem.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectUtil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

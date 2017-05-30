@@ -158,27 +158,28 @@
                                             <div class="tab-pane fade in active" id="submit-pills">
                                                 <div class="card card-block">
                                                     <h4>คุณต้องยืนยันข้อมูล และส่งข้อมูลเพื่อให้เจ้าหน้าที่พิจารณา (กระบวนการนี้ใช้เวลาประมาณ 3 - 5 วัน)</h4>
-                                                    <p>แต่ก่อนที่จะเสนอโครงการนี้ คุณต้องตรวจสอบข้อมูลเหล่านี้ให้เรียบร้อยก่อนครับ</p>
+                                                    <!--                                                    <p>แต่ก่อนที่จะเสนอโครงการนี้ คุณต้องตรวจสอบข้อมูลเหล่านี้ให้เรียบร้อยก่อนครับ</p>
 
-                                                    <!--Type of Missing : Loop here-->
-                                                    <h4>ข้อมูลเบื้องต้น</h4>
-                                                    <ol>
-                                                        <!--Missing Item : Loop Here-->
-                                                        <li>ประเภทโครงการ</li>
-                                                        <li>ยอดเงินระดมทุนที่ต้องการ</li>
-                                                        <li>ระยะเวลาของโครงการ</li>
-                                                    </ol>
+                                                                                                        Type of Missing : Loop here
+                                                                                                        <h4>ข้อมูลเบื้องต้น</h4>
+                                                                                                        <ol>
+                                                                                                            Missing Item : Loop Here
+                                                                                                            <li>ประเภทโครงการ</li>
+                                                                                                            <li>ยอดเงินระดมทุนที่ต้องการ</li>
+                                                                                                            <li>ระยะเวลาของโครงการ</li>
+                                                                                                        </ol>
 
-                                                    <h4>รูปภาพของโครงการ</h4>
-                                                    <ol>
-                                                        <!--Missing Item : Loop Here-->
-                                                        <li>อัพโหลดรูปภาพ</li>
-                                                    </ol>
+                                                                                                        <h4>รูปภาพของโครงการ</h4>
+                                                                                                        <ol>
+                                                                                                            Missing Item : Loop Here
+                                                                                                            <li>อัพโหลดรูปภาพ</li>
+                                                                                                        </ol>-->
 
                                                     <!--Button-->
-                                                    <input type="submit" class="btn btn-primary btn-block"  value="บันทึก"  />
-                                                    <input type="submit" class="btn btn-primary-outline btn-block"  value="ยกเลิก"  />
-
+                                                    <form action="submitServlet">
+                                                        <input type="submit" class="btn btn-primary btn-block"  value="บันทึก"  />
+                                                        <input type="submit" class="btn btn-primary-outline btn-block"  value="ยกเลิก"  />
+                                                    </form>
                                                 </div>
                                             </div>
 

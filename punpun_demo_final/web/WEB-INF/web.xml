@@ -76,6 +76,10 @@
         <servlet-name>setupImageServlet</servlet-name>
         <servlet-class>controller.setupImageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>submitServlet</servlet-name>
+        <servlet-class>controller.submitServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
@@ -147,6 +151,10 @@
     <servlet-mapping>
         <servlet-name>setupImageServlet</servlet-name>
         <url-pattern>/setupImageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>submitServlet</servlet-name>
+        <url-pattern>/submitServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

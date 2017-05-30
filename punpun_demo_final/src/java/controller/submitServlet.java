@@ -5,28 +5,23 @@
  */
 package controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 import model.Projects;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import utilities.ProjectUtil;
 
 /**
  *
  * @author kanok
  */
-public class setupImageServlet extends HttpServlet {
+public class submitServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,34 +37,21 @@ public class setupImageServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+
             HttpSession session = request.getSession();
-            boolean isMultipart;
-            String filePath;
-            int maxFileSize = 50 * 1024;
-            int maxMemSize = 4 * 1024;
-            File file;
 
-            // Get the file location where it would be stored.
-            filePath = getServletContext().getInitParameter("file-upload");
+            ServletContext context = getServletContext();
+            DataSource ds = (DataSource) context.getAttribute("dataSource");
 
-            isMultipart = ServletFileUpload.isMultipartContent(request);
-            out.print(isMultipart);
-            List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
-            String uploadFolder = ("D:\\Dropbox\\CharityWeb_Kloy_Ice\\Implemented_Sytem\\Code\\punpun_final\\punpun_\\punpun_demo_final\\web\\assets\\img\\projectPic");
-            out.print(uploadFolder);
-            Projects projects = (Projects) session.getAttribute("newProject");
-            for (FileItem item : multiparts) {
-                if (!item.isFormField()) {
-                    String name = new File(item.getName()).getName();
-                    out.print(uploadFolder + File.separator + projects.getProjectId() + ".png");
-                    item.write(new File(uploadFolder + File.separator + projects.getProjectId() + ".png"));
-                }
-            }
-            response.sendRedirect("dashboard-project-setup-image.jsp");
-        } catch (FileUploadException ex) {
-            Logger.getLogger(setupImageServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(setupImageServlet.class.getName()).log(Level.SEVERE, null, ex);
+            ProjectUtil projectUtil = new ProjectUtil(ds);
+            projectUtil.connect();
+
+            Projects project = (Projects) session.getAttribute("newProject");
+            projectUtil.deleteProjectItem(project);
+            projectUtil.updateProjectInfo(project);
+
+            projectUtil.closeConnection();
+            response.sendRedirect("dashboard-project-list.jsp");
         }
     }
 

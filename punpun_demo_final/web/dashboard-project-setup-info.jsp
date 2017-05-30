@@ -199,7 +199,14 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <!--Target Form Card-->
 
+                                                        <div class="card card-block">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> คำอธิบายโครงการอย่างย่อ : </label>
+                                                                <div class="col-sm-6"> <textarea type="number" required name="description" class="form-control boxed" min="0" placeholder=" คำอธิบายโครงการ "></textarea> </div>
+                                                            </div>
+                                                        </div>
                                                         <!--Target Form Card-->
                                                         <div class="card card-block">
                                                             <div class="form-group row">
@@ -275,7 +282,13 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
+                                                        <!--Target Form Card-->
+                                                        <div class="card card-block">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> คำอธิบายโครงการอย่างย่อ : </label>
+                                                                <div class="col-sm-6"> <textarea type="number" required name="description" class="form-control boxed" min="0" placeholder=" คำอธิบายโครงการ "> ${newProject.shortDescription}</textarea> </div>
+                                                            </div>
+                                                        </div>
                                                         <!--Target Form Card-->
                                                         <div class="card card-block">
                                                             <div class="form-group row">

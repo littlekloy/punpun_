@@ -134,8 +134,8 @@
                                     <div class="card-block">
                                         <div class="title-block">
                                             <div class="col-md-8 col-sm-6">
-                                                <h1 class="title" style="font-size: 150%"> โครงการบลาบีบูบลาลาก้า </h1>
-                                                <p class="title-description">โดย Lorem Ipsum</p>
+                                                <h1 class="title" style="font-size: 150%"> ${newProject.name} </h1>
+                                                <p class="title-description">โดย ${newProject.projectOwner.firstName} ${newProject.projectOwner.lastName}</p>
                                                 <div class="">
                                                     <p><i class="fa fa-tag" > </i> <span>
                                                             <a href="#"> Tag1 </a>
@@ -209,7 +209,7 @@
                                                 <div class="col-xs-12 stat-col">
                                                     <div class="stat-icon"> <i class="fa fa-clock-o"></i> </div>
                                                     <div class="stat">
-                                                        <div class="value"> -- </div>
+                                                        <div class="value"> ${newProject.fundingDuration} </div>
                                                         <div class="name"> วัน </div>
                                                     </div>
                                                 </div>
@@ -220,9 +220,9 @@
                                             <div class="col-xs-12 col-md-8 stat-col">
                                                 <div class="stat-icon"> <i class="fa fa-flag"></i> </div>
                                                 <div class="stat">
-                                                    <div class="value"> ----- / ----- </div>
+                                                    <div class="value"> 0 / ${newProject.budget} </div>
                                                 </div>
-                                                <progress class="progress stat-progress" value="75" max="100">
+                                                <progress class="progress stat-progress" value="0" max="100">
                                                     <div class="progress">
                                                         <span class="progress-bar" style="width: 75%;"></span>
                                                     </div>
@@ -272,18 +272,7 @@
                                         <!--Detail Tab-->
                                         <div class="tab-pane fade in active" id="details-pills">
                                             <div class="card-block">
-                                                <h2>A little bit of context</h2>
-                                                <p>[Set the scene. Zoom right out and set the scene for your audience. Many of them will already know this, but it moves their brain into the right frame to introduce what you’re doing.] </p>
-                                                <h2>But there’s a problem</h2>
-                                                <p>[Explain what the problem is in the current context. Normally there’s something broken in the current context or there’s an opportunity – whichever it is, tell people what the issue is, before you tell them how you’re going to solve (or take advantage of) it.]</p>
-                                                <h2>Here’s what we’re doing about it</h2>
-                                                <p>[What are you doing to solve the issue? This is where you talk about what you’re going to do. Keep it simple and specific. Avoid non-profit buzzwords that no-one really understands (seriously, don’t do it).]</p>
-                                                <p>And how it’s going to change the world</p>
-                                                <p>[How will what you do change the world? Here’s where you talk about how what you’re doing will make a difference.]</p>
-                                                <h2>You can join us</h2>
-                                                <p>[How much do you need and what are you going to spend it on? And always end with an ask. Be clear on how much you want to raise and what you’re going to spend it on.]</p>
-                                                <h2>And here’s some amaziing perks for supporting us that you can’t live without</h2>
-                                                <p>[Describe your perks, show them some pictures and tell them how great they are]</p>
+                                                ${newProject.story}
                                                 <h1>ทีมดูแลโครงการ</h1>
                                                 <!--List of Teams-->
                                                 <div data-exclude="xs,sm,lg">
@@ -294,27 +283,24 @@
                                                             <div class="item-row">
                                                                 <div class="item-col fixed item-col-img md">
                                                                     <a href="item-editor.jsp">
-                                                                        <div class="item-img rounded" style="background-image: url('assets/backgrounds/profile-card-1.jpg')"></div>
+                                                                        <div class="item-img rounded" style="background-image: url('assets/img/profile/0000${newProject.projectOwner.memberId}.jpg')"></div>
                                                                     </a>
                                                                 </div>
                                                                 <!--Name of Team-->
                                                                 <div class="item-col item-col-title no-overflow no-underline">
                                                                     <div>
-                                                                        <a href="error-404.jsp" class="center-text">
-                                                                            ---------- ----------
+                                                                        <a href="#" class="center-text">
+                                                                            ${newProject.projectOwner.firstName} ${newProject.projectOwner.lastName}
                                                                         </a>
+
                                                                     </div>
                                                                 </div>
                                                                 <!--Position-->
                                                                 <div class="item-col item-col-center">
                                                                     <div class="item-heading"> ตำแหน่ง </div>
-                                                                    <div> ------ </div>
+                                                                    <div> เจ้าของโครงการ </div>
                                                                 </div>
-                                                                <!--Join Date-->
-                                                                <div class="item-col item-col-center">
-                                                                    <div class="item-heading"> วันที่เข้าร่วม </div>
-                                                                    <div> -- -- ---- </div>
-                                                                </div>
+
                                                             </div>
                                                         </li>
                                                     </ul>
@@ -348,74 +334,31 @@
                                                                 </div>
                                                             </li>
                                                             <!-- Wishlist item -->
-                                                            <li class="item">
-                                                                <div class="item-row">
-                                                                    <!--Name of Team-->
-                                                                    <div class="item-col item-col-title no-overflow no-underline">
-                                                                        <div>
-                                                                            <div class="center-text">
-                                                                                หลอดประหยัดไฟเบอร์สี่ แสงสีทำให้ผีกลายเป็นคน
+                                                            <c:forEach var="item" items="${newProject.itemCollection}">
+                                                                <li class="item">
+                                                                    <div class="item-row">
+                                                                        <!--Name of Team-->
+                                                                        <div class="item-col item-col-title no-overflow no-underline">
+                                                                            <div>
+                                                                                <div class="center-text">
+                                                                                    ${item.items.name}
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <!--Position-->
-                                                                    <div class="item-col item-col-center">
-                                                                        <div class="item-heading"> ยอดที่ได้รับ </div>
-                                                                        <div> 400 </div>
-                                                                    </div>
-                                                                    <!--Join Date-->
-                                                                    <div class="item-col item-col-center">
-                                                                        <div class="item-heading"> ยอดเงินเป้าหมาย </div>
-                                                                        <div> 40000 </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <!-- Wishlist item -->
-                                                            <li class="item">
-                                                                <div class="item-row">
-                                                                    <!--Name of Team-->
-                                                                    <div class="item-col item-col-title no-overflow no-underline">
-                                                                        <div>
-                                                                            <div class="center-text">
-                                                                                ไวน์จากฝรั่งเศส ม็องนากู ฮาพอเมิงเลอ
-                                                                            </div>
+                                                                        <!--Position-->
+                                                                        <div class="item-col item-col-center">
+                                                                            <div class="item-heading"> ยอดที่ได้รับ </div>
+                                                                            <div> 0 </div>
+                                                                        </div>
+                                                                        <!--Join Date-->
+                                                                        <div class="item-col item-col-center">
+                                                                            <div class="item-heading"> ยอดเงินเป้าหมาย </div>
+                                                                            <div> ${item.amount} </div>
                                                                         </div>
                                                                     </div>
-                                                                    <!--Position-->
-                                                                    <div class="item-col item-col-center">
-                                                                        <div class="item-heading"> ยอดที่ได้รับ </div>
-                                                                        <div> 900 </div>
-                                                                    </div>
-                                                                    <!--Join Date-->
-                                                                    <div class="item-col item-col-center">
-                                                                        <div class="item-heading"> ยอดเงินเป้าหมาย </div>
-                                                                        <div> 90000 </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <!-- Wishlist item -->
-                                                            <li class="item">
-                                                                <div class="item-row">
-                                                                    <!--Name of Team-->
-                                                                    <div class="item-col item-col-title no-overflow no-underline">
-                                                                        <div>
-                                                                            <div class="center-text">
-                                                                                ยาอมโตบัน ปากหอมอมยา ปากxมาอมตรีน
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!--Position-->
-                                                                    <div class="item-col item-col-center">
-                                                                        <div class="item-heading"> ยอดที่ได้รับ </div>
-                                                                        <div> 900 </div>
-                                                                    </div>
-                                                                    <!--Join Date-->
-                                                                    <div class="item-col item-col-center">
-                                                                        <div class="item-heading"> ยอดเงินเป้าหมาย </div>
-                                                                        <div> 90000 </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
+                                                                </li>
+                                                            </c:forEach>
+
                                                         </ul>
                                                     </form>
                                                 </div>
@@ -428,6 +371,7 @@
                                                 <div data-exclude="xs,sm,lg">
                                                     <!-- Table Content -->
                                                     <ul class="item-list striped">
+                                                        ไม่มีผู้ร่วมระดมทุน
                                                     </ul>
                                                 </div>
                                             </div>
@@ -442,7 +386,7 @@
                                                             <form>
                                                                 <label class="control-label">ความคิดเห็น</label>
                                                                 <textarea rows="3" class="form-control boxed" placeholder="...แสดงความคิดเห็นของคุณที่นี่..."></textarea>
-                                                                <input type="submit" class="btn btn-primary want-top" value="แสดงความคิดเห็น" name="comment">
+                                                                <input type="submit" class="btn btn-primary want-top" value="แสดงความคิดเห็น" disabled="disabled" name="comment">
                                                             </form>
                                                         </div>
                                                     </div>
