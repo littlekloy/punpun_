@@ -10,9 +10,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sql.DataSource;
+import model.Donations;
 import model.Members;
 import model.Projects;
 
@@ -125,6 +127,59 @@ public class DonationUtil {
             updateData.setInt(2, donationId);
             System.out.println(updateData);
             return updateData.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DonationUtil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public Donations findDonationtById(Integer donationId) {
+        try {
+            String cmd = "SELECT * from donations where donation_id = ?;";
+            PreparedStatement selectData = conn.prepareStatement(cmd);
+            selectData.setInt(1, donationId);
+            System.out.print(selectData);
+            ResultSet rs = selectData.executeQuery();
+            while (rs.next()) {
+                Donations donation = new Donations();
+                donation.setAmount(rs.getFloat("amount"));
+                System.out.println("Amount : " + donation.getAmount());
+                donation.setDate(rs.getDate("date"));
+                Members members = new Members(rs.getInt("member_id"));
+                donation.setMemberId(members);
+
+                ProjectUtil projectUtil = new ProjectUtil(ds);
+                projectUtil.connect();
+                Projects project = projectUtil.findProjectById(rs.getInt("project_id"));
+
+                donation.setProjectId(project);
+                donation.setStatus(rs.getString("status"));
+                donation.setDonationId(rs.getInt("donation_id"));
+                donation.setMethod(rs.getString("method"));
+
+                return donation;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DonationUtil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public ArrayList<Donations> findDonationByMemberId(Integer memberId) {
+        try {
+            ArrayList<Donations> donations = new ArrayList<Donations>();
+            String cmd = "SELECT * from donations where member_id = ?;";
+            PreparedStatement selectData = conn.prepareStatement(cmd);
+            selectData.setInt(1, memberId);
+            System.out.print(selectData);
+            ResultSet rs = selectData.executeQuery();
+            while (rs.next()) {
+                Donations donation = this.findDonationtById(rs.getInt("donation_id"));
+                donations.add(donation);
+                System.out.println("From Funded " + donations.get(0).getAmount());
+            }
+            return donations;
         } catch (SQLException ex) {
             Logger.getLogger(DonationUtil.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -157,7 +157,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="card-block hover-effect">
-                                                    <h3 class="center-text"> 0 </h3>
+                                                    <h3 class="center-text"> ${accept.size()} </h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -187,7 +187,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="card-block hover-effect">
-                                                    <h3 class="center-text"> 0 </h3>
+                                                    <h3 class="center-text"> ${delete.size()} </h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -202,7 +202,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="card-block hover-effect">
-                                                    <h3 class="center-text"> 0 </h3>
+                                                    <h3 class="center-text"> ${draft.size()} </h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -217,7 +217,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="card-block hover-effect">
-                                                    <h3 class="center-text"> 0 </h3>
+                                                    <h3 class="center-text"> ${pending.size()} </h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -228,11 +228,11 @@
                                             <div class="card card-draft sameheight-item">
                                                 <div class="card-header">
                                                     <div class="header-block">
-                                                        <p class="title"> โครงการที่บันทึก </p>
+                                                        <p class="title"> โครงการที่ปฏิเสธ </p>
                                                     </div>
                                                 </div>
                                                 <div class="card-block hover-effect">
-                                                    <h3 class="center-text"> 0 </h3>
+                                                    <h3 class="center-text"> ${eject.size()} </h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -262,27 +262,29 @@
                                                 </div>
                                             </div>
                                         </li>
+                                        <c:forEach var="yourProject" items="${yoursProject}">
+                                            <!--Item : Loop here-->
+                                            <li class="item">
+                                                <div class="item-row">
 
-                                        <!-- Item : Loop here
-                                        <li class="item">
-                                            <div class="item-row">
+                                                    <div class="item-col item-col-title no-overflow">
+                                                        <div>
+                                                            <a href="" class="">
 
-                                                <div class="item-col item-col-title no-overflow">
-                                                    <div>
-                                                        <a href="" class="">
+                                                                <h4 class="item-title no-wrap"> ${yourProject.name} </h4>
+                                                            </a>
+                                                        </div>
+                                                    </div>
 
-                                                            <h4 class="item-title no-wrap"> Name's My Project  </h4>
-                                                        </a>
+                                                    <div class="item-col item-col-sales">
+                                                        <div class="item-heading"> จำนวนเงินที่ระดมทุน </div>
+                                                        <div>   ${yourProject.funded} </div>
                                                     </div>
                                                 </div>
+                                            </li>
 
-                                                <div class="item-col item-col-sales">
-                                                    <div class="item-heading"> จำนวนเงินที่ระดมทุน </div>
-                                                    <div>   amount's My Project </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        -->
+                                        </c:forEach>
+
 
                                     </ul>
                                 </div>
@@ -337,7 +339,7 @@
                                             <div class="col-xs-12 col-sm-6 stat-col">
                                                 <div class="stat-icon"> <i class="fa fa-heart"></i> </div>
                                                 <div class="stat">
-                                                    <div class="value"> 0 </div>
+                                                    <div class="value"> ${fundedDonations.size()} </div>
                                                     <div class="name"> โครงการที่ร่วมระดมทุน </div>
                                                 </div>
                                             </div>
@@ -402,41 +404,43 @@
                                                 </div>
                                             </div>
                                         </li>
-
-                                        <!-- Item : Loop here -->
-                                        <li class="item">
-                                            <div class="item-row">
-                                                <!--Image of Project
-                                                <div class="item-col fixed item-col-img xs">
-                                                    <a href="">
-                                                        <div class="item-img xs rounded" style="background-image: url(https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg)"></div>
-                                                    </a>
-                                                </div>-->
-                                                <!--Name of Project-->
-                                                <div class="item-col item-col-title no-overflow">
-                                                    <div>
-                                                        <a href="" class="">
-                                                            <h4 class="item-title no-wrap"> ไม่มีโครงการที่เคยระดมทุน </h4>
+                                        <c:forEach var="fundedDonation" items="${fundedDonations}">
+                                            <!-- Item : Loop here -->
+                                            <li class="item">
+                                                <div class="item-row">
+                                                    <!--Image of Project
+                                                    <div class="item-col fixed item-col-img xs">
+                                                        <a href="">
+                                                            <div class="item-img xs rounded" style="background-image: url(https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg)"></div>
                                                         </a>
+                                                    </div>-->
+                                                    <!--Name of Project-->
+                                                    <div class="item-col item-col-title no-overflow">
+                                                        <div>
+                                                            <a href="" class="">
+                                                                <h4 class="item-title no-wrap"> ${fundedDonation.projectId.name} </h4>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <!--Amount of Funded-->
+                                                    <div class="item-col item-col-sales">
+                                                        <div class="item-heading"> จำนวนเงิน</div>
+                                                        <div> ${fundedDonation.amount} </div>
+                                                    </div>
+                                                    <!--Category-->
+                                                    <div class="item-col item-col-category no-overflow">
+                                                        <div class="item-heading"> ประเภท </div>
+                                                        <div class="no-overflow"> <a href="">${fundedDonation.projectId.projectCategory.name}</a> </div>
+                                                    </div>
+                                                    <!--Date-->
+                                                    <div class="item-col item-col-date">
+                                                        <div class="item-heading"> วันที่ระดมทุน </div>
+                                                        <div>${fundedDonation.date}  </div>
                                                     </div>
                                                 </div>
-                                                <!--Amount of Funded-->
-                                                <div class="item-col item-col-sales">
-                                                    <div class="item-heading"> จำนวนเงินที่ระดมทุน </div>
-                                                    <div>  </div>
-                                                </div>
-                                                <!--Category-->
-                                                <div class="item-col item-col-category no-overflow">
-                                                    <div class="item-heading"> ประเภท </div>
-                                                    <div class="no-overflow"> <a href=""></a> </div>
-                                                </div>
-                                                <!--Date-->
-                                                <div class="item-col item-col-date">
-                                                    <div class="item-heading"> วันที่ระดมทุน </div>
-                                                    <div>  </div>
-                                                </div>
-                                            </div>
-                                        </li>
+                                            </li>
+                                        </c:forEach>
+
 
 
                                     </ul>

@@ -113,6 +113,7 @@ public class Projects implements Serializable {
     @JoinColumn(name = "project_category_id", referencedColumnName = "project_category_id")
     @ManyToOne
     private Integer projectCategoryId;
+    private ProjectCategories projectCategory;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "projectId")
     private ArrayList<ProjectDonations> projectDonationsCollection;
     @OneToMany(mappedBy = "projectId")
@@ -121,6 +122,14 @@ public class Projects implements Serializable {
     private ArrayList<Comments> commentsCollection;
 
     public Projects() {
+    }
+
+    public ProjectCategories getProjectCategory() {
+        return projectCategory;
+    }
+
+    public void setProjectCategory(ProjectCategories projectCategory) {
+        this.projectCategory = projectCategory;
     }
 
     public Members getProjectOwner() {

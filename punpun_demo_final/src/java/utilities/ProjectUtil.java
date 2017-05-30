@@ -79,6 +79,18 @@ public class ProjectUtil implements Serializable {
                 project.setStatus(rs.getString("status"));
                 project.setProjectCategoryId(rs.getInt("project_category_id"));
 
+                //GET PROJECTCATEGORY
+                String cmd_cate = "SELECT * FROM project_categories WHERE project_category_id = ?";
+                PreparedStatement selectCate = conn.prepareStatement(cmd_cate);
+                selectCate.setInt(1, rs.getInt("project_category_id"));
+                ResultSet rsCate = selectCate.executeQuery();
+                if (rsCate.next()) {
+                    ProjectCategories pjC = new ProjectCategories();
+                    pjC.setProjectCategoryId(rsCate.getInt("project_category_id"));
+                    pjC.setName(rsCate.getString("name"));
+                    project.setProjectCategory(pjC);
+                }
+
                 //GET SUPPORTER
                 String cmd_supporter_1 = "SELECT members.member_id, first_name, last_name, sum(amount) FROM donations ";
                 String cmd_supporter_2 = "left join members on members.member_id = donations.member_id  ";
@@ -142,6 +154,18 @@ public class ProjectUtil implements Serializable {
                 project.setStory(rs.getString("story"));
                 project.setStatus(rs.getString("status"));
                 project.setProjectCategoryId(rs.getInt("project_category_id"));
+                //GET PROJECTCATEGORY
+                String cmd_cate = "SELECT * FROM project_categories WHERE project_category_id = ?";
+                PreparedStatement selectCate = conn.prepareStatement(cmd_cate);
+                selectCate.setInt(1, rs.getInt("project_category_id"));
+                ResultSet rsCate = selectCate.executeQuery();
+                if (rsCate.next()) {
+                    ProjectCategories pjC = new ProjectCategories();
+                    pjC.setProjectCategoryId(rsCate.getInt("project_category_id"));
+                    pjC.setName(rsCate.getString("name"));
+                    project.setProjectCategory(pjC);
+                }
+
                 project.setTeamId(rs.getInt("team_id"));
                 //GET TEAM MEMBER
                 selectData2.setInt(1, rs.getInt("team_id"));
@@ -278,7 +302,17 @@ public class ProjectUtil implements Serializable {
                 project.setStory(rs.getString("story"));
                 project.setStatus(rs.getString("status"));
                 project.setProjectCategoryId(rs.getInt("project_category_id"));
-
+                //GET PROJECTCATEGORY
+                String cmd_cate = "SELECT * FROM project_categories WHERE project_category_id = ?";
+                PreparedStatement selectCate = conn.prepareStatement(cmd_cate);
+                selectCate.setInt(1, rs.getInt("project_category_id"));
+                ResultSet rsCate = selectCate.executeQuery();
+                if (rsCate.next()) {
+                    ProjectCategories pjC = new ProjectCategories();
+                    pjC.setProjectCategoryId(rsCate.getInt("project_category_id"));
+                    pjC.setName(rsCate.getString("name"));
+                    project.setProjectCategory(pjC);
+                }
                 //GET SUPPORTER
                 String cmd_supporter_1 = "SELECT members.member_id, first_name, last_name, sum(amount) FROM donations ";
                 String cmd_supporter_2 = "left join members on members.member_id = donations.member_id  ";
@@ -408,6 +442,48 @@ public class ProjectUtil implements Serializable {
             deleteItem.setInt(1, project.getProjectId());
             System.out.println(deleteItem);
             return deleteItem.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectUtil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public ArrayList<Projects> findOwnerProject(Integer memberId) {
+        try {
+            ArrayList<Projects> projects = new ArrayList<Projects>();
+            String cmd = "SELECT project_id from projects join member_team_pivot on projects.team_id = member_team_pivot.team_id where member_id = ?";
+            PreparedStatement selectData = conn.prepareStatement(cmd);
+            selectData.setInt(1, memberId);
+            System.out.print(selectData);
+            ResultSet rs = selectData.executeQuery();
+            while (rs.next()) {
+                Projects project = this.findProjectById(rs.getInt("project_id"));
+                projects.add(project);
+                System.out.println("From Find Owner" + project);
+            }
+            return projects;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectUtil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public ArrayList<Projects> findFundedProject(Integer memberId) {
+        try {
+            ArrayList<Projects> projects = new ArrayList<Projects>();
+            String cmd = "SELECT project_id from donations where member_id = ?;";
+            PreparedStatement selectData = conn.prepareStatement(cmd);
+            selectData.setInt(1, memberId);
+            System.out.print(selectData);
+            ResultSet rs = selectData.executeQuery();
+            while (rs.next()) {
+                Projects project = this.findProjectById(rs.getInt("project_id"));
+                projects.add(project);
+                System.out.println("From Funded project" + project);
+            }
+            return projects;
 
         } catch (SQLException ex) {
             Logger.getLogger(ProjectUtil.class.getName()).log(Level.SEVERE, null, ex);

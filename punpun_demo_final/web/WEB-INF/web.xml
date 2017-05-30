@@ -80,6 +80,10 @@
         <servlet-name>submitServlet</servlet-name>
         <servlet-class>controller.submitServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>dashboardServlet</servlet-name>
+        <servlet-class>controller.dashboardServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
@@ -155,6 +159,10 @@
     <servlet-mapping>
         <servlet-name>submitServlet</servlet-name>
         <url-pattern>/submitServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dashboardServlet</servlet-name>
+        <url-pattern>/dashboardServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
