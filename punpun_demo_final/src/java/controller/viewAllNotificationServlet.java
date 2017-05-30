@@ -54,6 +54,8 @@ public class viewAllNotificationServlet extends HttpServlet {
             System.out.print(notiUtil.checkoutNotifacation((Integer) member.getMemberId()));
             session.setAttribute("uncheckNoti", null);
             session.setAttribute("countNoti", 0);
+            notiUtil.closeConnection();
+
             response.sendRedirect("notification.jsp");
         }
     }

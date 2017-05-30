@@ -72,6 +72,7 @@ public class dashboardServlet extends HttpServlet {
                     finish.add(project);
                 }
             }
+
             session.setAttribute("finish", finish);
             session.setAttribute("draft", draft);
             session.setAttribute("pending", pending);
@@ -83,6 +84,13 @@ public class dashboardServlet extends HttpServlet {
             ArrayList<Donations> fundedDonation = donationUtil.findDonationByMemberId(id);
             session.setAttribute("fundedDonations", fundedDonation);
 
+            System.out.println("From finish : " + finish);
+            System.out.println("From draft : " + draft);
+            System.out.println("From pending : " + pending);
+            System.out.println("From accept : " + accept);
+            System.out.println("From eject : " + eject);
+            System.out.println("From delete : " + delete);
+            donationUtil.closeConnection();
             response.sendRedirect("dashboard.jsp");
         }
     }

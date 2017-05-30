@@ -84,6 +84,10 @@
         <servlet-name>dashboardServlet</servlet-name>
         <servlet-class>controller.dashboardServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>draftProjectServlet</servlet-name>
+        <servlet-class>controller.draftProjectServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
@@ -163,6 +167,10 @@
     <servlet-mapping>
         <servlet-name>dashboardServlet</servlet-name>
         <url-pattern>/dashboardServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>draftProjectServlet</servlet-name>
+        <url-pattern>/draftProjectServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -14,14 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
-import model.Members;
-import utilities.MemberUtil;
+import utilities.ProjectUtil;
 
 /**
  *
  * @author kanok
  */
-public class viewProfileServlet extends HttpServlet {
+public class draftProjectServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,19 +36,19 @@ public class viewProfileServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String id = request.getParameter("id");
             HttpSession session = request.getSession();
-
+            Integer id = Integer.parseInt(request.getParameter("id"));
             ServletContext context = getServletContext();
             DataSource ds = (DataSource) context.getAttribute("dataSource");
 
-            MemberUtil memberUtil = new MemberUtil(ds);
-            memberUtil.connect();
-            Members memberProfile = memberUtil.findMemberById(id);
-            session.setAttribute("memberProfile", memberProfile);
-            System.out.println(memberProfile);
-            memberUtil.closeConnection();
-            response.sendRedirect("profile.jsp");
+            ProjectUtil projectUtil = new ProjectUtil(ds);
+            projectUtil.connect();
+
+            projectUtil.findProjectById(id);
+            session.setAttribute("newProject", projectUtil.findProjectById(id));
+            out.print(projectUtil.findProjectById(id));
+            response.sendRedirect("dashboard-project-setup-info.jsp");
+
         }
     }
 

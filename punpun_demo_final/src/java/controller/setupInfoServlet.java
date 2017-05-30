@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.MemberTeamPivot;
 import model.Members;
 import model.Projects;
 
@@ -28,7 +29,7 @@ import model.Projects;
  */
 public class setupInfoServlet extends HttpServlet {
 
-    private PreparedStatement insertData;
+    private PreparedStatement insertData, insertData2, insertData3;
     private Connection conn;
 
     public void init() {
@@ -79,6 +80,28 @@ public class setupInfoServlet extends HttpServlet {
                     System.out.print(generatedKeys.getInt(1));
                     int projectId = generatedKeys.getInt(1);
                     project.setProjectId(projectId);
+                }
+                String cmd2 = "Insert into teams(description) values ('test')";
+                insertData2 = conn.prepareStatement(cmd2, Statement.RETURN_GENERATED_KEYS);
+                System.out.println(insertData2);
+                System.out.println(insertData2.executeUpdate());
+                ResultSet generatedKeys2 = insertData2.getGeneratedKeys();
+                if (generatedKeys2.next()) {
+                    generatedKeys2.getInt(1);
+                    System.out.print(generatedKeys2.getInt(1));
+                    int teamId = generatedKeys2.getInt(1);
+                    project.setTeamId(teamId);
+                    String cmd3 = "INSERT INTO member_team_pivot (member_id, team_id, position) VALUES (?,?,'เจ้าของโครงการ')";
+                    insertData3 = conn.prepareStatement(cmd3, Statement.RETURN_GENERATED_KEYS);
+                    Members member = (Members) session.getAttribute("member");
+                    insertData3.setInt(1, member.getMemberId());
+                    insertData3.setInt(2, teamId);
+                    System.out.println(insertData3);
+                    System.out.println(insertData3.executeUpdate());
+                    MemberTeamPivot team = new MemberTeamPivot();
+                    team.setMembers(member);
+                    team.setPosition("เจ้าของโครงการ");
+                    System.out.println(team.getPosition());
                 }
             } else {
                 project.setBudget(amount);

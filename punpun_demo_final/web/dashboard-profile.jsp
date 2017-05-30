@@ -149,7 +149,7 @@
                                     <!--Image-->
                                     <div class="images-container images-container-center">
                                         <!--Put Image link Here-->
-                                        <img src="assets/img/profile/0000${member.memberId}.jpg" alt=""/>
+                                        <img src="assets/img/profile/${member.memberId}.jpg" alt=""/>
                                     </div>
                                     <!--Username-->
                                     <h2 class="center-text white-text">${member.firstName} ${member.lastName}</h2>

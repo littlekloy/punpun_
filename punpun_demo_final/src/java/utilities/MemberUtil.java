@@ -103,6 +103,7 @@ public class MemberUtil {
                 member.setFirstName(rs.getString("first_name"));
                 member.setLastName(rs.getString("last_name"));
                 member.setMemberId(rs.getInt("member_id"));
+                System.out.println(member);
                 return member;
             }
 

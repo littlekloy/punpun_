@@ -147,79 +147,81 @@
                         </div>
                     </div>
                     <!--Editing Project Card Group  : Spacebar Sensitive!!!!-->
-                    <div class="row">
-                        <!--Project Card : Editing-->
-                        <div class="col-md-10 offset-md-1">
-                            <div class="card tasks">
-                                <!--Header-->
-                                <div class="card-header bordered" style="background-color: #99ccff">
-                                    <div class="header-block">
-                                        <a href="dashboard-project-setup-info.jsp"><h3 class="title"> Project's name </h3></a>
+                    <c:forEach var="project" items="${draft}">
+                        <div class="row">
+                            <!--Project Card : Editing-->
+                            <div class="col-md-10 offset-md-1">
+                                <div class="card tasks">
+                                    <!--Header-->
+                                    <div class="card-header bordered" style="background-color: #99ccff">
+                                        <div class="header-block">
+                                            <a href="dashboard-project-setup-info.jsp"><h3 class="title"> ${project.name} </h3></a>
+                                        </div>
+                                        <div class="header-block pull-right">
+                                            <h5 class="title">อยู่ระหว่างแก้ไข</h5>
+                                        </div>
                                     </div>
-                                    <div class="header-block pull-right">
-                                        <h5 class="title">อยู่ระหว่างแก้ไข</h5>
-                                    </div>
-                                </div>
-                                <!--Detail-->
-                                <div class="card-block">
-                                    <div class="tasks-block">
-                                        <ul class="item-list">
-                                            <li class="item">
-                                                <div class="item-row">
+                                    <!--Detail-->
+                                    <div class="card-block">
+                                        <div class="tasks-block">
+                                            <ul class="item-list">
+                                                <li class="item">
+                                                    <div class="item-row">
 
-                                                    <!--Image-->
-                                                    <div class="col-sm-3 col-xs-12">
-                                                        <div class="images-container images-container-center">
-                                                            <!--Put Image link Here-->
-                                                            <img src="assets/backgrounds/profile-card-1.jpg" alt=""/>
-                                                        </div>
-                                                    </div>
-
-                                                    <!--Project Link-->
-                                                    <div class="col-sm-6 col-xs-12">
-                                                        <div class="item-col item-col-title">
-                                                            <span><h6 class="center-text"><i class="fa fa-link"></i> คลิกที่ลิงก์เพื่อดูโครงการของคุณ </h6></span>
-                                                        </div>
-                                                        <!--Link-->
-                                                        <div class="item-col item-col-title" >
-                                                            <span><a href="project-preview.jsp">
-                                                                    <p class="center-text">https://punpun.com/project/99999</p>
-                                                                </a></span>
-                                                        </div>
-                                                        <div class="item-col item-col-title hidden-xs-down" >
-                                                            <span><a href="dashboard-project-setup-info.jsp" class="btn btn-primary btn-block">แก้ไขข้อมูลโครงการ
-                                                                </a></span>
-                                                        </div>
-                                                    </div>
-
-                                                    <!--Button-->
-                                                    <div class="col-sm-3 col-xs-12">
-                                                        <a href="dashboard-project-setup-info.jsp" class="btn btn-primary btn-block hidden-sm-up">แก้ไขข้อมูลโครงการ</a>
-                                                        <a href="dashboard-project-setup-submit.jsp" class="btn btn-danger btn-block">เสนอโครงการ</a>
-                                                        <!-- START button group-->
-                                                        <div class="btn-group btn-block">
-                                                            <button type="button" class="btn btn-success btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                ตัวเลือก
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="dashboard-project-setup-info.jsp">ทำซ้ำข้อมูลโครงการนี้</a>
-                                                                <a class="dropdown-item" href="dashboard-project-setup-team.jsp">เพิ่มสมาชิกในโครงการ</a>
-                                                                <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="dashboard-project-delete.jsp">ลบโครงการ</a>
+                                                        <!--Image-->
+                                                        <div class="col-sm-3 col-xs-12">
+                                                            <div class="images-container images-container-center">
+                                                                <!--Put Image link Here-->
+                                                                <img src="assets/img/projectPic/${project.projectId}.jpg" alt=""/>
                                                             </div>
                                                         </div>
-                                                        <!-- END button group-->
+
+                                                        <!--Project Link-->
+                                                        <div class="col-sm-6 col-xs-12">
+                                                            <div class="item-col item-col-title">
+                                                                <span><h6 class="center-text"><i class="fa fa-link"></i> คลิกที่ลิงก์เพื่อดูโครงการของคุณ </h6></span>
+                                                            </div>
+                                                            <div class="item-col item-col-title" >
+                                                                <span><a href="viewProjectServlet?id=${project.projectId}">
+                                                                        <p class="center-text">https://punpun.com/project/${project.projectId}</p>
+                                                                    </a></span>
+                                                            </div>
+                                                            <div class="item-col item-col-title" >
+                                                                <span><a href="draftProjectServlet?id=${project.projectId}" class="btn btn-primary btn-block hidden-xs-down">แก้ไขข้อมูลโครงการ
+                                                                    </a></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <!--Button-->
+                                                        <div class="col-sm-3 col-xs-12">
+                                                            <a href="draftProjectServlet?id=${project.projectId}" class="btn btn-primary btn-block hidden-sm-up">แก้ไขข้อมูลโครงการ</a>
+                                                            <a href="dashboard-project-setup-submit.jsp" class="btn btn-danger btn-block">เสนอโครงการ</a>
+                                                            <!-- START button group-->
+                                                            <div class="btn-group btn-block">
+                                                                <button type="button" class="btn btn-success btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    ตัวเลือก
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="dashboard-project-setup-info.jsp">ทำซ้ำข้อมูลโครงการนี้</a>
+                                                                    <a class="dropdown-item" href="dashboard-project-setup-team.jsp">เพิ่มสมาชิกในโครงการ</a>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <a class="dropdown-item" href="dashboard-project-delete.jsp">ลบโครงการ</a>
+                                                                </div>
+                                                            </div>
+                                                            <!-- END button group-->
+                                                        </div>
+
                                                     </div>
-
-                                                </div>
-                                            </li>
-                                        </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
 
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </c:forEach>
+
 
                     <!-- Waiting Title -->
                     <div class="title-search-block">
@@ -232,50 +234,51 @@
                             </div>
                         </div>
                     </div>
-                    <!--Waiting Project Card Group  : Spacebar Sensitive!!!!-->
-                    <div class="row">
-                        <!--Project Card : Editing-->
-                        <div class="col-md-10 offset-md-1">
-                            <div class="card tasks">
-                                <!--Header-->
-                                <div class="card-header bordered" style="background-color: #87ffcf">
-                                    <div class="header-block">
-                                        <a href="project-preview.jsp"><h3 class="title"> Project's name </h3></a>
+                    <c:forEach var="project" items="${pending}">
+                        <!--Waiting Project Card Group  : Spacebar Sensitive!!!!-->
+                        <div class="row">
+                            <!--Project Card : Editing-->
+                            <div class="col-md-10 offset-md-1">
+                                <div class="card tasks">
+                                    <!--Header-->
+                                    <div class="card-header bordered" style="background-color: #87ffcf">
+                                        <div class="header-block">
+                                            <a href=""><h3 class="title"> ${project.name} </h3></a>
+                                        </div>
+                                        <div class="header-block pull-right">
+                                            <h5 class="title">อยู่ระหว่างพิจารณา</h5>
+                                        </div>
                                     </div>
-                                    <div class="header-block pull-right">
-                                        <h5 class="title">อยู่ระหว่างพิจารณา</h5>
-                                    </div>
-                                </div>
-                                <!--Detail-->
-                                <div class="card-block">
-                                    <div class="tasks-block">
-                                        <ul class="item-list">
-                                            <li class="item">
-                                                <div class="item-row">
+                                    <!--Detail-->
+                                    <div class="card-block">
+                                        <div class="tasks-block">
+                                            <ul class="item-list">
+                                                <li class="item">
+                                                    <div class="item-row">
 
-                                                    <!--Image-->
-                                                    <div class="col-sm-3 col-xs-12">
-                                                        <div class="images-container images-container-center">
-                                                            <!--Put Image link Here-->
-                                                            <img src="assets/faces/3.jpg" alt=""/>
+                                                        <!--Image-->
+                                                        <div class="col-sm-3 col-xs-12">
+                                                            <div class="images-container images-container-center">
+                                                                <!--Put Image link Here-->
+                                                                <img src="assets/img/projectPic/${project.projectId}.jpg" alt=""/>
+                                                            </div>
                                                         </div>
-                                                    </div>
 
-                                                    <!--Project Link-->
-                                                    <div class="col-sm-6 col-xs-12">
-                                                        <div class="item-col item-col-title">
-                                                            <span><h6 class="center-text"><i class="fa fa-link"></i> คลิกที่ลิงก์เพื่อดูโครงการของคุณ </h6></span>
+                                                        <!--Project Link-->
+                                                        <div class="col-sm-6 col-xs-12">
+                                                            <div class="item-col item-col-title">
+                                                                <span><h6 class="center-text"><i class="fa fa-link"></i> คลิกที่ลิงก์เพื่อดูโครงการของคุณ </h6></span>
+                                                            </div>
+                                                            <div class="item-col item-col-title" >
+                                                                <span><a href="viewProjectServlet?id=${project.projectId}">
+                                                                        <p class="center-text">https://punpun.com/project/${project.projectId}</p>
+                                                                    </a></span>
+                                                            </div>
                                                         </div>
-                                                        <div class="item-col item-col-title" >
-                                                            <span><a href="project-preview.jsp">
-                                                                    <p class="center-text">https://punpun.com/project/99999</p>
-                                                                </a></span>
-                                                        </div>
-                                                    </div>
 
-                                                    <!--Button-->
-                                                    <div class="col-sm-3 col-xs-12">
-                                                        <a href="project-preview.jsp" class="btn btn-danger btn-block">ดูตัวอย่าง</a>
+                                                        <!--Button-->
+                                                        <!-- <div class="col-sm-3 col-xs-12">
+                                                             <a href="project-preview.jsp" class="btn btn-danger btn-block">ดูตัวอย่าง</a>-->
                                                         <!-- START button group-->
                                                         <!-- <div class="btn-group btn-block">
                                                                 <button type="button" class="btn btn-success btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -290,17 +293,17 @@
                                                                 </div>
                                                         </div> -->
                                                         <!-- END button group-->
-                                                    </div>
+                                                        <!--</div> -->
 
-                                                </div>
-                                            </li>
-                                        </ul>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
+                    </c:forEach>
                     <!-- Active Project Title -->
                     <div class="title-search-block">
                         <div class="title-block">
@@ -313,6 +316,78 @@
                         </div>
                     </div>
                     <!--Active Project Card Group  : Spacebar Sensitive!!!!-->
+                    <c:forEach var="project" items="${accept}">
+                        <div class="row">
+                            <!--Project Card : Active-->
+                            <div class="col-md-10 offset-md-1">
+                                <div class="card tasks">
+                                    <!--Header-->
+                                    <div class="card-header bordered" style="background-color: #4bcf99">
+                                        <div class="header-block">
+                                            <a href="viewProjectServlet?id=${project.projectId}"><h3 class="title"> ${project.name} </h3></a>
+                                        </div>
+                                        <div class="header-block pull-right">
+                                            <h5 class="title">กำลังระดมทุน</h5>
+                                        </div>
+                                    </div>
+                                    <!--Detail-->
+                                    <div class="card-block">
+                                        <div class="tasks-block">
+                                            <ul class="item-list">
+                                                <li class="item">
+                                                    <div class="item-row">
+                                                        <!--Image-->
+                                                        <div class="col-sm-3 col-xs-12">
+                                                            <div class="images-container images-container-center">
+                                                                <!--Put Image link Here-->
+
+                                                                <img src="assets/img/projectPic/${project.projectId}.jpg" alt=""/>
+                                                            </div>
+                                                        </div>
+                                                        <!--Project Link-->
+                                                        <div class="col-sm-6 col-xs-12">
+                                                            <div class="item-col item-col-title">
+                                                                <span><h6 class="center-text"><i class="fa fa-link"></i> คลิกที่ลิงก์เพื่อดูโครงการของคุณ </h6></span>
+                                                            </div>
+                                                            <div class="item-col item-col-title" >
+                                                                <span><a href="viewProjectServlet?id=${project.projectId}">
+                                                                        <p class="center-text">https://punpun.com/project/${project.projectId}</p>
+                                                                    </a></span>
+                                                            </div>
+                                                            <div class="item-col item-col-title" >
+                                                                <span><a href="" class="btn btn-primary btn-block hidden-xs-down">แก้ไขข้อมูลโครงการ
+                                                                    </a></span>
+                                                            </div>
+                                                        </div>
+                                                        <!--Button-->
+                                                        <div class="col-sm-3 col-xs-12">
+                                                            <a href="dashboard-project-setup-info.jsp" class="btn btn-primary btn-block hidden-sm-up">แก้ไขข้อมูลโครงการ</a>
+                                                            <a href="dashboard-project-update-progress.jsp" class="btn btn-danger btn-block">อัปเดตข้อมูล</a>
+                                                            <!-- START button group-->
+                                                            <div class="btn-group btn-block">
+                                                                <button type="button" class="btn btn-success btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    ตัวเลือก
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="dashboard-supporter.jsp">รายชื่อผู้สนับสนุน</a>
+                                                                    <a class="dropdown-item" href="dashboard-comment.jsp">ดูความคิดเห็น</a>
+                                                                    <a class="dropdown-item" href="dashboard-project-setup-info.jsp">ทำซ้ำข้อมูลโครงการนี้</a>
+                                                                    <a class="dropdown-item" href="dashboard-project-setup-team.jsp">เพิ่มสมาชิกในโครงการ</a>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <a class="dropdown-item" href="dashboard-project-delete.jsp">ลบโครงการ</a>
+                                                                </div>
+                                                            </div>
+                                                            <!-- END button group-->
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
                     <div class="row">
                         <!--Project Card : Active-->
                         <div class="col-md-10 offset-md-1">
@@ -320,7 +395,7 @@
                                 <!--Header-->
                                 <div class="card-header bordered" style="background-color: #4bcf99">
                                     <div class="header-block">
-                                        <a href="dashboard-project-details.jsp"><h3 class="title"> Project's name </h3></a>
+                                        <a href="dashboard-project-details.jsp"><h3 class="title"> ${project.name}</h3></a>
                                     </div>
                                     <div class="header-block pull-right">
                                         <h5 class="title">กำลังระดมทุน</h5>

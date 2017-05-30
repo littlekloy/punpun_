@@ -108,16 +108,16 @@ public class ProjectUtil implements Serializable {
                     sup.setFunded(rsSupporter.getInt("sum(amount)"));
                     supporter.add(sup);
                     funded += rsSupporter.getInt("sum(amount)");
-                    System.out.println("funded" + rs.getInt("project_id") + funded);
+                    //System.out.println("funded" + rs.getInt("project_id") + funded);
                 }
-                System.out.println(supporter);
+                //System.out.println(supporter);
                 project.setSupporter(supporter);
                 project.setSupporterSize(supporter.size());
                 project.setFunded(funded);
                 DecimalFormat df = new DecimalFormat();
                 df.applyPattern("0.00");
                 String percent = df.format((funded / rs.getFloat("budget") * 100));
-                System.out.println(Float.valueOf(percent));
+                //System.out.println(Float.valueOf(percent));
                 project.setPercent(Float.valueOf(percent));
                 projects.add(project);
             }
@@ -169,7 +169,7 @@ public class ProjectUtil implements Serializable {
                 project.setTeamId(rs.getInt("team_id"));
                 //GET TEAM MEMBER
                 selectData2.setInt(1, rs.getInt("team_id"));
-                System.out.println(selectData2);
+                //System.out.println(selectData2);
                 ResultSet rs2 = selectData2.executeQuery();
                 ArrayList<Members> team = new ArrayList<Members>();
                 while (rs2.next()) {
@@ -183,17 +183,17 @@ public class ProjectUtil implements Serializable {
                     member.setPosition(rs2.getString("position"));
                     if (rs2.getString("position").equals("เจ้าของโครงการ")) {
                         project.setProjectOwner(member);
-                        System.out.println("Project Owner is :" + member);
+                        //  System.out.println("Project Owner is :" + member);
                     }
                     team.add(member);
                 }
                 project.setTeamCollection(team);
-                System.out.println("Project team is" + team);
+                //System.out.println("Project team is" + team);
 
                 //GET PROJECT ITEM
                 selectItem.setInt(1, rs.getInt("project_id"));
                 ResultSet rsItem = selectItem.executeQuery();
-                System.out.println(selectItem);
+                //System.out.println(selectItem);
                 ArrayList<ProjectItems> project_item = new ArrayList<ProjectItems>();
                 while (rsItem.next()) {
                     ProjectItems projectItem = new ProjectItems(rs.getInt("project_id"), rsItem.getInt("item_id"));
@@ -211,7 +211,7 @@ public class ProjectUtil implements Serializable {
                         projectItem.setFunded(rsDonation.getInt("funded"));
                     }
                     project_item.add(projectItem);
-                    System.out.println(projectItem);
+                    //System.out.println(projectItem);
                 }
 
                 String cmd_supporter_1 = "SELECT members.member_id, first_name, last_name, sum(amount) FROM donations ";
@@ -230,16 +230,16 @@ public class ProjectUtil implements Serializable {
                     sup.setFunded(rsSupporter.getInt("sum(amount)"));
                     supporter.add(sup);
                     funded += rsSupporter.getInt("sum(amount)");
-                    System.out.println("funded" + rs.getInt("project_id") + funded);
+                    //  System.out.println("funded" + rs.getInt("project_id") + funded);
                 }
-                System.out.println("supporter is : " + supporter);
+                // System.out.println("supporter is : " + supporter);
                 project.setSupporter(supporter);
                 project.setSupporterSize(supporter.size());
                 project.setFunded(funded);
                 DecimalFormat df = new DecimalFormat();
                 df.applyPattern("0.00");
                 String percent = df.format((funded / rs.getFloat("budget") * 100));
-                System.out.println(Float.valueOf(percent));
+                //  System.out.println(Float.valueOf(percent));
                 project.setPercent(Float.valueOf(percent));
 
                 //GET COMMENT
@@ -264,10 +264,11 @@ public class ProjectUtil implements Serializable {
                     comment.setProjectId(rsComment.getInt("project_id"));
                     comments.add(comment);
                 }
-                System.out.print("Number of comment : " + i + "are : ");
+                // System.out.print("Number of comment : " + i + "are : ");
                 project.setCommentsCollection(comments);
-                System.out.println(project.getCommentsCollection());
+                //  System.out.println(project.getCommentsCollection());
                 project.setProjectItemsCollection(project_item);
+                project.setItemCollection(project_item);
             }
             return project;
         } catch (SQLException ex) {
@@ -287,7 +288,7 @@ public class ProjectUtil implements Serializable {
             selectData.setString(2, "%" + keyword + "%");
             selectData.setString(3, "%" + keyword + "%");
             selectData.setString(4, "%" + keyword + "%");
-            System.out.println(selectData);
+            // System.out.println(selectData);
             ResultSet rs = selectData.executeQuery();
             while (rs.next()) {
                 Projects project = new Projects();
@@ -330,16 +331,16 @@ public class ProjectUtil implements Serializable {
                     sup.setFunded(rsSupporter.getInt("sum(amount)"));
                     supporter.add(sup);
                     funded += rsSupporter.getInt("sum(amount)");
-                    System.out.println("funded" + rs.getInt("project_id") + funded);
+                    //  System.out.println("funded" + rs.getInt("project_id") + funded);
                 }
-                System.out.println(supporter);
+                //  System.out.println(supporter);
                 project.setSupporter(supporter);
                 project.setSupporterSize(supporter.size());
                 project.setFunded(funded);
                 DecimalFormat df = new DecimalFormat();
                 df.applyPattern("0.00");
                 String percent = df.format((funded / rs.getFloat("budget") * 100));
-                System.out.println(Float.valueOf(percent));
+                // System.out.println(Float.valueOf(percent));
                 project.setPercent(Float.valueOf(percent));
                 projects.add(project);
             }
@@ -384,7 +385,7 @@ public class ProjectUtil implements Serializable {
             insertData.setString(5, project.getStory());
             insertData.setInt(6, project.getProjectCategoryId());
             insertData.setInt(7, project.getProjectId());
-            System.out.println(insertData);
+            //  System.out.println(insertData);
             addProjectItem(project.getItemCollection(), project);
             return insertData.executeUpdate();
         } catch (SQLException ex) {
@@ -406,7 +407,7 @@ public class ProjectUtil implements Serializable {
             insertData.setString(5, project.getStory());
             insertData.setInt(6, project.getProjectCategoryId());
             insertData.setInt(7, project.getProjectId());
-            System.out.println(insertData);
+            //   System.out.println(insertData);
             addProjectItem(project.getItemCollection(), project);
             return insertData.executeUpdate();
         } catch (SQLException ex) {
@@ -421,12 +422,12 @@ public class ProjectUtil implements Serializable {
         }
         for (ProjectItems pj : projectItem) {
             try {
-                System.out.println(pj.getItems().getName());
+                // System.out.println(pj.getItems().getName());
                 PreparedStatement insertItem = conn.prepareStatement("Insert into project_items (project_id,item_id,amount) values (?,?,?)");
                 insertItem.setInt(1, project.getProjectId());
                 insertItem.setInt(2, pj.getItems().getItemId());
                 insertItem.setFloat(3, pj.getAmount());
-                System.out.println(insertItem);
+                //  System.out.println(insertItem);
                 insertItem.executeUpdate();
 
             } catch (SQLException ex) {
@@ -440,7 +441,7 @@ public class ProjectUtil implements Serializable {
         try {
             PreparedStatement deleteItem = conn.prepareStatement("DELETE FROM project_items WHERE project_id = ?");
             deleteItem.setInt(1, project.getProjectId());
-            System.out.println(deleteItem);
+            //  System.out.println(deleteItem);
             return deleteItem.executeUpdate();
 
         } catch (SQLException ex) {
@@ -455,12 +456,12 @@ public class ProjectUtil implements Serializable {
             String cmd = "SELECT project_id from projects join member_team_pivot on projects.team_id = member_team_pivot.team_id where member_id = ?";
             PreparedStatement selectData = conn.prepareStatement(cmd);
             selectData.setInt(1, memberId);
-            System.out.print(selectData);
+            //  System.out.print(selectData);
             ResultSet rs = selectData.executeQuery();
             while (rs.next()) {
                 Projects project = this.findProjectById(rs.getInt("project_id"));
                 projects.add(project);
-                System.out.println("From Find Owner" + project);
+                //     System.out.println("From Find Owner" + project);
             }
             return projects;
 
@@ -476,12 +477,12 @@ public class ProjectUtil implements Serializable {
             String cmd = "SELECT project_id from donations where member_id = ?;";
             PreparedStatement selectData = conn.prepareStatement(cmd);
             selectData.setInt(1, memberId);
-            System.out.print(selectData);
+            //System.out.print(selectData);
             ResultSet rs = selectData.executeQuery();
             while (rs.next()) {
                 Projects project = this.findProjectById(rs.getInt("project_id"));
                 projects.add(project);
-                System.out.println("From Funded project" + project);
+                //  System.out.println("From Funded project" + project);
             }
             return projects;
 

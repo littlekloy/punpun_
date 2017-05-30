@@ -96,10 +96,12 @@ public class donationServlet extends HttpServlet {
             System.out.println(donationUtil.setAmount(allAmount, id));
             session.setAttribute("allAmount", allAmount);
             System.out.println(member);
+            donationUtil.closeConnection();
+            response.sendRedirect("payment.jsp");
         } catch (SQLException ex) {
             Logger.getLogger(donationServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        response.sendRedirect("payment.jsp");
+
     }
 
     public Integer punpunDonation(String amount, String custom_amount) {

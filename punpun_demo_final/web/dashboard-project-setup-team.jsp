@@ -161,7 +161,7 @@
                                                     <!--List of Member Projects-->
                                                     <div data-exclude="xs,sm,lg">
                                                         <!-- Table Content -->
-                                                        <form action="#">
+                                                        <form action="setupTeamServlet">
                                                             <ul class="item-list striped">
 
                                                                 <!-- Head of Table -->
@@ -213,7 +213,7 @@
                                                                         <!--Position-->
                                                                         <div class="item-col item-col-center">
                                                                             <div class="item-heading"> ตำแหน่ง </div>
-                                                                            <select class="c-select form-control boxed">
+                                                                            <select class="c-select form-control boxed" name="position">
                                                                                 <option disabled selected>เลือกตำแหน่ง</option>
                                                                                 <option value="เจ้าของโครงการ">เจ้าของโครงการ</option>
                                                                                 <option value="ทีมดูแลและจัดการ">ทีมดูแลและจัดการ</option>

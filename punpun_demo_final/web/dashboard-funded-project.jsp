@@ -176,42 +176,45 @@
                                 </div>
 
                             </li>
+                            <c:forEach var="fundedDonation" items="${fundedDonations}">
+                                <!-- Item -->
+                                <li class="item">
+                                    <div class="item-row">
 
-                            <!-- Item -->
-                            <li class="item">
-                                <div class="item-row">
-
-                                    <div class="item-col fixed item-col-img md">
-                                        <a href="item-editor.jsp">
-                                            <div class="item-img rounded" style="background-image: url('assets/img/projectPic/1/1.jpg')"></div>
-                                        </a>
-                                    </div>
-                                    <div class="item-col fixed pull-left item-col-title">
-                                        <div class="item-heading">ชื่อโครงการ</div>
-                                        <div>
-                                            <a href="dashboard-project-details.jsp" class="center-text">
-                                                <h4 class="item-title"> อุปกรณ์การเรียนแก่เด็กอมก๋อย </h4>
+                                        <div class="item-col fixed item-col-img md">
+                                            <a href="item-editor.jsp">
+                                                <div class="item-img rounded" style="background-image: url('assets/img/projectPic/${fundedDonation.projectId.projectId}.jpg')"></div>
                                             </a>
                                         </div>
+                                        <div class="item-col fixed pull-left item-col-title">
+                                            <div class="item-heading">ชื่อโครงการ</div>
+                                            <div>
+                                                <a href="viewProjectServlet?id=${fundedDonation.projectId.projectId}" class="center-text">
+                                                    <h4 class="item-title"> ${fundedDonation.projectId.name} </h4>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="item-col item-col-sales">
+                                            <div class="item-heading">จำนวนเงิน</div>
+                                            <div> ${fundedDonation.amount} </div>
+                                        </div>
+                                        <div class="item-col item-col-category no-overflow">
+                                            <div class="item-heading">ประเภท</div>
+                                            <div class="no-overflow"> <a href="">${fundedDonation.projectId.projectCategory.name}</a> </div>
+                                        </div>
+                                        <div class="item-col item-col-author">
+                                            <div class="item-heading">เจ้าของโครงการ</div>
+
+                                            <div class="no-overflow"> <a href="viewProfileServlet?id=${fundedDonation.projectId.projectOwner.memberId}">${fundedDonation.projectId.projectOwner.firstName} ${fundedDonation.projectId.projectOwner.lastName}</a> </div>
+                                        </div>
+                                        <div class="item-col item-col-date">
+                                            <div class="item-heading">วันที่ระดมทุน</div>
+                                            <div class="no-overflow"> ${fundedDonation.date} </div>
+                                        </div>
                                     </div>
-                                    <div class="item-col item-col-sales">
-                                        <div class="item-heading">จำนวนเงิน</div>
-                                        <div> 300 </div>
-                                    </div>
-                                    <div class="item-col item-col-category no-overflow">
-                                        <div class="item-heading">ประเภท</div>
-                                        <div class="no-overflow"> <a href="">การศึกษา</a> </div>
-                                    </div>
-                                    <div class="item-col item-col-author">
-                                        <div class="item-heading">เจ้าของโครงการ</div>
-                                        <div class="no-overflow"> <a href="">กนกวรรณ มุตตามระ</a> </div>
-                                    </div>
-                                    <div class="item-col item-col-date">
-                                        <div class="item-heading">วันที่ระดมทุน</div>
-                                        <div class="no-overflow"> 21 JAN 16 10:45 </div>
-                                    </div>
-                                </div>
-                            </li>
+                                </li>
+                            </c:forEach>
+
 
                         </ul>
                     </div>
