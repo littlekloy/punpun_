@@ -9,17 +9,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 import model.Members;
 import model.Projects;
+import utilities.DonationUtil;
 
 /**
  *
@@ -27,7 +29,7 @@ import model.Projects;
  */
 public class donationServlet extends HttpServlet {
 
-    private PreparedStatement insertPunpunDonation, insertProjectDonation, insertItemDonation, insertData;
+    private PreparedStatement insertPunpunDonation, insertProjectDonation, insertItemDonation, insertData, insertDonation;
     private Connection conn;
 
     public void init() {
@@ -54,111 +56,86 @@ public class donationServlet extends HttpServlet {
             HttpSession session = request.getSession();
             Members member = (Members) session.getAttribute("member");
             Projects project = (Projects) session.getAttribute("project");
+            String cmd = "Insert into donations values (?,?,?,?,?)";
+            insertDonation = conn.prepareStatement(cmd);
+            ServletContext context = getServletContext();
+            DataSource ds = (DataSource) context.getAttribute("dataSource");
+            DonationUtil donationUtil = new DonationUtil(ds);
+            donationUtil.connect();
+            int allAmount = 0;
+            int id = donationUtil.donateTransaction(member, project);
             if (to_punpun != null) {
-                int amount;
-                String punpun = request.getParameter("punpun");
-                if (punpun.equals("on")) {
-                    String amount_punpun = request.getParameter("amount_punpun");
-                    out.print(amount_punpun);
-                    amount = Integer.parseInt(amount_punpun);
-                } else {
-                    amount = Integer.parseInt(punpun);
-                }
-                out.print("To punpun" + amount);
-                String cmdInsert = "Insert into donations(amount,type,method,member_id,project_id) values (?,?,?,?,?)";
-                insertPunpunDonation = conn.prepareStatement(cmdInsert);
-                insertPunpunDonation.setInt(1, amount);
-                insertPunpunDonation.setString(2, "punpun");
-                insertPunpunDonation.setString(3, "cash");
-                insertPunpunDonation.setInt(4, member.getMemberId());
-                insertPunpunDonation.setInt(5, project.getProjectId());
-                System.out.println(insertPunpunDonation);
-                System.out.println(insertPunpunDonation.executeUpdate());
+                String amount = request.getParameter("amount");
+                String custom_amount = request.getParameter("custom_amount");
+                int punpun_amount = punpunDonation(amount, custom_amount);
+                donationUtil.punpunDonation(punpun_amount, id);
+                allAmount += punpun_amount;
+
             }
             if (whole_project != null) {
-                String project_ = request.getParameter("project");
-                int amount;
-                if (project_.equals("on")) {
-                    String amount_project = request.getParameter("amount_project");
-                    out.print("whole" + amount_project);
-                    amount = Integer.parseInt(amount_project);
-                } else {
-                    amount = Integer.parseInt(project_);
-                }
-                out.print("To project" + amount);
-                String cmdInsert = "Insert into donations(amount,type,method,member_id,project_id) values (?,?,?,?,?)";
-                insertProjectDonation = conn.prepareStatement(cmdInsert);
-                insertProjectDonation.setInt(1, amount);
-                insertProjectDonation.setString(2, "project");
-                insertProjectDonation.setString(3, "cash");
-                insertProjectDonation.setInt(4, member.getMemberId());
-                insertProjectDonation.setInt(5, project.getProjectId());
-                System.out.println(insertProjectDonation);
-                System.out.println(insertProjectDonation.executeUpdate());
+                String amount = request.getParameter("amount");
+                String custom_amount = request.getParameter("custom_amount");
+                int project_amount = punpunDonation(amount, custom_amount);
+                donationUtil.projectDonation(project_amount, id);
+                allAmount += project_amount;
+
             }
             if (per_item != null) {
                 String[] item_id = request.getParameterValues("per-item");
-                int allAmount = 0;
+
                 for (String i : item_id) {
-                    out.print("<br>" + i);
-                    if (request.getParameter(i).equals("on")) {
-                        String amount_item = request.getParameter("amount_item_" + i);
-                        out.print("item Amount :" + amount_item);
-                        allAmount += Integer.parseInt(amount_item);
-                    } else {
-                        String amount = request.getParameter(i);
-                        out.print("item :" + amount);
-                        allAmount += Integer.parseInt(amount);
-                    }
+                    String amount = request.getParameter(i);
+                    String amount_item = request.getParameter("amount_item_" + i);
+                    int item_amount = ItemDonation(amount, amount_item);
+                    donationUtil.itemDonation(item_amount, id, Integer.parseInt(i));
+                    allAmount += item_amount;
                 }
-                String cmdInsert = "Insert into donations(amount,type,method,member_id,project_id) values (?,?,?,?,?)";
-                insertItemDonation = conn.prepareStatement(cmdInsert);
-                insertItemDonation.setInt(1, allAmount);
-                insertItemDonation.setString(2, "item");
-                insertItemDonation.setString(3, "cash");
-                insertItemDonation.setInt(4, member.getMemberId());
-                insertItemDonation.setInt(5, project.getProjectId());
-                System.out.println(insertItemDonation);
-                System.out.println(insertItemDonation.executeUpdate());
 
-                PreparedStatement selectData;
-                String cmdSelect = "Select max(donation_id) from donations";
-                selectData = conn.prepareStatement(cmdSelect);
-                ResultSet rs = selectData.executeQuery();
-                while (rs.next()) {
-                    item_id = request.getParameterValues("per-item");
-
-                    for (String i : item_id) {
-                        int item_amount = 0;
-                        if (request.getParameter(i).equals("on")) {
-                            String amount_item = request.getParameter("amount_item_" + i);
-                            out.print("item Amount :" + amount_item);
-                            item_amount = Integer.parseInt(amount_item);
-                        } else {
-                            String amount = request.getParameter(i);
-                            out.print("item :" + amount);
-                            item_amount = Integer.parseInt(amount);
-                        }
-                        String cmdInsert2 = "Insert into item_donations(donation_id,amount,project_id,item_id) values (?,?,?,?)";
-                        insertData = conn.prepareStatement(cmdInsert2);
-                        insertData.setInt(1, rs.getInt("max(donation_id)"));
-                        insertData.setInt(2, item_amount);
-                        insertData.setInt(3, project.getProjectId());
-                        insertData.setString(4, i);
-
-                        System.out.println(insertData);
-                        System.out.println(insertData.executeUpdate());
-                    }
-
-                }
             }
-            response.sendRedirect("payment.jsp");
+            out.print(allAmount);
+            System.out.println(donationUtil.setAmount(allAmount, id));
+            session.setAttribute("allAmount", allAmount);
+            System.out.println(member);
         } catch (SQLException ex) {
             Logger.getLogger(donationServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        response.sendRedirect("payment.jsp");
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    public Integer punpunDonation(String amount, String custom_amount) {
+        int amount_;
+        if (amount.equals("on")) {
+            amount_ = Integer.parseInt(custom_amount);
+        } else {
+            amount_ = Integer.parseInt(amount);
+        }
+        System.out.println("To punpun" + amount_);
+        return amount_;
+    }
+
+    public Integer projectDonation(String amount, String custom_amount) {
+        int amount_;
+        if (amount.equals("on")) {
+            amount_ = Integer.parseInt(custom_amount);
+        } else {
+            amount_ = Integer.parseInt(amount);
+        }
+        System.out.println("To project" + amount_);
+        return amount_;
+    }
+
+    public Integer ItemDonation(String item, String custom_amount) {
+
+        if (item.equals("on")) {
+            System.out.println("To item" + custom_amount);
+            return Integer.parseInt(custom_amount);
+        } else {
+            System.out.println("To item" + item);
+            return Integer.parseInt(item);
+        }
+    }
+
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

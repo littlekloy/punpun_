@@ -81,7 +81,7 @@ public class ProjectUtil implements Serializable {
                 //GET SUPPORTER
                 String cmd_supporter_1 = "SELECT members.member_id, first_name, last_name, sum(amount) FROM donations ";
                 String cmd_supporter_2 = "left join members on members.member_id = donations.member_id  ";
-                String cmd_supporter_3 = "where type In ('project','item') and project_id = ? group by member_id";
+                String cmd_supporter_3 = "where project_id = ? group by member_id";
                 selectSupporter = conn.prepareStatement(cmd_supporter_1 + cmd_supporter_2 + cmd_supporter_3);
                 selectSupporter.setInt(1, rs.getInt("project_id"));
                 ArrayList<Supporter> supporter = new ArrayList<Supporter>();
@@ -191,7 +191,7 @@ public class ProjectUtil implements Serializable {
 
                 String cmd_supporter_1 = "SELECT members.member_id, first_name, last_name, sum(amount) FROM donations ";
                 String cmd_supporter_2 = "left join members on members.member_id = donations.member_id  ";
-                String cmd_supporter_3 = "where type In ('project','item') and project_id = ? group by member_id";
+                String cmd_supporter_3 = "where project_id = ? group by member_id";
                 selectSupporter = conn.prepareStatement(cmd_supporter_1 + cmd_supporter_2 + cmd_supporter_3);
                 selectSupporter.setInt(1, rs.getInt("project_id"));
                 ArrayList<Supporter> supporter = new ArrayList<Supporter>();
@@ -281,7 +281,7 @@ public class ProjectUtil implements Serializable {
                 //GET SUPPORTER
                 String cmd_supporter_1 = "SELECT members.member_id, first_name, last_name, sum(amount) FROM donations ";
                 String cmd_supporter_2 = "left join members on members.member_id = donations.member_id  ";
-                String cmd_supporter_3 = "where type In ('project','item') and project_id = ? group by member_id";
+                String cmd_supporter_3 = "where project_id = ? group by member_id";
                 selectSupporter = conn.prepareStatement(cmd_supporter_1 + cmd_supporter_2 + cmd_supporter_3);
                 selectSupporter.setInt(1, rs.getInt("project_id"));
                 ArrayList<Supporter> supporter = new ArrayList<Supporter>();

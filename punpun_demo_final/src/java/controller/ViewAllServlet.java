@@ -48,7 +48,7 @@ public class ViewAllServlet extends HttpServlet {
             // out.print(projectUtil);
 
             ArrayList<Projects> projects = projectUtil.findAllProjects();
-            out.print(projects.get(2).getShortDescription());
+            //out.print(projects.get(2).getShortDescription());
             //out.print(projects.get(2).getName());
             session.setAttribute("projects", projects);
             response.sendRedirect("browse.jsp?category=0&sort=0");

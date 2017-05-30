@@ -180,20 +180,20 @@
                                                             <label for="punpun">บริจาคให้ ปันปัน.com</label>
                                                             <div class="panel">
                                                                 <label>
-                                                                    <input class="radio" name="punpun" type="radio" value="100">
+                                                                    <input class="radio" name="amount" type="radio" value="100">
                                                                     <span>100</span>
                                                                 </label>
                                                                 <label>
-                                                                    <input class="radio" name="punpun" type="radio" value="500">
+                                                                    <input class="radio" name="amount" type="radio" value="500">
                                                                     <span>500</span>
                                                                 </label>
                                                                 <label>
-                                                                    <input class="radio" name="punpun" type="radio" value="1000">
+                                                                    <input class="radio" name="amount" type="radio" value="1000">
                                                                     <span>1000</span>
                                                                 </label>
                                                                 <label>
-                                                                    <input class="radio" name="punpun" type="radio">
-                                                                    <span><input type="text" class="boxed" name="amount_punpun" placeholder=" ใส่จำนวนเงินที่ต้องการ"> </span>
+                                                                    <input class="radio" name="amount" type="radio">
+                                                                    <span><input type="text" class="boxed" name="custom_amount" placeholder=" ใส่จำนวนเงินที่ต้องการ"> </span>
                                                                 </label>
                                                             </div>
                                                         </div>
