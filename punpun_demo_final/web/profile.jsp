@@ -133,10 +133,10 @@
                                     <!--Image-->
                                     <div class="images-container images-container-center">
                                         <!--Put Image link Here-->
-                                        <img src="assets/img/profile/0000${member.memberId}.jpg" alt=""/>
+                                        <img src="assets/img/profile/0000${memberProfile.memberId}.jpg" alt=""/>
                                     </div>
                                     <!--Username-->
-                                    <h2 class="center-text white-text">${member.firstName} ${member.lastName}</h2>
+                                    <h2 class="center-text white-text">${memberProfile.firstName} ${memberProfile.lastName}</h2>
                                     <!--Level of Member-->
                                     <div class="card stats" data-exclude="xs">
                                         <div class="card-block">
@@ -144,9 +144,9 @@
                                                 <div class="col-xs-8 stat-col">
                                                     <div class="stat-icon"> <i class="fa fa-flag"></i> </div>
                                                     <div class="stat">
-                                                        <div class="value"> ${member.point} / 100 </div>
+                                                        <div class="value"> ${memberProfile.point} / 100 </div>
                                                     </div>
-                                                    <progress class="progress stat-progress" value="${member.point}" max="100">
+                                                    <progress class="progress stat-progress" value="${memberProfile.point}" max="100">
                                                         <div class="progress">
                                                             <span class="progress-bar" style="width: 75%;"></span>
                                                         </div>
@@ -154,7 +154,7 @@
                                                 </div>
 
                                                 <div class="col-xs-4 stat-col-level">
-                                                    <h4><i class="stat-icon hidden-xs-down fa fa-flag"></i> LV. ${member.level}</h4>
+                                                    <h4><i class="stat-icon hidden-xs-down fa fa-flag"></i> LV. ${memberProfile.level}</h4>
                                                 </div>
 
                                             </div>
@@ -185,7 +185,7 @@
                                                 <div class="stat-icon"> <i class="fa fa-envelope"></i> </div>
                                                 <div class="stat">
                                                     <div class="name"> อีเมล </div>
-                                                    <div class="value"> ${member.email} </div>
+                                                    <div class="value"> ${memberProfile.email} </div>
                                                 </div>
                                             </div>
 
@@ -194,7 +194,7 @@
                                                 <div class="stat-icon"> <i class="fa fa-globe"></i> </div>
                                                 <div class="stat">
                                                     <div class="name"> เว็บไซต์ </div>
-                                                    <div class="value"> <a href="profile.jsp?id=${member.memberId}">punpun.com/profile/${member.memberId}</a> </div>
+                                                    <div class="value"> <a href="profile.jsp?id=${memberProfile.memberId}">punpun.com/profile/${member.memberId}</a> </div>
                                                 </div>
                                             </div>
 

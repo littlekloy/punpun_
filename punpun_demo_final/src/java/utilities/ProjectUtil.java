@@ -141,7 +141,6 @@ public class ProjectUtil implements Serializable {
                 project.setStory(rs.getString("story"));
                 project.setStatus(rs.getString("status"));
                 project.setProjectCategoryId(rs.getInt("project_category_id"));
-
                 project.setTeamId(rs.getInt("team_id"));
                 //GET TEAM MEMBER
                 selectData2.setInt(1, rs.getInt("team_id"));
@@ -208,7 +207,7 @@ public class ProjectUtil implements Serializable {
                     funded += rsSupporter.getInt("sum(amount)");
                     System.out.println("funded" + rs.getInt("project_id") + funded);
                 }
-                System.out.println(supporter);
+                System.out.println("supporter is : " + supporter);
                 project.setSupporter(supporter);
                 project.setSupporterSize(supporter.size());
                 project.setFunded(funded);
@@ -240,7 +239,7 @@ public class ProjectUtil implements Serializable {
                     comment.setProjectId(rsComment.getInt("project_id"));
                     comments.add(comment);
                 }
-                System.out.println("Number of comment :" + i);
+                System.out.print("Number of comment : " + i + "are : ");
                 project.setCommentsCollection(comments);
                 System.out.println(project.getCommentsCollection());
                 project.setProjectItemsCollection(project_item);

@@ -90,6 +90,29 @@ public class MemberUtil {
         return null;
     }
 
+    public Members findMemberById(String id) {
+        String cmd = "select * from members where member_id = ?";
+        try {
+            selectData = conn.prepareStatement(cmd);
+            selectData.setString(1, id);
+            ResultSet rs = selectData.executeQuery();
+            if (rs.next()) {
+                Members member = new Members();
+                member.setEmail(rs.getString("email"));
+                member.setPassword(rs.getString("password"));
+                member.setFirstName(rs.getString("first_name"));
+                member.setLastName(rs.getString("last_name"));
+                member.setMemberId(rs.getInt("member_id"));
+                return member;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MemberUtil.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return null;
+    }
+
     public Members authenicate(String email, String password) {
         String cmdSelect = "select * from members where email = ? and password = ?";
         try {
