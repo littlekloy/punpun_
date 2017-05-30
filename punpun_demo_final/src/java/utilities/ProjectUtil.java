@@ -224,9 +224,11 @@ public class ProjectUtil implements Serializable {
                 selectComment.setString(1, rs.getString("project_id"));
                 ResultSet rsComment = selectComment.executeQuery();
                 ArrayList<Comments> comments = new ArrayList<Comments>();
+                int i = 1;
                 while (rsComment.next()) {
                     Comments comment = new Comments();
-
+                    comment.setIndex(i);
+                    i++;
                     comment.setCommentId(rsComment.getInt("comment_id"));
                     comment.setDate(rsComment.getTimestamp("date"));
                     comment.setText(rsComment.getString("text"));
@@ -237,9 +239,8 @@ public class ProjectUtil implements Serializable {
                     comment.setMemberId(member);
                     comment.setProjectId(rsComment.getInt("project_id"));
                     comments.add(comment);
-
                 }
-
+                System.out.println("Number of comment :" + i);
                 project.setCommentsCollection(comments);
                 System.out.println(project.getCommentsCollection());
                 project.setProjectItemsCollection(project_item);

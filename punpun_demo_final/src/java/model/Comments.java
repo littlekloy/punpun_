@@ -50,6 +50,7 @@ public class Comments implements Serializable {
     @JoinColumn(name = "project_id", referencedColumnName = "project_id")
     @ManyToOne(optional = false)
     private Integer projectId;
+    private Integer index;
     @JoinColumn(name = "member_id", referencedColumnName = "member_id")
     @ManyToOne(optional = false)
     private Members memberId;
@@ -59,6 +60,14 @@ public class Comments implements Serializable {
 
     public Comments(Integer commentId) {
         this.commentId = commentId;
+    }
+
+    public Integer getIndex() {
+        return index;
+    }
+
+    public void setIndex(Integer index) {
+        this.index = index;
     }
 
     public Integer getCommentId() {

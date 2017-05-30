@@ -441,7 +441,7 @@
                                                     <div class="card card-default">
                                                         <div class="card-block card-block-comment">
                                                             <div style="border-bottom: 1px solid #e9edf0;">
-                                                                <h5>ความคิดเห็น</h5>
+                                                                <h5>ความคิดเห็นที่ ${comment.index}</h5>
                                                                 <p>${comment.text}</p>
                                                             </div>
                                                             <!-- Stat Footer -->
