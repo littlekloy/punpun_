@@ -85,7 +85,7 @@
                                             ${member.firstName}
                                         </span> </a>
                                     <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <a class="dropdown-item" href="profile.jsp?member_id=${member.memberId}"> <i class="fa fa-user icon"></i> โพรไฟล์ </a>
+                                        <a class="dropdown-item" href="viewProfileServlet?id=${member.memberId}"> <i class="fa fa-user icon"></i> โพรไฟล์ </a>
                                         <a class="dropdown-item" href="dashboard.jsp"> <i class="fa fa-user icon"></i> แดชบอร์ด </a>
                                         <a class="dropdown-item" href="dashboard-project-list.jsp"> <i class="fa fa-bell icon"></i> โครงการของคุณ </a>
                                         <a class="dropdown-item" href="dashboard-account-setting.jsp"> <i class="fa fa-gear icon"></i> ตั้งค่าบัญชีผู้ใช้ </a>
