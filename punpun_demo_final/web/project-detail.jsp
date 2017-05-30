@@ -82,7 +82,7 @@
                                             <li>
                                                 <a href="" class="notification-item">
                                                     <div class="img-col">
-                                                        <div class="img" style="background-image: url('assets/img/profile/0000${noti.memberId}.jpg')"></div>
+                                                        <div class="img" style="background-image: url('assets/img/profile/${noti.memberId}.jpg')"></div>
                                                     </div>
                                                     <div class="body-col">
                                                         <p> <span class="accent">${noti.actor}</span> ${noti.action}: <span class="accent"> ${noti.detail}</span>. </p>
@@ -104,7 +104,7 @@
                             <!-- profile -->
                             <li class="profile dropdown">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <div class="img" style="background-image: url('assets/img/profile/0000${member.memberId}.jpg')"> </div> <span class="name">
+                                    <div class="img" style="background-image: url('assets/img/profile/${member.memberId}.jpg')"> </div> <span class="name">
                                         ${member.firstName}
                                     </span> </a>
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -167,7 +167,7 @@
                                             <!--Image-->
                                             <div class="col-md-8 col-xs-12  stat-col">
                                                 <div class="project-img-container">
-                                                    <div class="image-project-no-opacity" style="background-image: url('assets/img/Project_Pic/${project.projectId}/${project.projectId}.jpg')"></div>
+                                                    <div class="image-project-no-opacity" style="background-image: url('assets/img/projectPic/${project.projectId}.jpg')"></div>
 
                                                 </div>
                                             </div>
@@ -301,7 +301,7 @@
                                                                 <div class="item-row">
                                                                     <div class="item-col fixed item-col-img md">
                                                                         <a href="item-editor.html">
-                                                                            <div class="item-img rounded" style="background-image: url('assets/img/profile/0000${teamMember.memberId}.jpg')"></div>
+                                                                            <div class="item-img rounded" style="background-image: url('assets/img/profile/${teamMember.memberId}.jpg')"></div>
                                                                         </a>
                                                                     </div>
                                                                     <!--Name of Team-->
@@ -405,7 +405,7 @@
                                                                 <div class="item-row">
                                                                     <div class="item-col fixed item-col-img md">
                                                                         <a href="item-editor.html">
-                                                                            <div class="item-img rounded" style="background-image: url('assets/img/profile/0000${supporter.memberId}.jpg')"></div>
+                                                                            <div class="item-img rounded" style="background-image: url('assets/img/profile/${supporter.memberId}.jpg')"></div>
                                                                         </a>
                                                                     </div>
                                                                     <!--Name of Supporter-->
@@ -450,7 +450,7 @@
                                                                 <div class="col-md-2">
                                                                     <div class="images-container images-container-center">
                                                                         <!--Put Image link Here-->
-                                                                        <img src="assets/img/profile/0000${comment.memberId.memberId}.jpg" alt=""/>
+                                                                        <img src="assets/img/profile/${comment.memberId.memberId}.jpg" alt=""/>
                                                                     </div>
                                                                 </div>
                                                                 <!--Progress Percent-->

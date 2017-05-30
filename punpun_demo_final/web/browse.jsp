@@ -80,7 +80,7 @@
                                             <li>
                                                 <a href="" class="notification-item">
                                                     <div class="img-col">
-                                                        <div class="img" style="background-image: url('assets/img/profile/0000${noti.memberId}.jpg')"></div>
+                                                        <div class="img" style="background-image: url('assets/img/profile/${noti.memberId}.jpg')"></div>
                                                     </div>
                                                     <div class="body-col">
                                                         <p> <span class="accent">${noti.actor}</span> ${noti.action}: <span class="accent"> ${noti.detail}</span>. </p>
@@ -102,7 +102,7 @@
                             <!-- profile -->
                             <li class="profile dropdown">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <div class="img" style="background-image: url('assets/img/profile/0000${member.memberId}.jpg')"> </div> <span class="name">
+                                    <div class="img" style="background-image: url('assets/img/profile/${member.memberId}.jpg')"> </div> <span class="name">
                                         ${member.firstName}
                                     </span> </a>
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -199,7 +199,7 @@
 
                                         <!-- Pic -->
                                         <div class="card-header">
-                                            <div class="card card-block-img " style="background-image: url('assets/img/Project_Pic/${project.projectId}/${project.projectId}.jpg'); "></div>
+                                            <div class="card card-block-img " style="background-image: url('assets/img/projectPic/${project.projectId}.jpg'); "></div>
                                         </div>
 
                                         <!-- Name and Short Info -->
@@ -272,7 +272,7 @@
 
                                     <!-- Pic -->
                                     <div class="card-header">
-                                        <div class="card card-block-img " style="background-image: url('assets/img/Project_Pic/${project.project_id}/${project.project_id}.jpg'); "></div>
+                                        <div class="card card-block-img " style="background-image: url('assets/img/projectPic/${project.project_id}.jpg'); "></div>
                                     </div>
 
                                     <!-- Name and Short Info -->

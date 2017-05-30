@@ -80,7 +80,7 @@
                                                 <li>
                                                     <a href="" class="notification-item">
                                                         <div class="img-col">
-                                                            <div class="img" style="background-image: url('assets/img/profile/0000${noti.memberId}.jpg')"></div>
+                                                            <div class="img" style="background-image: url('assets/img/profile/${noti.memberId}.jpg')"></div>
                                                         </div>
                                                         <div class="body-col">
                                                             <p> <span class="accent">${noti.actor}</span> ${noti.action}: <span class="accent"> ${noti.detail}</span>. </p>
@@ -102,7 +102,7 @@
                                 <!-- profile -->
                                 <li class="profile dropdown">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <div class="img" style="background-image: url('assets/img/profile/0000${member.memberId}.jpg')"> </div> <span class="name">
+                                        <div class="img" style="background-image: url('assets/img/profile/${member.memberId}.jpg')"> </div> <span class="name">
                                             ${member.firstName}
                                         </span> </a>
                                     <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -133,7 +133,7 @@
                                     <!--Image-->
                                     <div class="images-container images-container-center">
                                         <!--Put Image link Here-->
-                                        <img src="assets/img/profile/0000${memberProfile.memberId}.jpg" alt=""/>
+                                        <img src="assets/img/profile/${memberProfile.memberId}.jpg" alt=""/>
                                     </div>
                                     <!--Username-->
                                     <h2 class="center-text white-text">${memberProfile.firstName} ${memberProfile.lastName}</h2>

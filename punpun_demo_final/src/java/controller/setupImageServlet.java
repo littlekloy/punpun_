@@ -61,8 +61,8 @@ public class setupImageServlet extends HttpServlet {
             for (FileItem item : multiparts) {
                 if (!item.isFormField()) {
                     String name = new File(item.getName()).getName();
-                    out.print(uploadFolder + File.separator + projects.getProjectId() + ".png");
-                    item.write(new File(uploadFolder + File.separator + projects.getProjectId() + ".png"));
+                    System.out.println(uploadFolder + File.separator + projects.getProjectId() + ".jpg");
+                    item.write(new File(uploadFolder + File.separator + projects.getProjectId() + ".jpg"));
                 }
             }
             response.sendRedirect("dashboard-project-setup-image.jsp");

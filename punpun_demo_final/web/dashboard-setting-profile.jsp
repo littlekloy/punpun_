@@ -63,7 +63,7 @@
                                                 <li>
                                                     <a href="" class="notification-item">
                                                         <div class="img-col">
-                                                            <div class="img" style="background-image: url('assets/img/profile/0000${noti.memberId}.jpg')"></div>
+                                                            <div class="img" style="background-image: url('assets/img/profile/${noti.memberId}.jpg')"></div>
                                                         </div>
                                                         <div class="body-col">
                                                             <p> <span class="accent">${noti.actor}</span> ${noti.action}: <span class="accent"> ${noti.detail}</span>. </p>
@@ -83,7 +83,7 @@
                                 </li>
                                 <li class="profile dropdown">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <div class="img" style="background-image: url('assets/img/profile/0000${member.memberId}.jpg')"> </div> <span class="name">
+                                        <div class="img" style="background-image: url('assets/img/profile/${member.memberId}.jpg')"> </div> <span class="name">
                                             ${member.firstName}
                                         </span> </a>
                                     <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -174,7 +174,7 @@
 
                                                             <a href="#" class="add-image" data-toggle="modal" data-target="#modal-media">
                                                                 <div class=" project-img-container">
-                                                                    <div class="image-project" style="background-image: url('assets/img/profile/0000${member.memberId}.jpg');"></div>
+                                                                    <div class="image-project" style="background-image: url('assets/img/profile/${member.memberId}.jpg');"></div>
                                                                     <div class="middle-project">
                                                                         <!--Button-->
                                                                         <input type="submit" class="btn btn-warning btn-lg"  value="+ อัพโหลดรูปภาพ"  />
