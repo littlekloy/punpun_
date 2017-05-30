@@ -156,7 +156,7 @@
                                         <div class="tab-content">
                                             <!-- Project Image Tab -->
                                             <div class="tab-pane fade in active" id="image-pills">
-                                                <form name="item" action="setupImageServlet">
+                                                <form name="item" action="setupImageServlet" method="post" enctype="multipart/form-data" >
                                                     <!--Category Form Card-->
                                                     <div class="card card-block">
                                                         <h4>รูปภาพของโครงการ</h4>
