@@ -170,7 +170,7 @@
                                         <!-- Intro Tab -->
                                         <div class="tab-pane fade in active" id="intro-pills">
                                             <div class="card-block">
-                                                <h2>Intro Tab</h2>
+
                                                 <h2>การระดมทุนจากมวลชน (Crowdfunding)</h2>
                                                 <p>การระดมทุนจากมวลชน (Crowdfunding) คือ การระดมเงินทุนเพื่อสนับสนุนโครงการในด้านงานประดิษฐ์ ผลงานต่าง ๆ หรือโครงการเพื่อสังคมจากคนจำนวนมาก โดยการระดมทุนมีหลายรูปแบบ ดังนี้ </p>
                                                 <ul>

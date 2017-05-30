@@ -157,10 +157,15 @@ public class ProjectUtil implements Serializable {
                     member.setLastName(rs2.getString("last_name"));
                     member.setMemberId(rs2.getInt("member_id"));
                     member.setPosition(rs2.getString("position"));
+                    if (rs2.getString("position").equals("เจ้าของโครงการ")) {
+                        project.setProjectOwner(member);
+                        System.out.println("Project Owner is :" + member);
+                    }
                     team.add(member);
-                    System.out.println(member);
                 }
                 project.setTeamCollection(team);
+                System.out.println("Project team is" + team);
+
                 //GET PROJECT ITEM
                 selectItem.setInt(1, rs.getInt("project_id"));
                 ResultSet rsItem = selectItem.executeQuery();

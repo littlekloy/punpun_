@@ -139,7 +139,7 @@
                                             <div class="col-md-9 col-sm-6">
                                                 <h1 class="title" style="font-size: 150%"> ${project.name} </h1>
 
-                                                <p class="title-description"> โดย Kanokwan Muutamara </p>
+                                                <p class="title-description"> โดย ${project.projectOwner.firstName} ${project.projectOwner.lastName}</p>
 
                                                 <div class="">
 

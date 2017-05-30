@@ -109,6 +109,7 @@ public class Projects implements Serializable {
     @ManyToOne
     private Integer teamId;
     private Integer supporterSize;
+    private Members projectOwner;
     @JoinColumn(name = "project_category_id", referencedColumnName = "project_category_id")
     @ManyToOne
     private Integer projectCategoryId;
@@ -120,6 +121,14 @@ public class Projects implements Serializable {
     private ArrayList<Comments> commentsCollection;
 
     public Projects() {
+    }
+
+    public Members getProjectOwner() {
+        return projectOwner;
+    }
+
+    public void setProjectOwner(Members projectOwner) {
+        this.projectOwner = projectOwner;
     }
 
     public Projects(Integer projectId) {
