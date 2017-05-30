@@ -337,6 +337,28 @@ public class ProjectUtil implements Serializable {
         return null;
     }
 
+    public Integer addProjectInfo(Projects project) {
+        try {
+            PreparedStatement insertData;
+            String cmd_1 = "UPDATE projects SET name = ?, funding_duration = ?, budget = ?, short_description = ?, story = ?,";
+            String cmd_2 = " project_category_id = ?, status = 'pending' WHERE project_id = ?";
+            insertData = conn.prepareStatement(cmd_1 + cmd_2);
+            insertData.setString(1, project.getName());
+            insertData.setInt(2, project.getFundingDuration());
+            insertData.setFloat(3, project.getBudget());
+            insertData.setString(4, project.getShortDescription());
+            insertData.setString(5, project.getStory());
+            insertData.setInt(6, project.getProjectCategoryId());
+            insertData.setInt(7, project.getProjectId());
+            System.out.println(insertData);
+            addProjectItem(project.getItemCollection(), project);
+            return insertData.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectUtil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
     public Integer updateProjectInfo(Projects project) {
         try {
             PreparedStatement insertData;
@@ -353,7 +375,6 @@ public class ProjectUtil implements Serializable {
             System.out.println(insertData);
             addProjectItem(project.getItemCollection(), project);
             return insertData.executeUpdate();
-
         } catch (SQLException ex) {
             Logger.getLogger(ProjectUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -361,6 +382,9 @@ public class ProjectUtil implements Serializable {
     }
 
     public Integer addProjectItem(ArrayList<ProjectItems> projectItem, Projects project) {
+        if (projectItem == null) {
+            return null;
+        }
         for (ProjectItems pj : projectItem) {
             try {
                 System.out.println(pj.getItems().getName());

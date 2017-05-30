@@ -48,7 +48,7 @@ public class submitServlet extends HttpServlet {
 
             Projects project = (Projects) session.getAttribute("newProject");
             projectUtil.deleteProjectItem(project);
-            projectUtil.updateProjectInfo(project);
+            projectUtil.addProjectInfo(project);
 
             projectUtil.closeConnection();
             response.sendRedirect("dashboard-project-list.jsp");

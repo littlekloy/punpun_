@@ -7,12 +7,15 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 import model.Projects;
+import utilities.ProjectUtil;
 
 /**
  *
@@ -45,6 +48,16 @@ public class setupDetailServlet extends HttpServlet {
             project.setStory(detail);
             session.setAttribute("newProject", project);
             System.out.println(detail);
+
+            ServletContext context = getServletContext();
+            DataSource ds = (DataSource) context.getAttribute("dataSource");
+
+            ProjectUtil projectUtil = new ProjectUtil(ds);
+            projectUtil.connect();
+
+            projectUtil.deleteProjectItem(project);
+            projectUtil.updateProjectInfo(project);
+
             response.sendRedirect("dashboard-project-setup-detail.jsp");
         }
     }
