@@ -7,27 +7,18 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Projects;
 
 /**
  *
  * @author kanok
  */
-public class addServlet extends HttpServlet {
-
-    private Connection conn;
-
-    public void init() {
-        conn = (Connection) getServletContext().getAttribute("connection");
-    }
+public class setupDetailServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,16 +34,16 @@ public class addServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            request.setCharacterEncoding("UTF-8");
-            response.setCharacterEncoding("UTF-8");
             String detail = request.getParameter("detail");
-            out.print(detail);
-            String update = "update projects SET story = ? where project_id = ?";
-            PreparedStatement updateData = conn.prepareStatement(update);
-            updateData.setString(1, detail);
-            //System.out.println(updateData.executeUpdate());
-        } catch (SQLException ex) {
-            Logger.getLogger(addServlet.class.getName()).log(Level.SEVERE, null, ex);
+            HttpSession session = request.getSession();
+            Projects project = (Projects) session.getAttribute("newProject");
+            if (project == null) {
+                project = new Projects();
+            }
+            project.setStory(detail);
+            session.setAttribute("newProject", project);
+            System.out.println(detail);
+            response.sendRedirect("dashboard-project-setup-detail.jsp");
         }
     }
 

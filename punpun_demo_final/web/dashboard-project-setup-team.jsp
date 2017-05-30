@@ -161,7 +161,7 @@
                                                     <!--List of Member Projects-->
                                                     <div data-exclude="xs,sm,lg">
                                                         <!-- Table Content -->
-                                                        <form>
+                                                        <form action="#">
                                                             <ul class="item-list striped">
 
                                                                 <!-- Head of Table -->
@@ -173,9 +173,9 @@
                                                                         <div class="item-col item-col-header item-col-center">
                                                                             <div> <span>ตำแหน่ง</span> </div>
                                                                         </div>
-                                                                        <div class="item-col item-col-header item-col-stats">
-                                                                            <div class="center-text" > <span> ผลการอนุมัติ </span> </div>
-                                                                        </div>
+                                                                        <!--                                                                        <div class="item-col item-col-header item-col-stats">
+                                                                                                                                                    <div class="center-text" > <span> ผลการอนุมัติ </span> </div>
+                                                                                                                                                </div>-->
                                                                     </div>
                                                                 </li>
 
@@ -185,19 +185,19 @@
                                                                         <!--Name of Team-->
                                                                         <div class="item-col item-col-title no-overflow no-underline">
                                                                             <div>
-                                                                                <a href="error-404.jsp" class="center-text">
-                                                                                    เจ้าของ โครงการ
+                                                                                <a href="viewProfileServlet?id=${member.memberId}" class="center-text">
+                                                                                    ${member.firstName} ${member.lastName}
                                                                                 </a>
                                                                             </div>
                                                                         </div>
                                                                         <!--Position-->
                                                                         <div class="item-col item-col-center">
                                                                             <div class="item-heading"> ตำแหน่ง </div>
-                                                                            <div> เจ้าโครงการ </div>
+                                                                            <div> เจ้าของโครงการ </div>
                                                                         </div>
-                                                                        <div class="item-col item-col-header item-col-stats">
-                                                                            <div > <span> </span> </div>
-                                                                        </div>
+                                                                        <!--                                                                        <div class="item-col item-col-header item-col-stats">
+                                                                                                                                                    <div > <span> </span> </div>
+                                                                                                                                                </div>-->
                                                                     </div>
                                                                 </li>
 
@@ -207,7 +207,7 @@
                                                                         <!--Name of Team-->
                                                                         <div class="item-col item-col-title no-overflow no-underline">
                                                                             <div>
-                                                                                <input type="text" name="name" class="form-control boxed" placeholder="ตัวอย่าง : กนกวรรณ มุตตามระ">
+                                                                                <input type="text" name="id" class="form-control boxed" placeholder="ตัวอย่าง : กนกวรรณ มุตตามระ">
                                                                             </div>
                                                                         </div>
                                                                         <!--Position-->
@@ -215,9 +215,9 @@
                                                                             <div class="item-heading"> ตำแหน่ง </div>
                                                                             <select class="c-select form-control boxed">
                                                                                 <option disabled selected>เลือกตำแหน่ง</option>
-                                                                                <option value="1">ผู้ดูแลโครงการ</option>
-                                                                                <option value="2">ผู้ช่วยโครงการ</option>
-                                                                                <option value="3">คนใช้</option>
+                                                                                <option value="เจ้าของโครงการ">เจ้าของโครงการ</option>
+                                                                                <option value="ทีมดูแลและจัดการ">ทีมดูแลและจัดการ</option>
+
                                                                             </select>
                                                                         </div>
                                                                         <!-- Setting Button -->

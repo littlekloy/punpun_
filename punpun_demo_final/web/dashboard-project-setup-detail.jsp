@@ -179,10 +179,15 @@
                                             <div class="tab-pane fade in active" id="details-pills">
                                                 <div class="card card-block">
                                                     <h4>รายละเอียดโครงการ</h4>
-                                                    <form role="form" name="divEditor" method="post" action="addServlet">
+                                                    <form role="form" name="divEditor" method="post" action="setupDetailServlet">
 
+                                                        <c:if test="${newProject != null}">
+                                                            <textarea id="mytextarea" name="detail">${newProject.story}</textarea>
+                                                        </c:if>
+                                                        <c:if test="${empty newProject}">
+                                                            <textarea id="mytextarea" name="detail"></textarea>
+                                                        </c:if>
 
-                                                        <textarea id="mytextarea" name="detail"></textarea>
 
 
                                                         <!--Button-->

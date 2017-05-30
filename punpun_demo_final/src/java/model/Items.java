@@ -48,7 +48,7 @@ public class Items implements Serializable {
     private Collection<ProjectItems> projectItemsCollection;
     @JoinColumn(name = "item_category_id", referencedColumnName = "item_catagory_id")
     @ManyToOne(optional = false)
-    private ItemCategories itemCategoryId;
+    private Integer itemCategoryId;
 
     public Items() {
     }
@@ -82,11 +82,11 @@ public class Items implements Serializable {
         this.projectItemsCollection = projectItemsCollection;
     }
 
-    public ItemCategories getItemCategoryId() {
+    public Integer getItemCategoryId() {
         return itemCategoryId;
     }
 
-    public void setItemCategoryId(ItemCategories itemCategoryId) {
+    public void setItemCategoryId(Integer itemCategoryId) {
         this.itemCategoryId = itemCategoryId;
     }
 

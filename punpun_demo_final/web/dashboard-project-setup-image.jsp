@@ -156,21 +156,22 @@
                                         <div class="tab-content">
                                             <!-- Project Image Tab -->
                                             <div class="tab-pane fade in active" id="image-pills">
-                                                <form name="item">
+                                                <form name="item" action="setupImageServlet">
                                                     <!--Category Form Card-->
                                                     <div class="card card-block">
                                                         <h4>รูปภาพของโครงการ</h4>
-                                                        <a href="#" class="add-image" data-toggle="modal" data-target="#modal-media">
-                                                            <div class="project-img-container">
-                                                                <div class="image-project" style="background-image: url('assets/backgrounds/profile-card-1.jpg')"></div>
-                                                                <div class="middle-project">
-                                                                    <!--Button-->
-                                                                    <input type="submit" class="btn btn-warning btn-lg"  value="+ อัพโหลดรูปภาพ"  />
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
+                                                        <!--                                                        <a href="#" class="add-image" data-toggle="modal" data-target="#modal-media">
+                                                                                                                    <div class="project-img-container">
+                                                                                                                        <div class="image-project" style="background-image: url('assets/backgrounds/profile-card-1.jpg')"></div>
+                                                                                                                        <div class="middle-project">
+                                                                                                                            Button
+                                                                                                                            <input type="submit" class="btn btn-warning btn-lg"  value="+ อัพโหลดรูปภาพ"  />
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </a>-->
 
+                                                        <div class="col-sm-8"> <input type="file" class="form-control" name="image"> </div>
+                                                    </div>
                                                     <!--Button-->
                                                     <input type="submit" class="btn btn-primary btn-block" onclick='submitForm()'  value="บันทึก"  />
                                                     <input type="submit" class="btn btn-secondary btn-block" onclick='submitForm()'  value="ยกเลิก"  />

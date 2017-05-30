@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 import model.Comments;
 import model.Items;
 import model.Members;
+import model.ProjectCategories;
 import model.ProjectItems;
 import model.Projects;
 import model.Supporter;
@@ -314,4 +315,38 @@ public class ProjectUtil implements Serializable {
         }
         return null;
     }
+
+    public Projects createProject(Projects project) {
+        try {
+            Projects newProject = project;
+            String sql = "Insert into project values (?,?,?,?)";
+            PreparedStatement insertData = conn.prepareStatement(sql);
+            return newProject;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectUtil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public ArrayList<ProjectCategories> getAllCategory() {
+        try {
+            ArrayList<ProjectCategories> category = new ArrayList<ProjectCategories>();
+            String cmdSelect = "SELECT * FROM project_categories";
+            PreparedStatement selectData = conn.prepareStatement(cmdSelect);
+            ResultSet rs = selectData.executeQuery();
+            int i = 0;
+            while (rs.next()) {
+                ProjectCategories cate = new ProjectCategories();
+                cate.setName(rs.getString("name"));
+                cate.setProjectCategoryId(rs.getInt("project_category_id"));
+                cate.setDescription(rs.getString("description"));
+                category.add(cate);
+            }
+            return category;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectUtil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 }

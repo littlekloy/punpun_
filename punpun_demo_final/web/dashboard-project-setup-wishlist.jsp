@@ -162,16 +162,13 @@
                                                     <!--List of Member Projects-->
                                                     <div data-exclude="xs,sm,lg">
                                                         <!-- Table Content -->
-                                                        <form>
+                                                        <form action="setupWishListServlet">
                                                             <ul class="item-list striped">
 
                                                                 <!-- Head of Table -->
                                                                 <li class="item item-list-header hidden-sm-down">
                                                                     <div class="item-row">
 
-                                                                        <div class="item-col item-col-header item-col-center">
-                                                                            <div> <span> ประเภท </span> </div>
-                                                                        </div>
                                                                         <div class="item-col item-col-header item-col-center">
                                                                             <div class=""> <span> รายการ </span> </div>
                                                                         </div>
@@ -181,28 +178,52 @@
                                                                         <div class="item-col item-col-header fixed item-col-actions-dropdown"> </div>
                                                                     </div>
                                                                 </li>
+                                                                <c:forEach var="item" items="${newProject.itemCollection}">
+                                                                    <!-- Item : Loop here -->
+                                                                    <li class="item">
+                                                                        <div class="item-row">
+
+                                                                            <!-- Name of Items -->
+                                                                            <div class="item-col item-col-sales">
+                                                                                <div class="item-heading"> ชื่อผู้ใช้ </div>
+                                                                                ${item.items.name}
+                                                                            </div>
+                                                                            <!-- TGT Amount -->
+                                                                            <div class="item-col item-col-sales">
+                                                                                <div class="item-heading"> ยอดเงินที่ต้องการ </div>
+                                                                                ${item.amount}
+                                                                            </div>
+                                                                            <!-- Setting Button -->
+                                                                            <div class="item-col fixed item-col-actions-dropdown">
+                                                                                <div class="item-actions-dropdown">
+                                                                                    <input type="submit" class="btn btn-primary btn-block"  value="x"  />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </c:forEach>
 
                                                                 <!-- Item : Loop here -->
                                                                 <li class="item">
                                                                     <div class="item-row">
-                                                                        <!-- Category -->
-                                                                        <div class="item-col item-col-center">
-                                                                            <div class="item-heading"> ตำแหน่ง </div>
-                                                                            <select class="c-select form-control boxed">
-                                                                                <option disabled selected>เลือกตำแหน่ง</option>
-                                                                                <option value="1">ผู้ดูแลโครงการ</option>
-                                                                                <option value="2">ผู้ช่วยโครงการ</option>
-                                                                                <option value="3">คนใช้</option>
-                                                                            </select> </div>
+                                                                        <!--                                                                         Category
+                                                                                                                                                <div class="item-col item-col-center">
+                                                                                                                                                    <div class="item-heading"> ตำแหน่ง </div>
+                                                                                                                                                    <select class="c-select form-control boxed" name="cate_id">
+                                                                                                                                                        <option disabled selected >เลือกตำแหน่ง</option>
+                                                                                                                                                        <option value="1">ผู้ดูแลโครงการ</option>
+                                                                                                                                                        <option value="2">ผู้ช่วยโครงการ</option>
+                                                                                                                                                        <option value="3">คนใช้</option>
+                                                                                                                                                    </select> </div>-->
                                                                         <!-- Name of Items -->
                                                                         <div class="item-col item-col-center">
                                                                             <div class="item-heading"> ชื่อผู้ใช้ </div>
-                                                                            <input type="text" class="form-control boxed" placeholder="ex. @Frost2Ice" required>
+                                                                            <input type="text" name="name" class="form-control boxed" placeholder="รายการ" required>
                                                                         </div>
                                                                         <!-- TGT Amount -->
                                                                         <div class="item-col item-col-center">
                                                                             <div class="item-heading"> ยอดเงินที่ต้องการ </div>
-                                                                            <input type="number" class="form-control boxed" min="0" placeholder=" จำนวนเงินที่ต้องการ " required="">
+                                                                            <input type="number" name="amount" class="form-control boxed" min="0" placeholder=" จำนวนเงินที่ต้องการ " required="">
                                                                         </div>
                                                                         <!-- Setting Button -->
                                                                         <div class="item-col fixed item-col-actions-dropdown">

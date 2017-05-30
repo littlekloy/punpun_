@@ -56,6 +56,26 @@
         <servlet-name>viewProfileServlet</servlet-name>
         <servlet-class>controller.viewProfileServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>setupInfoServlet</servlet-name>
+        <servlet-class>controller.setupInfoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>setupTeamServlet</servlet-name>
+        <servlet-class>controller.setupTeamServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>setupDetailServlet</servlet-name>
+        <servlet-class>controller.setupDetailServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>setupWishListServlet</servlet-name>
+        <servlet-class>controller.setupWishListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>setupImageServlet</servlet-name>
+        <servlet-class>controller.setupImageServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
@@ -107,6 +127,26 @@
     <servlet-mapping>
         <servlet-name>viewProfileServlet</servlet-name>
         <url-pattern>/viewProfileServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>setupInfoServlet</servlet-name>
+        <url-pattern>/setupInfoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>setupTeamServlet</servlet-name>
+        <url-pattern>/setupTeamServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>setupDetailServlet</servlet-name>
+        <url-pattern>/setupDetailServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>setupWishListServlet</servlet-name>
+        <url-pattern>/setupWishListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>setupImageServlet</servlet-name>
+        <url-pattern>/setupImageServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

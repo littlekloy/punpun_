@@ -3,6 +3,10 @@
     Created on : May 28, 2017, 11:22:10 PM
     Author     : kanok
 --%>
+<%@page import="model.ProjectCategories"%>
+<%@page import="utilities.ProjectUtil"%>
+<%@page import="javax.sql.DataSource"%>
+<%@page import="java.util.ArrayList"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -159,68 +163,155 @@
                                         <div class="tab-content">
                                             <!--Basic Tab-->
                                             <div class="tab-pane fade in active" id="basic-pills">
-                                                <form name="item">
+                                                <c:if test="${empty newProject}">
 
-                                                    <!--Title Form Card-->
-                                                    <div class="card card-block">
-                                                        <h4>สร้างโครงการของคุณ</h4>
-                                                        <p>กรอกข้อมูลและรายละเอียดต่าง ๆ ของโครงการของคุณ</p>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> ชื่อโครงการ : </label>
-                                                            <div class="col-sm-6"> <input type="text" class="form-control boxed" placeholder="ตัวอย่าง 'ปั่นยังไงให้เสร็จในหนึ่งเดือน' "> </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <!--Category Form Card-->
-                                                    <div class="card card-block">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> เลือกประเภท : </label>
-                                                            <div class="col-sm-6">
-                                                                <select class="c-select form-control boxed">
-                                                                    <option disabled selected>เลือกประเภท</option>
-                                                                    <option value="1">One</option>
-                                                                    <option value="2">Two</option>
-                                                                    <option value="3">Three</option>
-                                                                </select>
+                                                    <form name="item" action="setupInfoServlet">
+                                                        <!--Title Form Card-->
+                                                        <div class="card card-block">
+                                                            <h4>สร้างโครงการของคุณ</h4>
+                                                            <p>กรอกข้อมูลและรายละเอียดต่าง ๆ ของโครงการของคุณ</p>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> ชื่อโครงการ : </label>
+                                                                <div class="col-sm-6"> <input type="text" required name="projectName" class="form-control boxed" placeholder="ตัวอย่าง 'ปั่นยังไงให้เสร็จในหนึ่งเดือน' "> </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <!--Target Form Card-->
-                                                    <div class="card card-block">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> จำนวนเงิน : </label>
-                                                            <div class="col-sm-6"> <input type="number" class="form-control boxed" min="0" placeholder=" จำนวนเงินที่ต้องการ "> </div>
-                                                        </div>
-                                                    </div>
+                                                        <!--Category Form Card-->
 
-                                                    <!--Duration Form Card-->
-                                                    <div class="card card-block">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> ระยะเวลา : </label>
-                                                            <div class="col-sm-6"> <input type="number" class="form-control boxed" name="duration" min="3" max="90" placeholder="ระบุจำนวนวัน" value="90"> </div>
-                                                        </div>
-                                                    </div>
+                                                        <div class="card card-block">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> เลือกประเภท : </label>
+                                                                <div class="col-sm-6">
+                                                                    <select class="c-select form-control boxed" name="category">
+                                                                        <option disabled selected>เลือกประเภท</option>
+                                                                        <% HttpSession session2 = request.getSession();
+                                                                            ServletContext context = getServletContext();
+                                                                            DataSource ds = (DataSource) context.getAttribute("dataSource");
 
-                                                    <!-- Tag Form Card -->
-                                                    <div class="card card-block">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> แท๊ก : </label>
-                                                            <div class="col-sm-6">
-                                                                <ul id="myULTags">
-                                                                    <li>การศึกษา</li>
-                                                                    <li>ชาวเขา</li>
-                                                                </ul>
+                                                                            ProjectUtil projectUtil = new ProjectUtil(ds);
+                                                                            projectUtil.connect();
+                                                                            ArrayList<ProjectCategories> category = projectUtil.getAllCategory();
+                                                                            session2.setAttribute("category", category);%>
+                                                                        <c:forEach var="cate" items="${category}">
+                                                                            <option value="${cate.projectCategoryId}">${cate.name}</option>
+                                                                        </c:forEach>
+                                                                    </select>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <!--Button-->
-                                                    <div class="col-sm-6 offset-sm-3">
-                                                        <input type="submit" class="btn btn-primary btn-block"  value="บันทึก"  />
-                                                        <input type="submit" class="btn btn-secondary btn-block"  value="ยกเลิก"  />
-                                                    </div>
-                                                </form>
+                                                        <!--Target Form Card-->
+                                                        <div class="card card-block">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> จำนวนเงิน : </label>
+                                                                <div class="col-sm-6"> <input type="number" required name="amount" class="form-control boxed" min="0" placeholder=" จำนวนเงินที่ต้องการ "> </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!--Duration Form Card-->
+                                                        <div class="card card-block">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> ระยะเวลา : </label>
+                                                                <div class="col-sm-6"> <input type="number" required name="duration" class="form-control boxed" name="duration" min="3" max="90" placeholder="ระบุจำนวนวัน" value="90"> </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Tag Form Card -->
+                                                        <div class="card card-block">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> แท๊ก : </label>
+                                                                <div class="col-sm-6">
+                                                                    <ul id="myULTags">
+                                                                        <li>การศึกษา</li>
+                                                                        <li>ชาวเขา</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!--Button-->
+                                                        <div class="col-sm-6 offset-sm-3">
+                                                            <input type="submit" class="btn btn-primary btn-block"  value="บันทึก"  />
+                                                            <input type="submit" class="btn btn-secondary btn-block"  value="ยกเลิก"  />
+                                                        </div>
+                                                    </form>
+                                                </c:if>
+                                                <c:if test="${newProject != null}">
+
+                                                    <form name="item" action="setupInfoServlet">
+                                                        <!--Title Form Card-->
+                                                        <div class="card card-block">
+                                                            <h4>สร้างโครงการของคุณ</h4>
+                                                            <p>กรอกข้อมูลและรายละเอียดต่าง ๆ ของโครงการของคุณ</p>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> ชื่อโครงการ : </label>
+                                                                <div class="col-sm-6"> <input type="text" required name="projectName" class="form-control boxed" placeholder="ตัวอย่าง 'ปั่นยังไงให้เสร็จในหนึ่งเดือน' " value="${newProject.name}"> </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!--Category Form Card-->
+
+                                                        <div class="card card-block">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> เลือกประเภท : </label>
+                                                                <div class="col-sm-6">
+                                                                    <select class="c-select form-control boxed" name="category">
+
+                                                                        <% HttpSession session3 = request.getSession();
+                                                                            ServletContext context2 = getServletContext();
+                                                                            DataSource ds2 = (DataSource) context2.getAttribute("dataSource");
+
+                                                                            ProjectUtil projectUtil2 = new ProjectUtil(ds2);
+                                                                            projectUtil2.connect();
+                                                                            ArrayList<ProjectCategories> category2 = projectUtil2.getAllCategory();
+                                                                            session3.setAttribute("category", category2);%>
+                                                                        <c:forEach var="cate" items="${category}">
+                                                                            <c:if test="${newProject.projectCategoryId == cate.projectCategoryId}">
+                                                                                <option selected value="${cate.projectCategoryId}">${cate.name}</option
+                                                                            </c:if>
+                                                                            <option value="${cate.projectCategoryId}">${cate.name}</option>
+                                                                        </c:forEach>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!--Target Form Card-->
+                                                        <div class="card card-block">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> จำนวนเงิน : </label>
+                                                                <div class="col-sm-6"> <input type="number" required name="amount" class="form-control boxed" min="0" placeholder=" จำนวนเงินที่ต้องการ " value="${newProject.budget}"> </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!--Duration Form Card-->
+                                                        <div class="card card-block">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> ระยะเวลา : </label>
+                                                                <div class="col-sm-6"> <input type="number" required name="duration" class="form-control boxed" name="duration" min="3" max="90" placeholder="ระบุจำนวนวัน" value="90"> </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Tag Form Card -->
+                                                        <div class="card card-block">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 offset-sm-1 form-control-label text-xs-right"> แท๊ก : </label>
+                                                                <div class="col-sm-6">
+                                                                    <ul id="myULTags">
+                                                                        <li>การศึกษา</li>
+                                                                        <li>ชาวเขา</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!--Button-->
+                                                        <div class="col-sm-6 offset-sm-3">
+                                                            <input type="submit" class="btn btn-primary btn-block"  value="บันทึก"  />
+                                                            <input type="submit" class="btn btn-secondary btn-block"  value="ยกเลิก"  />
+                                                        </div>
+                                                    </form>
+                                                </c:if>
                                             </div>
                                         </div>
                                     </div>
