@@ -87,7 +87,7 @@ public class donationServlet extends HttpServlet {
                     String amount = request.getParameter(i);
                     String amount_item = request.getParameter("amount_item_" + i);
                     int item_amount = ItemDonation(amount, amount_item);
-                    donationUtil.itemDonation(item_amount, id, Integer.parseInt(i));
+                    donationUtil.itemDonation(item_amount, id, Integer.parseInt(i), project.getProjectId());
                     allAmount += item_amount;
                 }
 
