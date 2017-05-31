@@ -90,7 +90,7 @@ public class DonationUtil {
             insertItemDonation.setInt(1, amount);
             insertItemDonation.setInt(2, donationId);
             insertItemDonation.setInt(3, itemId);
-            insertItemDonation.setInt(3, projectId);
+            insertItemDonation.setInt(4, projectId);
             System.out.println(insertItemDonation);
             System.out.println(insertItemDonation.executeUpdate());
         } catch (SQLException ex) {

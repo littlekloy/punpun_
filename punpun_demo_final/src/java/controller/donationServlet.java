@@ -73,7 +73,7 @@ public class donationServlet extends HttpServlet {
 
             }
             if (whole_project != null) {
-                String amount = request.getParameter("amount");
+                String amount = request.getParameter("project");
                 String custom_amount = request.getParameter("custom_amount");
                 int project_amount = punpunDonation(amount, custom_amount);
                 donationUtil.projectDonation(project_amount, id);

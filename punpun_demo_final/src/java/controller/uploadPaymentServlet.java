@@ -5,9 +5,12 @@
  */
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,15 +19,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import model.Donations;
-import model.Projects;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import utilities.DonationUtil;
-import utilities.ProjectUtil;
 
 /**
  *
  * @author kanok
  */
-public class dashboardServlet extends HttpServlet {
+public class uploadPaymentServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,50 +45,35 @@ public class dashboardServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
-            Integer id = Integer.parseInt(request.getParameter("id"));
+            boolean isMultipart;
+            String filePath;
+
+            // Get the file location where it would be stored.
+            filePath = getServletContext().getInitParameter("file-upload");
+
+            isMultipart = ServletFileUpload.isMultipartContent(request);
+
+            List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+            String uploadFolder = ("D:\\Dropbox\\CharityWeb_Kloy_Ice\\Implemented_Sytem\\Code\\punpun_final\\punpun_\\punpun_demo_final\\web\\assets\\img\\payment");
+            out.print(uploadFolder);
             ServletContext context = getServletContext();
             DataSource ds = (DataSource) context.getAttribute("dataSource");
-
-            ProjectUtil projectUtil = new ProjectUtil(ds);
-            projectUtil.connect();
-
-            ArrayList<Projects> projects = projectUtil.findOwnerProject(id);
-            session.setAttribute("yoursProject", projects);
-            ArrayList<Projects> draft = new ArrayList<Projects>();
-            ArrayList<Projects> pending = new ArrayList<Projects>();
-            ArrayList<Projects> accept = new ArrayList<Projects>();
-            ArrayList<Projects> eject = new ArrayList<Projects>();
-            ArrayList<Projects> delete = new ArrayList<Projects>();
-            ArrayList<Projects> finish = new ArrayList<Projects>();
-            for (Projects project : projects) {
-                String status = project.getStatus();
-                if (status.equals("draft")) {
-                    draft.add(project);
-                } else if (status.equals("pending")) {
-                    pending.add(project);
-                } else if (status.equals("accept")) {
-                    accept.add(project);
-                } else if (status.equals("eject")) {
-                    eject.add(project);
-                } else if (status.equals("delete")) {
-                    delete.add(project);
-                } else if (status.equals("finish")) {
-                    finish.add(project);
-                }
-            }
-
-            session.setAttribute("finish", finish);
-            session.setAttribute("draft", draft);
-            session.setAttribute("pending", pending);
-            session.setAttribute("accept", accept);
-            session.setAttribute("eject", eject);
-            session.setAttribute("delete", delete);
             DonationUtil donationUtil = new DonationUtil(ds);
             donationUtil.connect();
-            ArrayList<Donations> fundedDonation = donationUtil.findDonationByMemberId(id);
-            session.setAttribute("fundedDonations", fundedDonation);
-            donationUtil.closeConnection();
-            response.sendRedirect("dashboard.jsp");
+            String id = request.getParameter("id");
+            out.print("ID : " + id);
+            Donations donation = donationUtil.findDonationtById(Integer.parseInt(id));
+            out.print(donation);
+            for (FileItem item : multiparts) {
+                if (!item.isFormField()) {
+                    String name = new File(item.getName()).getName();
+                    System.out.println(uploadFolder + File.separator + donation.getDonationId() + ".jpg");
+                    item.write(new File(uploadFolder + File.separator + donation.getDonationId() + ".jpg"));
+                }
+            }
+            response.sendRedirect("success-payment.jsp");
+        } catch (Exception ex) {
+            Logger.getLogger(uploadPaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

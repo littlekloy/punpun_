@@ -88,6 +88,18 @@
         <servlet-name>draftProjectServlet</servlet-name>
         <servlet-class>controller.draftProjectServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>paymentServlet</servlet-name>
+        <servlet-class>controller.paymentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>uploadPaymentServlet</servlet-name>
+        <servlet-class>controller.uploadPaymentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>approveServlet</servlet-name>
+        <servlet-class>controller.approveServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
@@ -172,9 +184,21 @@
         <servlet-name>draftProjectServlet</servlet-name>
         <url-pattern>/draftProjectServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>paymentServlet</servlet-name>
+        <url-pattern>/paymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>uploadPaymentServlet</servlet-name>
+        <url-pattern>/uploadPaymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>approveServlet</servlet-name>
+        <url-pattern>/approveServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            900
+            30
         </session-timeout>
     </session-config>
     <welcome-file-list>

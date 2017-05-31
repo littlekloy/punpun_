@@ -48,7 +48,7 @@
                                     <div class="col-sm-6"> <input type="password" class="form-control underlined" name="retype_password" id="retype_password" placeholder="กรอกรหัสผ่านอีกครั้ง" required=""> </div>
                                 </div>
                             </div>
-                            <div class="form-group"> <button type="submit" class="btn btn-block btn-primary"> ลงทะเบียน </button> </div>
+                            <div class="form-group"> <button type="submit" class="btn btn-block btn-primary" id="signup-btn"> ลงทะเบียน </button> </div>
 
                         </form>
                         <div class="form-group">

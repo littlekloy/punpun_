@@ -7,24 +7,23 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
-import model.Donations;
 import model.Projects;
-import utilities.DonationUtil;
 import utilities.ProjectUtil;
 
 /**
  *
  * @author kanok
  */
-public class dashboardServlet extends HttpServlet {
+@WebServlet(name = "viewProjectByIdServlet", urlPatterns = {"/viewProjectByIdServlet"})
+public class viewProjectByIdServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,50 +40,22 @@ public class dashboardServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
-            Integer id = Integer.parseInt(request.getParameter("id"));
+
             ServletContext context = getServletContext();
             DataSource ds = (DataSource) context.getAttribute("dataSource");
 
             ProjectUtil projectUtil = new ProjectUtil(ds);
             projectUtil.connect();
 
-            ArrayList<Projects> projects = projectUtil.findOwnerProject(id);
-            session.setAttribute("yoursProject", projects);
-            ArrayList<Projects> draft = new ArrayList<Projects>();
-            ArrayList<Projects> pending = new ArrayList<Projects>();
-            ArrayList<Projects> accept = new ArrayList<Projects>();
-            ArrayList<Projects> eject = new ArrayList<Projects>();
-            ArrayList<Projects> delete = new ArrayList<Projects>();
-            ArrayList<Projects> finish = new ArrayList<Projects>();
-            for (Projects project : projects) {
-                String status = project.getStatus();
-                if (status.equals("draft")) {
-                    draft.add(project);
-                } else if (status.equals("pending")) {
-                    pending.add(project);
-                } else if (status.equals("accept")) {
-                    accept.add(project);
-                } else if (status.equals("eject")) {
-                    eject.add(project);
-                } else if (status.equals("delete")) {
-                    delete.add(project);
-                } else if (status.equals("finish")) {
-                    finish.add(project);
-                }
-            }
-
-            session.setAttribute("finish", finish);
-            session.setAttribute("draft", draft);
-            session.setAttribute("pending", pending);
-            session.setAttribute("accept", accept);
-            session.setAttribute("eject", eject);
-            session.setAttribute("delete", delete);
-            DonationUtil donationUtil = new DonationUtil(ds);
-            donationUtil.connect();
-            ArrayList<Donations> fundedDonation = donationUtil.findDonationByMemberId(id);
-            session.setAttribute("fundedDonations", fundedDonation);
-            donationUtil.closeConnection();
-            response.sendRedirect("dashboard.jsp");
+            String id = request.getParameter("id");
+            System.err.println(id);
+            Projects project = projectUtil.findProjectById(Integer.parseInt(id));
+            session.setAttribute("newProject", project);
+            System.out.println(project);
+//
+//            String url = "project-detail.jsp?id=" + id;
+            response.sendRedirect("project-preview.jsp");
+            projectUtil.closeConnection();
         }
     }
 

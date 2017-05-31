@@ -54,7 +54,7 @@
                             <a href="index.jsp" class="btn btn-none-shadow header-btn"> <i class="fa fa-home"></i> <span> หน้าแรก </span> </a>
                         </li>
                         <li class="header-block header-block-buttons">
-                            <a href="ViewAllServlet" class="btn btn-none-shadow header-btn"> <i class="fa fa-file-text"></i> <span> โครงการต่าง ๆ </span> </a>
+                            <a href="ViewAllServlet" class="btn btn-none-shadow header-btn" id="browse-link"> <i class="fa fa-file-text"></i> <span> โครงการต่าง ๆ </span> </a>
                         </li>
                         <li class="header-block header-block-buttons">
                             <a href="how-it-works.jsp" class="btn btn-none-shadow header-btn"> <i class="fa fa-list-ul"></i> <span> ขั้นตอนการบริจาค </span> </a>
@@ -65,14 +65,14 @@
                         <c:if test="${empty member}">
                             <!-- login -->
                             <li class="header-block header-block-buttons">
-                                <a href="login.jsp" class="btn btn-none-shadow header-btn"> <i class="fa fa-sign-in"></i> <span> ลงชื่อเข้าใช้ </span> </a>
+                                <a href="login.jsp" class="btn btn-none-shadow header-btn" id="login-btn"> <i class="fa fa-sign-in"></i> <span> ลงชื่อเข้าใช้ </span> </a>
                             </li>
                         </c:if>
                         <c:if test="${member != null }">
 
                             <!-- notification -->
                             <li class="notifications new">
-                                <a href="" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <sup>
+                                <a href="checkNotificationServlet" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <sup>
                                         <span class="counter">${countNoti}</span>
                                     </sup>
                                 </a>
@@ -109,19 +109,18 @@
                                     </span> </a>
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <a class="dropdown-item" href="viewProfileServlet?id=${member.memberId}"> <i class="fa fa-user icon"></i> โพรไฟล์ </a>
-                                    <a class="dropdown-item" href="dashboard.jsp"> <i class="fa fa-user icon"></i> แดชบอร์ด </a>
-                                    <a class="dropdown-item" href="dashboard-project-list.jsp"> <i class="fa fa-bell icon"></i> โครงการของคุณ </a>
+                                    <a class="dropdown-item" href="dashboardServlet?id=${member.memberId}"> <i class="fa fa-user icon"></i> แดชบอร์ด </a>
+                                    <a class="dropdown-item" href="payment-list.jsp?memberId=${member.memberId}"> <i class="fa fa-bell icon"></i> การระดมทุนของคุณ </a>
                                     <a class="dropdown-item" href="dashboard-account-setting.jsp"> <i class="fa fa-gear icon"></i> ตั้งค่าบัญชีผู้ใช้ </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="logoutServlet"> <i class="fa fa-power-off icon"></i> ลงชื่อออก </a>
                                 </div>
                             </li>
-
-
                         </c:if>
                     </ul>
                 </div>
             </header>
+
 
             <!-- Content -->
 
@@ -245,7 +244,7 @@
 
                                             <div class="col-xs-12 col-md-4 stat-col-level want-bottom">
 
-                                                <a href="donate.jsp?id=${project.projectId}"><button class="want-top btn btn-block btn-lg btn-primary">สนับสนุนโครงการ</button></a>
+                                                <a href="donate.jsp?id=${project.projectId}" id="donate-focus-btn"><button class="want-top btn btn-block btn-lg btn-primary">สนับสนุนโครงการ</button></a>
 
                                             </div>
 
@@ -525,7 +524,7 @@
 
                     <div class="col-xs-12">
                         <form action="donate.html">
-                            <button class="want-top btn btn-block btn-lg btn-primary">สนับสนุนโครงการ</button>
+                            <button class="want-top btn btn-block btn-lg btn-primary" id="donate-btn">สนับสนุนโครงการ</button>
                         </form>
                     </div>
 

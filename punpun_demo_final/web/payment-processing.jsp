@@ -53,7 +53,7 @@
                                 <a href="index.jsp" class="btn btn-none-shadow header-btn"> <i class="fa fa-home"></i> <span> หน้าแรก </span> </a>
                             </li>
                             <li class="header-block header-block-buttons">
-                                <a href="ViewAllServlet" class="btn btn-none-shadow header-btn"> <i class="fa fa-file-text"></i> <span> โครงการต่าง ๆ </span> </a>
+                                <a href="ViewAllServlet" class="btn btn-none-shadow header-btn" id="browse-link"> <i class="fa fa-file-text"></i> <span> โครงการต่าง ๆ </span> </a>
                             </li>
                             <li class="header-block header-block-buttons">
                                 <a href="how-it-works.jsp" class="btn btn-none-shadow header-btn"> <i class="fa fa-list-ul"></i> <span> ขั้นตอนการบริจาค </span> </a>
@@ -64,14 +64,14 @@
                             <c:if test="${empty member}">
                                 <!-- login -->
                                 <li class="header-block header-block-buttons">
-                                    <a href="login.jsp" class="btn btn-none-shadow header-btn"> <i class="fa fa-sign-in"></i> <span> ลงชื่อเข้าใช้ </span> </a>
+                                    <a href="login.jsp" class="btn btn-none-shadow header-btn" id="login-btn"> <i class="fa fa-sign-in"></i> <span> ลงชื่อเข้าใช้ </span> </a>
                                 </li>
                             </c:if>
                             <c:if test="${member != null }">
 
                                 <!-- notification -->
                                 <li class="notifications new">
-                                    <a href="" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <sup>
+                                    <a href="checkNotificationServlet" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <sup>
                                             <span class="counter">${countNoti}</span>
                                         </sup>
                                     </a>
@@ -108,8 +108,8 @@
                                         </span> </a>
                                     <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                                         <a class="dropdown-item" href="viewProfileServlet?id=${member.memberId}"> <i class="fa fa-user icon"></i> โพรไฟล์ </a>
-                                        <a class="dropdown-item" href="dashboard.jsp"> <i class="fa fa-user icon"></i> แดชบอร์ด </a>
-                                        <a class="dropdown-item" href="dashboard-project-list.jsp"> <i class="fa fa-bell icon"></i> โครงการของคุณ </a>
+                                        <a class="dropdown-item" href="dashboardServlet?id=${member.memberId}"> <i class="fa fa-user icon"></i> แดชบอร์ด </a>
+                                        <a class="dropdown-item" href="payment-list.jsp?memberId=${member.memberId}"> <i class="fa fa-bell icon"></i> การระดมทุนของคุณ </a>
                                         <a class="dropdown-item" href="dashboard-account-setting.jsp"> <i class="fa fa-gear icon"></i> ตั้งค่าบัญชีผู้ใช้ </a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="logoutServlet"> <i class="fa fa-power-off icon"></i> ลงชื่อออก </a>
@@ -121,6 +121,7 @@
                         </ul>
                     </div>
                 </header>
+
 
                 <!-- Search Content -->
                 <div class="app parallax-autoheight white-text" style="background-image: url('assets/backgrounds/profile-card-1.jpg');" >
@@ -144,7 +145,7 @@
                         <div class="col-md-12">
                             <!-- Project Name -->
                             <div class="card card-block">
-                                <form role="form" method="GET" name="bank-transfer" action="success-payment.jsp">
+                                <form role="form" method="POST" name="bank-transfer" action="uploadPaymentServlet?id=${donationForCHKout.donationId}" enctype="multipart/form-data">
                                     <!-- Bank -->
                                     <div class="col-md-12">
                                         <!-- Bank 1 -->
@@ -179,20 +180,21 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <input name="donationId" hidden value="${donationForCHKout.donationId}">
                                     <div class="form-group row">
                                         <label class="col-sm-2 form-control-label text-xs-right"> ชื่อโครงการ : </label>
-                                        <div class="col-sm-10"> <h4> ${project.name}</h4> </div>
+                                        <div class="col-sm-10"> <h4> ${donationForCHKout.donationId}</h4> </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 form-control-label text-xs-right"> ยอดเงินบริจาค : </label>
-                                        <div class="col-sm-10"> <p> 1520.00 บาท </p> </div>
+                                        <div class="col-sm-10"> <p> ${allAmount}.00 บาท </p> </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 form-control-label text-xs-right"> ธนาคาร </label>
                                         <div class="col-sm-8">
-                                            <select class="form-control">
-                                                <option>ธนาคารไทยพาณิชย์</option>
-                                                <option>ธนาคารกรุงไทย</option>
+                                            <select class="form-control" name="bank" id="bank-dropdown">
+                                                <option value="1">ธนาคารไทยพาณิชย์</option>
+                                                <option value="2">ธนาคารกรุงไทย</option>
                                             </select>
                                         </div>
                                     </div>
@@ -202,11 +204,11 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 form-control-label text-xs-right"> หลักฐานการโอนเงิน : </label>
-                                        <div class="col-sm-8"> <input type="file" class="form-control" name="donation_id"> </div>
+                                        <div class="col-sm-8"> <input type="file" id="upload-file-btn" class="form-control" name="file"> </div>
                                     </div>
 
                                     <!--Button-->
-                                    <button type="submit" class="btn btn-primary btn-block"  value="Submit"> <i class="fa fa-lock"> </i> ยืนยันการชำระเงิน </button>
+                                    <button type="submit" class="btn btn-primary btn-block" id="submit-btn" value="Submit"> <i class="fa fa-lock"> </i> ยืนยันการชำระเงิน </button>
                                     <input type="submit" class="btn btn-secondary btn-block"  value="Cancel"  />
                                 </form>
                             </div>

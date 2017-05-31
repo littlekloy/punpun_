@@ -52,7 +52,7 @@
                                 <a href="index.jsp" class="btn btn-none-shadow header-btn"> <i class="fa fa-home"></i> <span> หน้าแรก </span> </a>
                             </li>
                             <li class="header-block header-block-buttons">
-                                <a href="ViewAllServlet" class="btn btn-none-shadow header-btn"> <i class="fa fa-file-text"></i> <span> โครงการต่าง ๆ </span> </a>
+                                <a href="ViewAllServlet" class="btn btn-none-shadow header-btn" id="browse-link"> <i class="fa fa-file-text"></i> <span> โครงการต่าง ๆ </span> </a>
                             </li>
                             <li class="header-block header-block-buttons">
                                 <a href="how-it-works.jsp" class="btn btn-none-shadow header-btn"> <i class="fa fa-list-ul"></i> <span> ขั้นตอนการบริจาค </span> </a>
@@ -63,14 +63,14 @@
                             <c:if test="${empty member}">
                                 <!-- login -->
                                 <li class="header-block header-block-buttons">
-                                    <a href="login.jsp" class="btn btn-none-shadow header-btn"> <i class="fa fa-sign-in"></i> <span> ลงชื่อเข้าใช้ </span> </a>
+                                    <a href="login.jsp" class="btn btn-none-shadow header-btn" id="login-btn"> <i class="fa fa-sign-in"></i> <span> ลงชื่อเข้าใช้ </span> </a>
                                 </li>
                             </c:if>
                             <c:if test="${member != null }">
 
                                 <!-- notification -->
                                 <li class="notifications new">
-                                    <a href="" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <sup>
+                                    <a href="checkNotificationServlet" data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <sup>
                                             <span class="counter">${countNoti}</span>
                                         </sup>
                                     </a>
@@ -107,8 +107,8 @@
                                         </span> </a>
                                     <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                                         <a class="dropdown-item" href="viewProfileServlet?id=${member.memberId}"> <i class="fa fa-user icon"></i> โพรไฟล์ </a>
-                                        <a class="dropdown-item" href="dashboard.jsp"> <i class="fa fa-user icon"></i> แดชบอร์ด </a>
-                                        <a class="dropdown-item" href="dashboard-project-list.jsp"> <i class="fa fa-bell icon"></i> โครงการของคุณ </a>
+                                        <a class="dropdown-item" href="dashboardServlet?id=${member.memberId}"> <i class="fa fa-user icon"></i> แดชบอร์ด </a>
+                                        <a class="dropdown-item" href="payment-list.jsp?memberId=${member.memberId}"> <i class="fa fa-bell icon"></i> การระดมทุนของคุณ </a>
                                         <a class="dropdown-item" href="dashboard-account-setting.jsp"> <i class="fa fa-gear icon"></i> ตั้งค่าบัญชีผู้ใช้ </a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="logoutServlet"> <i class="fa fa-power-off icon"></i> ลงชื่อออก </a>
@@ -120,6 +120,7 @@
                         </ul>
                     </div>
                 </header>
+
                 <!-- Header Content -->
                 <div class="app parallax-autoheight white-text" style="background-image: url('assets/backgrounds/profile-card-2.jpg');" >
                     <article class="container content-browse items-list-page">
@@ -130,7 +131,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <h3 class="center-text"> อุปกรณ์การเรียนแก่เด็กอมก๋อย </h3>
+                            <h3 class="center-text"> ${project.name} </h3>
                         </div>
                     </article>
                 </div>
@@ -150,137 +151,139 @@
                                             <li class="nav-item"> <a href="#" class="nav-link active"> 2. กรอกข้อมูลการชำระเงิน </a> </li>
                                             <li class="nav-item"> <a href="#" class="nav-link"> 3. เรียบร้อย </a> </li>
                                         </ul>
-
-                                        <!-- Tab panes -->
-                                        <div class="tab-content">
-                                            <!--Basic Tab-->
-                                            <div class="tab-pane fade in active" id="basic-pills">
-                                                <div class="want-top">
-                                                    <!-- Payment Method -->
-                                                    <label class="col-xs-5 form-control-label text-xs-right"> ช่องทางการชำระเงิน : </label>
-                                                    <ul class="nav nav-pills">
-                                                        <li class="nav-item"> <a href="" class="nav-link payment active" data-target="#bank-transfer-pills" aria-controls="bank-transfer-pills" data-toggle="tab" role="tab">โอนผ่านบัญชีธนาคาร</a> </li>
-                                                        <li class="nav-item"> <a href="" class="nav-link payment" data-target="#credit-pills" aria-controls="credit-pills" data-toggle="tab" role="tab">บัตรเครดิต</a> </li>
-                                                    </ul>
-                                                    <!-- Tab panes -->
-                                                    <div class="tab-content">
-                                                        <!--Bank Transfer Tab-->
-                                                        <div class="tab-pane fade in active" id="bank-transfer-pills">
-                                                            <div class="card card-block">
-                                                                <form role="form" method="GET" name="bank-transfer" action="payment-processing.jsp">
-                                                                    <div class="form-group row">
-                                                                        <label class="col-sm-2 form-control-label text-xs-right"> อีเมล : </label>
-                                                                        <div class="col-sm-8"> <input type="email" class="form-control" name="email" placeholder="อีเมล" value=""> </div>
-                                                                    </div>
-                                                                    <div class="form-group row">
-                                                                        <label class="col-sm-2 form-control-label text-xs-right"> ชื่อ - นามสกุล : </label>
-                                                                        <div class="col-sm-4"> <input type="text" class="form-control" name="firstname" placeholder="ชื่อ" value=""> </div>
-                                                                        <div class="col-sm-4"> <input type="text" class="form-control" name="lastname" placeholder="นามสกุล" value=""> </div>
-                                                                    </div>
-                                                                    <div class="form-group row">
-                                                                        <label class="col-sm-2 form-control-label text-xs-right"> ที่อยู่ : </label>
-                                                                        <div class="col-sm-8"> <input type="text" class="form-control" name="address" placeholder="ที่อยู่" value=""> </div>
-                                                                    </div>
-                                                                    <div class="form-group row">
-                                                                        <label class="col-sm-2 form-control-label text-xs-right"> ตำบล : </label>
-                                                                        <div class="col-sm-8"> <input type="text" class="form-control" name="sub-district" placeholder="ตำบล" value=""> </div>
-                                                                    </div>
-                                                                    <div class="form-group row">
-                                                                        <label class="col-sm-2 form-control-label text-xs-right"> อำเภอ : </label>
-                                                                        <div class="col-sm-8"> <input type="text" class="form-control" name="district" placeholder="อำเภอ" value=""> </div>
-                                                                    </div>
-                                                                    <div class="form-group row">
-                                                                        <label class="col-sm-2 form-control-label text-xs-right"> จังหวัด : </label>
-                                                                        <div class="col-sm-4"> <input type="text" class="form-control" name="province" placeholder="จังหวัด" value=""> </div>
-                                                                        <div class="col-sm-4"> <input type="text" class="form-control" name="postal-code" placeholder="รหัสไปรษณีย์" value=""> </div>
-                                                                    </div>
-                                                                    <!-- Bank -->
-                                                                    <div class="card card-block">
-                                                                        <h2>บัญชีธนาคาร</h2>
-                                                                        <div class="card-block col-xs-12 col-sm-6 col-md-4">
-                                                                            <div class="project-img-container">
-                                                                                <div class="image-project-no-opacity" style="background-image: url('assets/img/scb.jpg')"></div>
+                                        <form role="form" method="GET" name="bank-transfer" action="paymentServlet">
+                                            <!-- Tab panes -->
+                                            <div class="tab-content">
+                                                <!--Basic Tab-->
+                                                <div class="tab-pane fade in active" id="basic-pills">
+                                                    <div class="want-top">
+                                                        <!-- Payment Method -->
+                                                        <label class="col-xs-5 form-control-label text-xs-right"> ช่องทางการชำระเงิน : </label>
+                                                        <ul class="nav nav-pills">
+                                                            <li class="nav-item"> <a href="" class="nav-link payment active" data-target="#bank-transfer-pills" aria-controls="bank-transfer-pills" data-toggle="tab" role="tab">โอนผ่านบัญชีธนาคาร</a> </li>
+                                                            <li class="nav-item"> <a href="" class="nav-link payment" data-target="#credit-pills" aria-controls="credit-pills" data-toggle="tab" role="tab">บัตรเครดิต</a> </li>
+                                                        </ul>
+                                                        <!-- Tab panes -->
+                                                        <div class="tab-content">
+                                                            <!--Bank Transfer Tab-->
+                                                            <div class="tab-pane fade in active" id="bank-transfer-pills">
+                                                                <div class="card card-block">
+                                                                    <form role="form" method="GET" name="bank-transfer" action="paymentServlet">
+                                                                        <input name="method" value="cash" hidden>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-2 form-control-label text-xs-right"> อีเมล : </label>
+                                                                            <div class="col-sm-8"> <input type="email" class="form-control" name="email" placeholder="อีเมล" value="${member.email}"> </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-2 form-control-label text-xs-right"> ชื่อ - นามสกุล : </label>
+                                                                            <div class="col-sm-4"> <input type="text" class="form-control" name="firstname" placeholder="ชื่อ" value="${member.firstName}"> </div>
+                                                                            <div class="col-sm-4"> <input type="text" class="form-control" name="lastname" placeholder="นามสกุล" value="${member.lastName}"> </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-2 form-control-label text-xs-right"> ที่อยู่ : </label>
+                                                                            <div class="col-sm-8"> <input type="text" class="form-control" name="address" placeholder="ที่อยู่" value=""> </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-2 form-control-label text-xs-right"> ตำบล : </label>
+                                                                            <div class="col-sm-8"> <input type="text" class="form-control" name="sub-district" placeholder="ตำบล" value=""> </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-2 form-control-label text-xs-right"> อำเภอ : </label>
+                                                                            <div class="col-sm-8"> <input type="text" class="form-control" name="district" placeholder="อำเภอ" value=""> </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-2 form-control-label text-xs-right"> จังหวัด : </label>
+                                                                            <div class="col-sm-4"> <input type="text" class="form-control" name="province" placeholder="จังหวัด" value=""> </div>
+                                                                            <div class="col-sm-4"> <input type="text" class="form-control" name="postal-code" placeholder="รหัสไปรษณีย์" value=""> </div>
+                                                                        </div>
+                                                                        <!-- Bank -->
+                                                                        <div class="card card-block">
+                                                                            <h2>บัญชีธนาคาร</h2>
+                                                                            <div class="card-block col-xs-12 col-sm-6 col-md-4">
+                                                                                <div class="project-img-container">
+                                                                                    <div class="image-project-no-opacity" style="background-image: url('assets/img/scb.jpg')"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="card-block col-xs-12 col-sm-6 col-md-8">
+                                                                                <div class="want-top">
+                                                                                    <h5>ธนาคารไทยพาณิชย์ สาขาสถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง</h5>
+                                                                                    <p>ชื่อบัญชี นางสาวกนกวรรณ มุตตามระ</p>
+                                                                                    <h3>010-0-99999-9</h3>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="card-block col-xs-12 col-sm-6 col-md-8">
-                                                                            <div class="want-top">
-                                                                                <h5>ธนาคารไทยพาณิชย์ สาขาสถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง</h5>
-                                                                                <p>ชื่อบัญชี นางสาวกนกวรรณ มุตตามระ</p>
-                                                                                <h3>010-0-99999-9</h3>
+                                                                        <div class="card card-block">
+                                                                            <div class="card-block col-xs-12 col-sm-6 col-md-4">
+                                                                                <div class="project-img-container">
+                                                                                    <div class="image-project-no-opacity" style="background-image: url('assets/img/ktb.jpg')"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="card-block col-xs-12 col-sm-6 col-md-8">
+                                                                                <div class="want-top">
+                                                                                    <h5>ธนาคารกรุงไทย สาขาสถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง</h5>
+                                                                                    <p>ชื่อบัญชี นางสาวกนกวรรณ มุตตามระ</p>
+                                                                                    <h3>060-0-696969-2</h3>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="card card-block">
-                                                                        <div class="card-block col-xs-12 col-sm-6 col-md-4">
-                                                                            <div class="project-img-container">
-                                                                                <div class="image-project-no-opacity" style="background-image: url('assets/img/ktb.jpg')"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="card-block col-xs-12 col-sm-6 col-md-8">
-                                                                            <div class="want-top">
-                                                                                <h5>ธนาคารกรุงไทย สาขาสถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง</h5>
-                                                                                <p>ชื่อบัญชี นางสาวกนกวรรณ มุตตามระ</p>
-                                                                                <h3>060-0-696969-2</h3>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!--Button-->
-                                                                    <button type="submit" class="btn btn-primary btn-block"  value="Submit"> <i class="fa fa-lock"> </i> ยืนยันการชำระเงิน </button>
-                                                                    <input type="submit" class="btn btn-secondary btn-block"  value="Cancel"  />
-                                                                </form>
+                                                                        <!--Button-->
+                                                                        <button type="submit" class="btn btn-primary btn-block" id="submit-btn" value="Submit"> <i class="fa fa-lock"> </i> ยืนยันการชำระเงิน </button>
+                                                                        <input type="submit" class="btn btn-secondary btn-block"  value="Cancel"  />
+                                                                    </form>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <!--Credit Tab-->
-                                                        <div class="tab-pane fade in" id="credit-pills">
-                                                            <div class="card card-block">
-                                                                <form role="form" method="GET" name="credit-card" action="success-payment.jsp">
-                                                                    <div class="form-group row">
-                                                                        <label class="col-sm-2 form-control-label text-xs-right"> อีเมล : </label>
-                                                                        <div class="col-sm-8"> <input type="email" class="form-control" name="email" placeholder="อีเมล" value=""> </div>
-                                                                    </div>
-                                                                    <div class="form-group row">
-                                                                        <label class="col-sm-2 form-control-label text-xs-right"> ชื่อ - นามสกุล : </label>
-                                                                        <div class="col-sm-4"> <input type="text" class="form-control" name="firstname" placeholder="ชื่อ" value=""> </div>
-                                                                        <div class="col-sm-4"> <input type="text" class="form-control" name="lastname" placeholder="นามสกุล" value=""> </div>
-                                                                    </div>
-                                                                    <div class="form-group row">
-                                                                        <label class="col-sm-2 form-control-label text-xs-right"> ที่อยู่ : </label>
-                                                                        <div class="col-sm-8"> <input type="text" class="form-control" name="address" placeholder="ที่อยู่" value=""> </div>
-                                                                    </div>
-                                                                    <div class="form-group row">
-                                                                        <label class="col-sm-2 form-control-label text-xs-right"> ตำบล : </label>
-                                                                        <div class="col-sm-8"> <input type="text" class="form-control" name="sub-district" placeholder="ตำบล" value=""> </div>
-                                                                    </div>
-                                                                    <div class="form-group row">
-                                                                        <label class="col-sm-2 form-control-label text-xs-right"> อำเภอ : </label>
-                                                                        <div class="col-sm-8"> <input type="text" class="form-control" name="district" placeholder="อำเภอ" value=""> </div>
-                                                                    </div>
-                                                                    <div class="form-group row">
-                                                                        <label class="col-sm-2 form-control-label text-xs-right"> จังหวัด : </label>
-                                                                        <div class="col-sm-4"> <input type="text" class="form-control" name="province" placeholder="จังหวัด" value=""> </div>
-                                                                        <div class="col-sm-4"> <input type="text" class="form-control" name="postal-code" placeholder="รหัสไปรษณีย์" value=""> </div>
-                                                                    </div>
-                                                                    <div class="form-group row">
-                                                                        <label class="col-sm-2 form-control-label text-xs-right"> หมายเลขบัตร : </label>
-                                                                        <div class="col-sm-8"> <input type="text" class="form-control" name="credit-card-number" placeholder="หมายเลขบัตร" value=""> </div>
-                                                                    </div>
-                                                                    <div class="form-group row">
-                                                                        <label class="col-sm-2 form-control-label text-xs-right"> วันหมดอายุ : </label>
-                                                                        <div class="col-sm-4"> <input type="month" class="form-control" name="expired-card" placeholder="ดด / ปป" value=""> </div>
-                                                                        <label class="col-sm-1 form-control-label text-xs-right"> CVV : </label>
-                                                                        <div class="col-sm-3"> <input type="password" class="form-control" name="cvv" placeholder="cvv" maxlength="5" value=""> </div>
-                                                                    </div>
+                                                            <!--Credit Tab-->
+                                                            <div class="tab-pane fade in" id="credit-pills">
+                                                                <div class="card card-block">
+                                                                    <form role="form" method="GET" name="credit-card" action="paymentServlet">
+                                                                        <input name="method" value="visa" hidden>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-2 form-control-label text-xs-right"> อีเมล : </label>
+                                                                            <div class="col-sm-8"> <input type="email" class="form-control" name="email" placeholder="อีเมล" value="${member.email}"> </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-2 form-control-label text-xs-right"> ชื่อ - นามสกุล : </label>
+                                                                            <div class="col-sm-4"> <input type="text" class="form-control" name="firstname" placeholder="ชื่อ" value="${member.firstName}"> </div>
+                                                                            <div class="col-sm-4"> <input type="text" class="form-control" name="lastname" placeholder="นามสกุล" value="${member.lastName}"> </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-2 form-control-label text-xs-right"> ที่อยู่ : </label>
+                                                                            <div class="col-sm-8"> <input type="text" class="form-control" name="address" placeholder="ที่อยู่" value=""> </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-2 form-control-label text-xs-right"> ตำบล : </label>
+                                                                            <div class="col-sm-8"> <input type="text" class="form-control" name="sub-district" placeholder="ตำบล" value=""> </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-2 form-control-label text-xs-right"> อำเภอ : </label>
+                                                                            <div class="col-sm-8"> <input type="text" class="form-control" name="district" placeholder="อำเภอ" value=""> </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-2 form-control-label text-xs-right"> จังหวัด : </label>
+                                                                            <div class="col-sm-4"> <input type="text" class="form-control" name="province" placeholder="จังหวัด" value=""> </div>
+                                                                            <div class="col-sm-4"> <input type="text" class="form-control" name="postal-code" placeholder="รหัสไปรษณีย์" value=""> </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-2 form-control-label text-xs-right"> หมายเลขบัตร : </label>
+                                                                            <div class="col-sm-8"> <input type="text" class="form-control" name="credit-card-number" placeholder="หมายเลขบัตร" value=""> </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-sm-2 form-control-label text-xs-right"> วันหมดอายุ : </label>
+                                                                            <div class="col-sm-4"> <input type="month" class="form-control" name="expired-card" placeholder="ดด / ปป" value=""> </div>
+                                                                            <label class="col-sm-1 form-control-label text-xs-right"> CVV : </label>
+                                                                            <div class="col-sm-3"> <input type="password" class="form-control" name="cvv" placeholder="cvv" maxlength="5" value=""> </div>
+                                                                        </div>
 
-                                                                    <!--Button-->
-                                                                    <button type="submit" class="btn btn-primary btn-block"  value="Submit"> <i class="fa fa-lock"> </i> ยืนยันการชำระเงิน </button>
-                                                                    <input type="submit" class="btn btn-secondary btn-block"  value="Cancel"  />
-                                                                </form>
+                                                                        <!--Button-->
+                                                                        <button type="submit" class="btn btn-primary btn-block"  value="Submit"> <i class="fa fa-lock"> </i> ยืนยันการชำระเงิน </button>
+                                                                        <input type="submit" class="btn btn-secondary btn-block"  value="Cancel"  />
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
                                     </div>
                                     <!-- /.card-block -->
                                 </div>

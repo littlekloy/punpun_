@@ -100,6 +100,7 @@
             </header>
 
             <!-- Content -->
+
             <div class="app">
                 <!-- Content -->
                 <article class="container content dashboard-page">

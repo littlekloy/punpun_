@@ -165,35 +165,42 @@
                                     </div>
                                 </div>
                             </li>
+                            <sql:query var="result" dataSource="punpun">
+                                SELECT * FROM projects where status = 'pending'
+                            </sql:query>
 
-                            <!-- Comment Item : Loop here -->
-                            <li class="item">
-                                <div class="item-row">
-                                    <!--Comment-->
-                                    <div class="item-col item-col-title">
-                                        <div>
-                                            <a href="admin-project-preview.jsp" class="center-text" >
-                                                โครงการลดขยะตามป่าชายเลน
-                                            </a>
+                            <c:forEach var="row" items="${result.rows}">
+                                <!-- Comment Item : Loop here -->
+                                <li class="item">
+                                    <div class="item-row">
+                                        <!--Comment-->
+                                        <div class="item-col item-col-title">
+                                            <div>
+                                                <a href="viewProjectByIdServlet?id=${row.project_id}" class="center-text" >
+                                                    ${row.name}
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!--Name of Commenter-->
+                                        <div class="item-col item-col-stats no-underline">
+                                            <div>
+                                                <a href="profile.jsp" class="" >
+                                                    ${row.budget}
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!-- Setting Button -->
+                                        <div class="item-col  item-col-stats">
+                                            <div class="item-actions-dropdown">
+                                                <a href="approveServlet?id=${row.project_id}" class="btn btn-block btn-primary">ตรวจสอบ</a>
+                                                <a href="mailto:punpunproject@gmail.com?Subject=หัวข้อ%20เรื่องที่ติดต่อ" target="_top" class="btn btn-block btn-danger-outline">แจ้งปัญหา</a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <!--Name of Commenter-->
-                                    <div class="item-col item-col-stats no-underline">
-                                        <div>
-                                            <a href="profile.jsp" class="" >
-                                                ชูใจ น้ำใจงาม
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- Setting Button -->
-                                    <div class="item-col  item-col-stats">
-                                        <div class="item-actions-dropdown">
-                                            <a href="admin-project-preview.jsp" class="btn btn-block btn-primary">ตรวจสอบ</a>
-                                            <a href="mailto:punpunproject@gmail.com?Subject=หัวข้อ%20เรื่องที่ติดต่อ" target="_top" class="btn btn-block btn-danger-outline">แจ้งปัญหา</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                                </li>
+                            </c:forEach>
+
+
 
                         </ul>
 

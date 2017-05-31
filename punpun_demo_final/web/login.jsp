@@ -42,7 +42,7 @@
                             </div>
                             <div class="form-group"> <button type="submit" class="btn btn-block btn-primary">ลงชื่อเข้าใช้</button></div>
                             <div class="form-group">
-                                <p class="text-muted text-xs-center">ไม่มีบัญชีผู้ใช้? <a href="signup.jsp">สมัครเลยที่นี่!</a></p>
+                                <p class="text-muted text-xs-center">ไม่มีบัญชีผู้ใช้? <a href="signup.jsp" id="signup-link">สมัครเลยที่นี่!</a></p>
                             </div>
                         </form>
                     </div>
